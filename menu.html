@@ -10,6 +10,466 @@
     <link rel="stylesheet" href="css/pizza-3d.css">
     <link rel="stylesheet" href="css/menu-styles.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* STILI MIGLIORATI PER IL MENU */
+        .menu-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .menu-hero {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('assets/images/menu-hero-bg.jpg') center/cover;
+            padding: 140px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .menu-header {
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ff6b35, #ff8e53, #ff4757);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .menu-header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Filtri Categorie Migliorati */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 3rem 0;
+            padding: 0 2rem;
+        }
+
+        .filter-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.1rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #ff6b35, #ff8e53);
+            border-color: #ff6b35;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Barra Ricerca Migliorata */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .search-bar {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus-within {
+            border-color: #ff6b35;
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+            transform: translateY(-2px);
+        }
+
+        #menu-search {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        #menu-search::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #search-btn {
+            background: linear-gradient(135deg, #ff6b35, #ff8e53);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        #search-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Griglia Prodotti Centrata */
+        .menu-grid-section {
+            padding: 60px 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Card Prodotto Migliorata */
+        .pizza-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .pizza-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .pizza-card:hover::before {
+            left: 100%;
+        }
+
+        .pizza-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 107, 53, 0.6);
+        }
+
+        .pizza-card-image {
+            width: 100%;
+            height: 220px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .pizza-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .pizza-card:hover .pizza-card-image img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .pizza-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ff6b35, #ff4757);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .pizza-card-content h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .pizza-card-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .pizza-card-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+            display: block;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b35, #ff8e53);
+            border: none;
+            border-radius: 15px;
+            padding: 18px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .add-to-cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .add-to-cart-btn:hover::before {
+            left: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.5);
+            background: linear-gradient(135deg, #ff8e53, #ff6b35);
+        }
+
+        /* Sezioni Categoria */
+        .category-section {
+            margin-bottom: 6rem;
+            text-align: center;
+        }
+
+        .category-header {
+            margin-bottom: 4rem;
+        }
+
+        .category-header h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .category-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Footer Menu Migliorato */
+        .menu-footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8));
+            padding: 4rem 0 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-actions {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Animazioni Speciali */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pizza-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .pizza-card:nth-child(1) { animation-delay: 0.1s; }
+        .pizza-card:nth-child(2) { animation-delay: 0.2s; }
+        .pizza-card:nth-child(3) { animation-delay: 0.3s; }
+        .pizza-card:nth-child(4) { animation-delay: 0.4s; }
+        .pizza-card:nth-child(5) { animation-delay: 0.5s; }
+        .pizza-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Responsive Design Migliorato */
+        @media (max-width: 1200px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0.5rem;
+            }
+            
+            .category-filters {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                border-radius: 25px;
+            }
+            
+            #search-btn {
+                width: 100%;
+                border-radius: 25px;
+                margin-top: 1rem;
+            }
+            
+            .footer-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pizza-card {
+                margin: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .category-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .pizza-card {
+                padding: 1.5rem;
+            }
+            
+            .pizza-card-content h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Effetti Speciali */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.8); }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -25,19 +485,19 @@
                 <a href="ordina-online.html">Ordina Online</a>
                 <a href="#contatti">Contatti</a>
             </div>
-            <div class="cart-icon">
+            <div class="cart-icon" onclick="toggleCart()">
                 <span>🛒</span>
                 <span id="cart-counter" class="cart-counter">0</span>
             </div>
         </div>
     </nav>
 
-    <!-- Menu Hero Section -->
+    <!-- Menu Hero -->
     <section class="menu-hero">
-        <div class="container">
+        <div class="menu-container">
             <div class="menu-header">
-                <h1>Il Nostro Menù Completo</h1>
-                <p>Scopri tutte le nostre specialità preparate con ingredienti freschi</p>
+                <h1 class="floating">Il Nostro Menù</h1>
+                <p>Scopri tutte le nostre specialità preparate con ingredienti freschi e di qualità</p>
                 
                 <!-- Filtri Categorie -->
                 <div class="category-filters">
@@ -47,13 +507,14 @@
                     <button class="filter-btn" data-category="pizze-speciali">🎯 Specialità</button>
                     <button class="filter-btn" data-category="panini">🥪 Panini</button>
                     <button class="filter-btn" data-category="bibite">🥤 Bibite</button>
-                    <button class="filter-btn" data-category="contorni">🍟 Contorni</button>
                 </div>
 
                 <!-- Barra di Ricerca -->
-                <div class="search-bar">
-                    <input type="text" id="menu-search" placeholder="🔍 Cerca una pizza, panino o ingrediente...">
-                    <button id="search-btn" class="btn-primary">Cerca</button>
+                <div class="search-container">
+                    <div class="search-bar glass-card">
+                        <input type="text" id="menu-search" placeholder="🔍 Cerca una pizza, panino o ingrediente...">
+                        <button id="search-btn">Cerca</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,77 +522,57 @@
 
     <!-- Menu Grid -->
     <section class="menu-grid-section">
-        <div class="container">
+        <div class="menu-container">
             <div id="menu-container" class="menu-grid">
-                <!-- Il contenuto verrà caricato dinamicamente da JavaScript -->
-                <div class="loading-state">
-                    <div class="loading-spinner"></div>
+                <!-- Il menù verrà caricato dinamicamente da JavaScript -->
+                <div class="loading-state" style="text-align: center; padding: 4rem; color: white;">
+                    <div class="spinner" style="border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid #ff6b35; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
                     <p>Caricamento del menù...</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Carrello Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h3>🛒 Il Tuo Ordine</h3>
-            <button id="close-cart" class="close-btn">×</button>
-        </div>
-        
-        <div class="cart-items" id="cart-items-container">
-            <div class="empty-cart-state">
-                <div class="empty-icon">🥺</div>
-                <p>Il carrello è vuoto</p>
-                <p class="empty-subtitle">Aggiungi qualche deliziosa pizza!</p>
-            </div>
-        </div>
-
-        <div class="cart-summary">
-            <div class="summary-line">
-                <span>Subtotale:</span>
-                <span id="cart-subtotal">€0.00</span>
-            </div>
-            <div class="summary-line">
-                <span>Spese di consegna:</span>
-                <span id="cart-delivery">€2.50</span>
-            </div>
-            <div class="summary-line total">
-                <span>TOTALE:</span>
-                <span id="cart-total">€0.00</span>
-            </div>
-            <button id="checkout-btn" class="btn-checkout" disabled>Procedi all'Ordine</button>
-        </div>
-    </div>
-
-    <div id="cart-overlay" class="cart-overlay"></div>
-
     <!-- Footer -->
     <footer class="menu-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>🍕 Ciao Calderino</h3>
-                    <p>Pizzeria d'Asporto a Calderino</p>
-                    <p>📍 Via Roma, 123 - Calderino di Monte San Pietro (BO)</p>
-                    <p>📞 051 123 4567</p>
-                    <p>🕒 Aperto tutti i giorni 18:00-23:00</p>
-                </div>
-                <div class="footer-actions">
-                    <button class="btn-primary" onclick="location.href='ordina-online.html'">
-                        🚀 Ordina Online
-                    </button>
-                    <button class="btn-secondary" onclick="location.href='index.html'">
-                        🏠 Torna alla Home
-                    </button>
-                </div>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>🍕 Ciao Calderino</h3>
+                <p>Pizzeria d'Asporto a Calderino di Monte San Pietro</p>
+                <p>📍 Via Roma, 123 - Calderino (BO) | 📞 051 123 4567</p>
+            </div>
+            <div class="footer-actions">
+                <button class="btn-primary pulse-glow" onclick="location.href='ordina-online.html'">
+                    🚀 Ordina Online
+                </button>
+                <button class="btn-secondary" onclick="location.href='index.html'">
+                    🏠 Torna alla Home
+                </button>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/interactive-menu.js"></script>
     <script src="js/cart-system.js"></script>
+    
+    <script>
+        // Funzione per toggle carrello
+        function toggleCart() {
+            if (window.cartSystem) {
+                window.cartSystem.toggleCart();
+            }
+        }
+
+        // Animazione spinner
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
