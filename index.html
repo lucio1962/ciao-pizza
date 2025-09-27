@@ -3,65 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ciao Pizza • Menu e Ordini</title>
-  <meta name="description" content="Ciao Pizza a Calderino, Monte San Pietro (BO). Menu digitale, ordini al tavolo e asporto.">
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="icon" href="./assets/logo.svg">
-  <meta property="og:title" content="Ciao Pizza • Menu e Ordini">
-  <meta property="og:description" content="Menu digitale, ordini al tavolo e asporto.">
-  <meta property="og:image" content="./assets/logo.svg">
+  <title>Ciao Pizza • Home</title>
+  <meta name="description" content="Ciao Pizza a Calderino, Monte San Pietro. Pizza, atmosfera e gusto.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/logo.svg">
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <img src="./assets/logo.svg" alt="Ciao Pizza logo">
-      <div>
-        <div class="badge" id="bizName"></div>
-        <div class="meta" id="bizMeta"></div>
+  <header class="hero">
+    <div class="overlay">
+      <div class="hero-content">
+        <img src="assets/logo.svg" alt="Logo Ciao Pizza" class="logo">
+        <h1>Ciao Pizza</h1>
+        <p class="tagline">Passione, sapore, famiglia a Calderino</p>
+        <a href="menu.html" class="button">📖 Scopri il menu</a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="hero">
-      <h1>Menu digitale e ordini rapidi</h1>
-      <div class="controls">
-        <input class="input" id="search" placeholder="Cerca pizza o panino…">
-        <select id="category" class="input"></select>
-        <button class="button ghost" id="reset">Azzera filtri</button>
-      </div>
-      <div class="mode" id="mode"></div>
-      <div class="notice" id="tableInfo"></div>
-    </section>
+  <section class="about">
+    <h2>Chi siamo</h2>
+    <p>Da Ciao Pizza offriamo pizze artigianali, panini di pizza e ingredienti freschi. Ambiente accogliente, servizio attento, gusto autentico.</p>
+  </section>
 
-    <section id="menu" class="grid" aria-live="polite"></section>
+  <section class="gallery">
+    <h2>Il nostro locale</h2>
+    <div class="gallery-grid">
+      <img src="assets/locale1.jpg" alt="Interno locale">
+      <img src="assets/locale2.jpg" alt="Sala locale">
+      <img src="assets/locale3.jpg" alt="Ingresso locale">
+      <img src="assets/locale4.jpg" alt="Dettaglio locale">
+    </div>
+  </section>
 
-    <section class="footer">
-      <div class="qr">
-        <div>
-          <div class="small">QR per tavoli</div>
-          <div class="small">Usa formato: <code>?tavolo=12</code>. Esempio: <span id="qrSample"></span></div>
-        </div>
-        <canvas id="qrcanvas" width="96" height="96"></canvas>
-      </div>
-      <p class="small">Orari</p>
-      <div id="hours" class="small"></div>
-    </section>
-  </div>
+  <section class="contact">
+    <h2>Contatti</h2>
+    <p>📍 Via Lavino 179/B – Calderino (BO)</p>
+    <p>📞 <a href="tel:+390516760576">051 676 0576</a></p>
+  </section>
 
-  <aside class="cart" id="cart">
-    <header>
-      <strong>Carrello</strong>
-      <button class="button ghost" id="clearCart">Svuota</button>
-    </header>
-    <div class="items" id="cartItems"></div>
-    <footer>
-      <textarea class="input note" id="orderNote" rows="2" placeholder="Note (cottura, aggiunte, allergie)"></textarea>
-      <div class="total"><span>Totale</span><strong id="total">€0,00</strong></div>
-      <button class="button" id="checkout">Invia ordine</button>
-      <div class="small" id="checkoutHint"></div>
-    </footer>
-  </aside>
-
-  <script src="./config.js"></script>
-  <script src="./script.js"></script>
+  <footer>
+    <p>© 2025 Ciao Pizza – Calderino, Monte San Pietro</p>
+  </footer>
 </body>
 </html>
