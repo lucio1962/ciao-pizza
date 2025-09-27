@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordina Online - Ciao Calderino - Pizzeria d'Asporto</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>🍕 Ciao Calderino</h1>
+                <span>Pizzeria d'Asporto</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menù</a>
+                <a href="ordina-online.html" class="active">Ordina Online</a>
+                <a href="#contatti">Contatti</a>
+            </div>
+            <div class="cart-icon">
+                <span>🛒</span>
+                <span id="cart-counter" class="cart-counter">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Header -->
+    <section class="checkout-hero">
+        <div class="container">
+            <div class="checkout-header">
+                <h1 class="animate-title">Ordina Online</h1>
+                <p class="animate-subtitle">La tua pizza preferita a casa tua!</p>
+                
+                <!-- Progress Steps -->
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Carrello</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Dati Consegna</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Pagamento</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-label">Conferma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Content -->
+    <section class="checkout-content">
+        <div class="container">
+            <div class="checkout-grid">
+                <!-- Left Column - Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-header">
+                        <h3>Il Tuo Ordine</h3>
+                        <button class="btn-edit-cart" onclick="checkoutSystem.editCart()">Modifica</button>
+                    </div>
+
+                    <div class="order-items" id="checkout-items">
+                        <!-- Gli items dell'ordine appariranno qui -->
+                        <div class="empty-order">
+                            <p>Il carrello è vuoto</p>
+                            <span>😔</span>
+                            <a href="menu.html" class="btn-primary">Sfoglia il Menù</a>
+                        </div>
+                    </div>
+
+                    <div class="order-totals">
+                        <div class="total-line">
+                            <span>Subtotale:</span>
+                            <span id="subtotal">€0.00</span>
+                        </div>
+                        <div class="total-line">
+                            <span>Consegna:</span>
+                            <span id="delivery-cost">€2.50</span>
+                        </div>
+                        <div class="total-line discount">
+                            <span>Sconto:</span>
+                            <span id="discount">-€0.00</span>
+                        </div>
+                        <div class="total-line grand-total">
+                            <span>TOTALE:</span>
+                            <span id="grand-total">€0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="promo-section">
+                        <input type="text" id="promo-code" placeholder="Codice promozionale">
+                        <button id="apply-promo" class="btn-secondary">Applica</button>
+                    </div>
+                </div>
+
+                <!-- Right Column - Checkout Forms -->
+                <div class="checkout-forms">
+                    <!-- Step 1: Delivery Info -->
+                    <div class="checkout-step active" id="step-1">
+                        <h3>Dati di Consegna</h3>
+                        
+                        <div class="delivery-options">
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery-type" value="asporto" checked>
+                                <span class="radio-custom"></span>
+                                <span class="option-content">
+                                    <strong>🛵 Asporto in Pizzeria</strong>
+                                    <small>Ritiro presso: Via Roma, 123 - Calderino</small>
+                                </span>
+                            </label>
+                            
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery-type" value="domicilio">
+                                <span class="radio-custom"></span>
+                                <span class="option-content">
+                                    <strong>🏠 Consegna a Domicilio</strong>
+                                    <small>Spedizione: €2.50 (gratuita sopra €25)</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="customer-name">Nome e Cognome *</label>
+                                <input type="text" id="customer-name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customer-phone">Telefono *</label>
+                                <input type="tel" id="customer-phone" required>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="customer-email">Email</label>
+                                <input type="email" id="customer-email">
+                            </div>
+
+                            <!-- Domicilio Fields (hidden by default) -->
+                            <div class="domicilio-fields" style="display: none;">
+                                <div class="form-group full-width">
+                                    <label for="delivery-address">Indirizzo di Consegna *</label>
+                                    <input type="text" id="delivery-address" placeholder="Via, Civico, Scala, Interno">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="delivery-city">Città *</label>
+                                    <input type="text" id="delivery-city" value="Monte San Pietro" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="delivery-zip">CAP *</label>
+                                    <input type="text" id="delivery-zip" value="40050" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="order-notes">Note per l'ordine</label>
+                                <textarea id="order-notes" placeholder="Allergie, preferenze cottura, istruzioni speciali..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-next" onclick="checkoutSystem.nextStep(2)">Continua al Pagamento</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Payment -->
+                    <div class="checkout-step" id="step-2">
+                        <h3>Metodo di Pagamento</h3>
+                        
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="contanti" checked>
+                                <span class="radio-custom"></span>
+                                <span class="option-content">
+                                    <strong>💵 Contanti alla Consegna</strong>
+                                    <small>Pagamento quando ricevi l'ordine</small>
+                                </span>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="carta">
+                                <span class="radio-custom"></span>
+                                <span class="option-content">
+                                    <strong>💳 Carta di Credito</strong>
+                                    <small>Pagamento sicuro online</small>
+                                </span>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="satispay">
+                                <span class="radio-custom"></span>
+                                <span class="option-content">
+                                    <strong>📱 Satispay</strong>
+                                    <small>Pagamento con app</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Carta di Credito Fields (hidden by default) -->
+                        <div class="card-fields" style="display: none;">
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="card-number">Numero Carta *</label>
+                                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card-expiry">Scadenza *</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/AA">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card-cvc">CVC *</label>
+                                    <input type="text" id="card-cvc" placeholder="123">
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="card-name">Nome sulla Carta *</label>
+                                    <input type="text" id="card-name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-summary-mini">
+                            <h4>Riepilogo Ordine</h4>
+                            <div id="mini-order-summary"></div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-prev" onclick="checkoutSystem.prevStep(1)">← Indietro</button>
+                            <button class="btn-next" onclick="checkoutSystem.nextStep(3)">Rivedi Ordine</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Review & Confirm -->
+                    <div class="checkout-step" id="step-3">
+                        <h3>Riepilogo Ordine</h3>
+                        
+                        <div class="review-section">
+                            <div class="review-block">
+                                <h4>📦 Dettagli Ordine</h4>
+                                <div id="review-order-details"></div>
+                            </div>
+                            
+                            <div class="review-block">
+                                <h4>🚚 Consegna</h4>
+                                <div id="review-delivery-details"></div>
+                            </div>
+                            
+                            <div class="review-block">
+                                <h4>💳 Pagamento</h4>
+                                <div id="review-payment-details"></div>
+                            </div>
+                            
+                            <div class="review-block">
+                                <h4>⏰ Tempo Stimato</h4>
+                                <div class="time-estimate">
+                                    <strong>30-45 minuti</strong>
+                                    <small>Il tempo può variare in base all'orario</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="privacy-consent">
+                            <label>
+                                <input type="checkbox" id="privacy-consent" required>
+                                <span>Accetto i <a href="#">terminini di servizio</a> e l'<a href="#">informativa privacy</a></span>
+                            </label>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-prev" onclick="checkoutSystem.prevStep(2)">← Modifica Pagamento</button>
+                            <button class="btn-confirm" onclick="checkoutSystem.placeOrder()">🎉 Conferma Ordine</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Confirmation -->
+                    <div class="checkout-step" id="step-4">
+                        <div class="confirmation-screen">
+                            <div class="confirmation-icon">🎉</div>
+                            <h3>Ordine Confermato!</h3>
+                            <p class="order-number">Ordine #<span id="order-id">CALD-12345</span></p>
+                            
+                            <div class="confirmation-details">
+                                <p><strong>Tempo stimato di preparazione:</strong> 30-45 minuti</p>
+                                <p><strong>Totale ordine:</strong> <span id="confirmed-total">€0.00</span></p>
+                                <p><strong>Metodo pagamento:</strong> <span id="confirmed-payment">Contanti</span></p>
+                            </div>
+
+                            <div class="order-tracking">
+                                <h4>📱 Traccia il tuo ordine</h4>
+                                <p>Riceverai aggiornamenti via SMS sul tuo telefono</p>
+                                <div class="tracking-link">
+                                    <a href="#" id="tracking-link">Clicca qui per seguire lo stato dell'ordine</a>
+                                </div>
+                            </div>
+
+                            <div class="confirmation-actions">
+                                <button class="btn-primary" onclick="checkoutSystem.printOrder()">🖨️ Stampa Ricevuta</button>
+                                <button class="btn-secondary" onclick="location.href='index.html'">Torna alla Home</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="checkout-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <h4>📞 Hai bisogno di aiuto?</h4>
+                    <p>Telefono: <strong>051 123 4567</strong></p>
+                    <p>Orari: <strong>18:00 - 23:00</strong></p>
+                </div>
+                <div class="security-badges">
+                    <span>🔒 Pagamento Sicuro</span>
+                    <span>🚚 Consegna Veloce</span>
+                    <span>🍕 Ingredienti Freschi</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/cart-system.js"></script>
+    <script src="js/checkout-system.js"></script>
+</body>
+</html>
