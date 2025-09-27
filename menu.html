@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ciao Pizza • Menu Completo</title>
-  <meta name="description" content="Menu completo di Ciao Pizza: pizze, panini, bevande">
+  <title>Ciao Pizza • Menu</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="assets/logo.svg">
 </head>
@@ -17,45 +16,92 @@
   </header>
 
   <main class="menu-page">
+    <!-- PIZZE CLASSICHE -->
     <section>
       <h2>Pizze Classiche</h2>
       <div class="grid">
-        <div class="card"><h3>Margherita</h3><p>Pomodoro, mozzarella, basilico</p></div>
-        <div class="card"><h3>Diavola</h3><p>Pomodoro, mozzarella, salame piccante</p></div>
-        <div class="card"><h3>Prosciutto e Funghi</h3><p>Pomodoro, mozzarella, prosciutto cotto, funghi</p></div>
+        <div class="card"><h3>Margherita</h3><p>Pomodoro, mozzarella, basilico</p><input type="number" min="0" value="0" data-item="Margherita"></div>
+        <div class="card"><h3>Diavola</h3><p>Pomodoro, mozzarella, salame piccante</p><input type="number" min="0" value="0" data-item="Diavola"></div>
+        <div class="card"><h3>Prosciutto e Funghi</h3><p>Pomodoro, mozzarella, prosciutto cotto, funghi</p><input type="number" min="0" value="0" data-item="Prosciutto e Funghi"></div>
       </div>
     </section>
 
+    <!-- PIZZE SPECIALI -->
     <section>
       <h2>Pizze Speciali</h2>
       <div class="grid">
-        <div class="card"><h3>Bufala DOP</h3><p>Pomodoro, bufala, basilico</p></div>
-        <div class="card"><h3>Boscaiola</h3><p>Salsiccia, funghi, panna</p></div>
-        <div class="card"><h3>Ciao Special</h3><p>Base bianca, cotto, patatine, tonno</p></div>
+        <div class="card"><h3>Bufala DOP</h3><p>Pomodoro, mozzarella di bufala, basilico</p><input type="number" min="0" value="0" data-item="Bufala DOP"></div>
+        <div class="card"><h3>Boscaiola</h3><p>Salsiccia, funghi, panna</p><input type="number" min="0" value="0" data-item="Boscaiola"></div>
+        <div class="card"><h3>Ciao Special</h3><p>Base bianca, cotto, patatine, tonno</p><input type="number" min="0" value="0" data-item="Ciao Special"></div>
       </div>
     </section>
 
+    <!-- PANINI DI PIZZA -->
     <section>
       <h2>Panini di Pizza</h2>
       <div class="grid">
-        <div class="card"><h3>Panino Cotto</h3><p>Pizza bianca e prosciutto cotto</p></div>
-        <div class="card"><h3>Panino Salame</h3><p>Pizza bianca e salame</p></div>
-        <div class="card"><h3>Panino Vegetariano</h3><p>Pizza bianca con verdure grigliate</p></div>
+        <div class="card"><h3>Panino Cotto</h3><p>Pizza bianca e prosciutto cotto</p><input type="number" min="0" value="0" data-item="Panino Cotto"></div>
+        <div class="card"><h3>Panino Salame</h3><p>Pizza bianca e salame</p><input type="number" min="0" value="0" data-item="Panino Salame"></div>
+        <div class="card"><h3>Panino Vegetariano</h3><p>Pizza bianca con verdure grigliate</p><input type="number" min="0" value="0" data-item="Panino Vegetariano"></div>
       </div>
     </section>
 
+    <!-- CONTORNI -->
+    <section>
+      <h2>Contorni</h2>
+      <div class="grid">
+        <div class="card"><h3>Patatine Fritte</h3><p>Croccanti e dorate</p><input type="number" min="0" value="0" data-item="Patatine Fritte"></div>
+      </div>
+    </section>
+
+    <!-- BEVANDE -->
     <section>
       <h2>Bevande</h2>
       <div class="grid">
-        <div class="card"><h3>Acqua 0.5L</h3><p>Naturale o frizzante</p></div>
-        <div class="card"><h3>Cola 33cl</h3><p>Lattina</p></div>
-        <div class="card"><h3>Birra 33cl</h3><p>Bionda</p></div>
+        <div class="card"><h3>Acqua 0.5L</h3><p>Naturale o frizzante</p><input type="number" min="0" value="0" data-item="Acqua 0.5L"></div>
+        <div class="card"><h3>Cola 33cl</h3><p>Lattina</p><input type="number" min="0" value="0" data-item="Cola 33cl"></div>
       </div>
     </section>
+
+    <!-- BIRRE -->
+    <section>
+      <h2>Birre</h2>
+      <div class="grid">
+        <div class="card"><h3>Birra Chiara 33cl</h3><p>Bionda leggera</p><input type="number" min="0" value="0" data-item="Birra Chiara 33cl"></div>
+        <div class="card"><h3>Birra Rossa 33cl</h3><p>Aromatica e corposa</p><input type="number" min="0" value="0" data-item="Birra Rossa 33cl"></div>
+        <div class="card"><h3>Birra Artigianale 50cl</h3><p>Prodotta localmente</p><input type="number" min="0" value="0" data-item="Birra Artigianale 50cl"></div>
+      </div>
+    </section>
+
+    <!-- ORDINE -->
+    <div class="order-box">
+      <button id="sendOrder" class="button whatsapp">📲 Invia ordine su WhatsApp</button>
+    </div>
   </main>
 
   <footer>
     <p>© 2025 Ciao Pizza – Calderino, Monte San Pietro</p>
   </footer>
+
+  <script>
+    document.getElementById("sendOrder").addEventListener("click", function() {
+      const inputs = document.querySelectorAll("input[data-item]");
+      let order = [];
+      inputs.forEach(input => {
+        const qty = parseInt(input.value);
+        if (qty > 0) {
+          order.push(qty + " x " + input.dataset.item);
+        }
+      });
+      if (order.length === 0) {
+        alert("Seleziona almeno un prodotto prima di ordinare.");
+        return;
+      }
+      const message = encodeURIComponent("Vorrei ordinare:\n" + order.join("\n"));
+      const phone = "393384461593"; // numero WhatsApp
+      const url = "https://wa.me/" + phone + "?text=" + message;
+      window.open(url, "_blank");
+    });
+  </script>
 </body>
 </html>
