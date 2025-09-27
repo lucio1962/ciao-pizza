@@ -1,107 +1,314 @@
-<!doctype html>
-<html lang="it">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ciao Pizza • Menu</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="assets/logo.svg">
-</head>
-<body>
-  <header class="menu-header">
-    <h1>Il nostro Menu</h1>
-    <nav>
-      <a href="index.html">🏠 Home</a>
-    </nav>
-  </header>
-
-  <main class="menu-page">
-    <!-- PIZZE CLASSICHE -->
-    <section>
-      <h2>Pizze Classiche</h2>
-      <div class="grid">
-        <div class="card"><h3>Margherita</h3><p>Pomodoro, mozzarella, basilico</p><input type="number" min="0" value="0" data-item="Margherita"></div>
-        <div class="card"><h3>Diavola</h3><p>Pomodoro, mozzarella, salame piccante</p><input type="number" min="0" value="0" data-item="Diavola"></div>
-        <div class="card"><h3>Prosciutto e Funghi</h3><p>Pomodoro, mozzarella, prosciutto cotto, funghi</p><input type="number" min="0" value="0" data-item="Prosciutto e Funghi"></div>
-      </div>
-    </section>
-
-    <!-- PIZZE SPECIALI -->
-    <section>
-      <h2>Pizze Speciali</h2>
-      <div class="grid">
-        <div class="card"><h3>Bufala DOP</h3><p>Pomodoro, mozzarella di bufala, basilico</p><input type="number" min="0" value="0" data-item="Bufala DOP"></div>
-        <div class="card"><h3>Boscaiola</h3><p>Salsiccia, funghi, panna</p><input type="number" min="0" value="0" data-item="Boscaiola"></div>
-        <div class="card"><h3>Ciao Special</h3><p>Base bianca, cotto, patatine, tonno</p><input type="number" min="0" value="0" data-item="Ciao Special"></div>
-      </div>
-    </section>
-
-    <!-- PANINI DI PIZZA -->
-    <section>
-      <h2>Panini di Pizza</h2>
-      <div class="grid">
-        <div class="card"><h3>Panino Cotto</h3><p>Pizza bianca e prosciutto cotto</p><input type="number" min="0" value="0" data-item="Panino Cotto"></div>
-        <div class="card"><h3>Panino Salame</h3><p>Pizza bianca e salame</p><input type="number" min="0" value="0" data-item="Panino Salame"></div>
-        <div class="card"><h3>Panino Vegetariano</h3><p>Pizza bianca con verdure grigliate</p><input type="number" min="0" value="0" data-item="Panino Vegetariano"></div>
-      </div>
-    </section>
-
-    <!-- CONTORNI -->
-    <section>
-      <h2>Contorni</h2>
-      <div class="grid">
-        <div class="card"><h3>Patatine Fritte</h3><p>Croccanti e dorate</p><input type="number" min="0" value="0" data-item="Patatine Fritte"></div>
-      </div>
-    </section>
-
-    <!-- BEVANDE -->
-    <section>
-      <h2>Bevande</h2>
-      <div class="grid">
-        <div class="card"><h3>Acqua 0.5L</h3><p>Naturale o frizzante</p><input type="number" min="0" value="0" data-item="Acqua 0.5L"></div>
-        <div class="card"><h3>Cola 33cl</h3><p>Lattina</p><input type="number" min="0" value="0" data-item="Cola 33cl"></div>
-      </div>
-    </section>
-
-    <!-- BIRRE -->
-    <section>
-      <h2>Birre</h2>
-      <div class="grid">
-        <div class="card"><h3>Birra Chiara 33cl</h3><p>Bionda leggera</p><input type="number" min="0" value="0" data-item="Birra Chiara 33cl"></div>
-        <div class="card"><h3>Birra Rossa 33cl</h3><p>Aromatica e corposa</p><input type="number" min="0" value="0" data-item="Birra Rossa 33cl"></div>
-        <div class="card"><h3>Birra Artigianale 50cl</h3><p>Prodotta localmente</p><input type="number" min="0" value="0" data-item="Birra Artigianale 50cl"></div>
-      </div>
-    </section>
-
-    <!-- ORDINE -->
-    <div class="order-box">
-      <button id="sendOrder" class="button whatsapp">📲 Invia ordine su WhatsApp</button>
-    </div>
-  </main>
-
-  <footer>
-    <p>© 2025 Ciao Pizza – Calderino, Monte San Pietro</p>
-  </footer>
-
-  <script>
-    document.getElementById("sendOrder").addEventListener("click", function() {
-      const inputs = document.querySelectorAll("input[data-item]");
-      let order = [];
-      inputs.forEach(input => {
-        const qty = parseInt(input.value);
-        if (qty > 0) {
-          order.push(qty + " x " + input.dataset.item);
+{
+  "ristorante": {
+    "nome": "Ciao Calderino",
+    "tipo": "Pizzeria d'Asporto",
+    "indirizzo": "Calderino di Monte San Pietro, Bologna",
+    "telefono": "+39 051 123 4567",
+    "orari": {
+      "lunedi": "18:00 - 23:00",
+      "martedi": "18:00 - 23:00",
+      "mercoledi": "18:00 - 23:00",
+      "giovedi": "18:00 - 23:00",
+      "venerdi": "18:00 - 24:00",
+      "sabato": "18:00 - 24:00",
+      "domenica": "18:00 - 23:00"
+    }
+  },
+  "categorie": [
+    {
+      "id": "pizze-rosse",
+      "nome": "🍕 Pizze Rosse",
+      "descrizione": "Pizze classiche con pomodoro San Marzano DOP",
+      "prodotti": [
+        {
+          "id": "margherita",
+          "nome": "Margherita Classica",
+          "descrizione": "Pomodoro, mozzarella fiordilatte, basilico fresco, olio EVO",
+          "prezzo": 8.50,
+          "ingredienti": ["pomodoro", "mozzarella", "basilico", "olio"],
+          "allergeni": ["latte"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "margherita.jpg"
+        },
+        {
+          "id": "marinara",
+          "nome": "Marinara",
+          "descrizione": "Pomodoro, aglio, origano, olio EVO",
+          "prezzo": 7.00,
+          "ingredienti": ["pomodoro", "aglio", "origano", "olio"],
+          "allergeni": [],
+          "popolare": false,
+          "novita": false,
+          "immagine": "marinara.jpg"
+        },
+        {
+          "id": "diavola",
+          "nome": "Diavola",
+          "descrizione": "Pomodoro, mozzarella, salame piccante, peperoncino",
+          "prezzo": 10.50,
+          "ingredienti": ["pomodoro", "mozzarella", "salame piccante", "peperoncino"],
+          "allergeni": ["latte", "glutine"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "diavola.jpg"
+        },
+        {
+          "id": "quattro-stagioni",
+          "nome": "Quattro Stagioni",
+          "descrizione": "Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive",
+          "prezzo": 12.50,
+          "ingredienti": ["pomodoro", "mozzarella", "prosciutto cotto", "funghi", "carciofi", "olive"],
+          "allergeni": ["latte", "glutine"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "quattro-stagioni.jpg"
+        },
+        {
+          "id": "calderino-special",
+          "nome": "Calderino Special",
+          "descrizione": "Pomodoro, mozzarella di bufala, prosciutto crudo DOP, rucola, scaglie di grana",
+          "prezzo": 14.00,
+          "ingredienti": ["pomodoro", "mozzarella bufala", "prosciutto crudo", "rucola", "grana"],
+          "allergeni": ["latte"],
+          "popolare": true,
+          "novita": true,
+          "immagine": "calderino-special.jpg"
         }
-      });
-      if (order.length === 0) {
-        alert("Seleziona almeno un prodotto prima di ordinare.");
-        return;
-      }
-      const message = encodeURIComponent("Vorrei ordinare:\n" + order.join("\n"));
-      const phone = "393384461593"; // numero WhatsApp
-      const url = "https://wa.me/" + phone + "?text=" + message;
-      window.open(url, "_blank");
-    });
-  </script>
-</body>
-</html>
+      ]
+    },
+    {
+      "id": "pizze-bianche",
+      "nome": "⚪ Pizze Bianche",
+      "descrizione": "Pizze senza pomodoro, sapori delicati e ricercati",
+      "prodotti": [
+        {
+          "id": "bufala-e-crudo",
+          "nome": "Bufala e Crudo",
+          "descrizione": "Mozzarella di bufala, prosciutto crudo DOP, rucola, scaglie di grana",
+          "prezzo": 13.50,
+          "ingredienti": ["mozzarella bufala", "prosciutto crudo", "rucola", "grana"],
+          "allergeni": ["latte"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "bufala-crudo.jpg"
+        },
+        {
+          "id": "quattro-formaggi",
+          "nome": "Quattro Formaggi",
+          "descrizione": "Mozzarella, gorgonzola, fontina, parmigiano, pepe nero",
+          "prezzo": 11.50,
+          "ingredienti": ["mozzarella", "gorgonzola", "fontina", "parmigiano", "pepe"],
+          "allergeni": ["latte"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "quattro-formaggi.jpg"
+        },
+        {
+          "id": "patate-e-salsiccia",
+          "nome": "Patate e Salsiccia",
+          "descrizione": "Mozzarella, patate al forno, salsiccia di maiale nero, rosmarino",
+          "prezzo": 12.00,
+          "ingredienti": ["mozzarella", "patate", "salsiccia", "rosmarino"],
+          "allergeni": ["latte", "glutine"],
+          "popolare": false,
+          "novita": true,
+          "immagine": "patate-salsiccia.jpg"
+        }
+      ]
+    },
+    {
+      "id": "pizze-speciali",
+      "nome": "🎯 Specialità della Casa",
+      "descrizione": "Le nostre creazioni esclusive",
+      "prodotti": [
+        {
+          "id": "tartufata",
+          "nome": "Tartufata Nera",
+          "descrizione": "Mozzarella, funghi porcini, salsiccia, tartufo nero, scaglie di grana",
+          "prezzo": 16.50,
+          "ingredienti": ["mozzarella", "funghi porcini", "salsiccia", "tartufo", "grana"],
+          "allergeni": ["latte"],
+          "popolare": true,
+          "novita": true,
+          "immagine": "tartufata.jpg"
+        },
+        {
+          "id": "mare-monti",
+          "nome": "Mare e Monti",
+          "descrizione": "Mozzarella, gamberi, zucchini, salsiccia, pomodorini confit",
+          "prezzo": 15.00,
+          "ingredienti": ["mozzarella", "gamberi", "zucchini", "salsiccia", "pomodorini"],
+          "allergeni": ["latte", "crostacei"],
+          "popolare": false,
+          "novita": true,
+          "immagine": "mare-monti.jpg"
+        },
+        {
+          "id": "vegan-special",
+          "nome": "Vegan Special",
+          "descrizione": "Pomodoro, mozzarella vegana, verdure grigliate, olive, capperi",
+          "prezzo": 11.00,
+          "ingredienti": ["pomodoro", "mozzarella vegana", "verdure grigliate", "olive", "capperi"],
+          "allergeni": [],
+          "popolare": false,
+          "novita": true,
+          "vegana": true,
+          "immagine": "vegan-special.jpg"
+        }
+      ]
+    },
+    {
+      "id": "panini",
+      "nome": "🥪 Panini e Piadine",
+      "descrizione": "Farci il pieno di bontà",
+      "prodotti": [
+        {
+          "id": "panino-cotoletta",
+          "nome": "Panino con Cotoletta",
+          "descrizione": "Cotoletta di pollo panata, insalata, pomodoro, maionese",
+          "prezzo": 6.50,
+          "ingredienti": ["pollo", "insalata", "pomodoro", "maionese"],
+          "allergeni": ["glutine", "uova", "latte"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "panino-cotoletta.jpg"
+        },
+        {
+          "id": "panino-salamella",
+          "nome": "Panino con Salamella",
+          "descrizione": "Salamella alla griglia, cipolla caramellata, provola affumicata",
+          "prezzo": 7.00,
+          "ingredienti": ["salamella", "cipolla", "provola"],
+          "allergeni": ["glutine", "latte"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "panino-salamella.jpg"
+        },
+        {
+          "id": "piadina-romagnola",
+          "nome": "Piadina Romagnola",
+          "descrizione": "Squacquerone, rucola, prosciutto crudo DOP",
+          "prezzo": 8.00,
+          "ingredienti": ["squacquerone", "rucola", "prosciutto crudo"],
+          "allergeni": ["latte"],
+          "popolare": false,
+          "novita": true,
+          "immagine": "piadina-romagnola.jpg"
+        }
+      ]
+    },
+    {
+      "id": "bibite",
+      "nome": "🥤 Bibite e Bevande",
+      "descrizione": "Per accompagnare la tua pizza",
+      "prodotti": [
+        {
+          "id": "coca-cola",
+          "nome": "Coca-Cola 33cl",
+          "descrizione": "Lattina da 33cl",
+          "prezzo": 3.00,
+          "ingredienti": [],
+          "allergeni": [],
+          "popolare": true,
+          "novita": false,
+          "immagine": "coca-cola.jpg"
+        },
+        {
+          "id": "acqua-naturale",
+          "nome": "Acqua Naturale 50cl",
+          "descrizione": "Bottiglia da 50cl",
+          "prezzo": 1.50,
+          "ingredienti": [],
+          "allergeni": [],
+          "popolare": true,
+          "novita": false,
+          "immagine": "acqua-naturale.jpg"
+        },
+        {
+          "id": "acqua-frizzante",
+          "nome": "Acqua Frizzante 50cl",
+          "descrizione": "Bottiglia da 50cl",
+          "prezzo": 1.50,
+          "ingredienti": [],
+          "allergeni": [],
+          "popolare": true,
+          "novita": false,
+          "immagine": "acqua-frizzante.jpg"
+        },
+        {
+          "id": "birra-medi",
+          "nome": "Birra Media 33cl",
+          "descrizione": "Birra bionda italiana",
+          "prezzo": 4.00,
+          "ingredienti": [],
+          "allergeni": ["glutine"],
+          "popolare": true,
+          "novita": false,
+          "immagine": "birra-media.jpg"
+        },
+        {
+          "id": "vino-rosso",
+          "nome": "Vino Rosso della Casa",
+          "descrizione": "Calice 15cl",
+          "prezzo": 4.50,
+          "ingredienti": [],
+          "allergeni": ["solfiti"],
+          "popolare": false,
+          "novita": false,
+          "immagine": "vino-rosso.jpg"
+        }
+      ]
+    },
+    {
+      "id": "contorni",
+      "nome": "🍟 Contorni e Extra",
+      "descrizione": "Il tuo tocco personale",
+      "prodotti": [
+        {
+          "id": "patatine-fritte",
+          "nome": "Patatine Fritte",
+          "descrizione": "Porzione media con sale",
+          "prezzo": 4.00,
+          "ingredienti": ["patate", "sale"],
+          "allergeni": [],
+          "popolare": true,
+          "novita": false,
+          "immagine": "patatine-fritte.jpg"
+        },
+        {
+          "id": "olive-ascollane",
+          "nome": "Olive Ascolane",
+          "descrizione": "6 pezzi con ripieno di carne",
+          "prezzo": 5.50,
+          "ingredienti": ["olive", "carne", "panatura"],
+          "allergeni": ["glutine", "uova"],
+          "popolare": false,
+          "novita": true,
+          "immagine": "olive-ascolane.jpg"
+        },
+        {
+          "id": "mozzarella-extra",
+          "nome": "Mozzarella Extra",
+          "descrizione": "Aggiunta di mozzarella fiordilatte",
+          "prezzo": 2.00,
+          "ingredienti": ["mozzarella"],
+          "allergeni": ["latte"],
+          "popolare": true,
+          "novita": false,
+          "extra": true,
+          "immagine": "mozzarella-extra.jpg"
+        }
+      ]
+    }
+  ],
+  "allergeni": {
+    "latte": "Prodotti lattiero-caseari",
+    "glutine": "Cereali contenenti glutine",
+    "uova": "Uova e prodotti derivati",
+    "crostacei": "Crostacei e prodotti derivati",
+    "solfiti": "Solfiti in concentrazione >10mg/kg"
+  },
+  "version": "1.0",
+  "aggiornamento": "2024-01-01"
+}
