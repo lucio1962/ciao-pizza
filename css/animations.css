@@ -1,0 +1,415 @@
+/* css/animations.css - ANIMAZIONI AVANZATE */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 107, 53, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(255, 107, 53, 0.8);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 107, 53, 1), 0 0 30px rgba(255, 107, 53, 0.8);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes flip {
+    0% {
+        transform: perspective(400px) rotateY(0);
+    }
+    50% {
+        transform: perspective(400px) rotateY(180deg);
+    }
+    100% {
+        transform: perspective(400px) rotateY(360deg);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Animazioni per elementi specifici */
+.animate-title {
+    animation: fadeInDown 1s ease-out, glow 3s ease-in-out infinite 1s;
+}
+
+.animate-subtitle {
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.animate-in {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.animate-delay-1 {
+    animation-delay: 0.2s;
+}
+
+.animate-delay-2 {
+    animation-delay: 0.4s;
+}
+
+.animate-delay-3 {
+    animation-delay: 0.6s;
+}
+
+/* Countdown animations */
+.countdown-animate {
+    animation: bounceIn 0.6s ease-out;
+}
+
+.timer-flip {
+    animation: flip 0.6s ease-in-out;
+}
+
+/* Pizza card animations */
+.pizza-card:hover {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pizza-image {
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pizza-image:hover {
+    animation: pulse 2s infinite;
+}
+
+.pizza-image:hover img {
+    animation: zoomIn 0.5s ease-out;
+}
+
+/* Button animations */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    animation: pulse 1s infinite;
+}
+
+/* Glass card animations */
+.glass-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature card animations */
+.feature-card {
+    transition: all 0.4s ease;
+}
+
+.feature-card:hover .feature-icon {
+    animation: bounceIn 0.6s ease-out, float 2s ease-in-out infinite 0.6s;
+}
+
+.feature-icon {
+    transition: all 0.3s ease;
+}
+
+/* Notification animations */
+.notification {
+    animation: slideInFromTop 0.5s ease-out, fadeInDown 0.5s ease-out;
+}
+
+.notification.show {
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+.notification.hide {
+    animation: fadeInUp 0.5s ease-out reverse;
+}
+
+/* Loading animations */
+.loading-spinner {
+    animation: rotate 1s linear infinite;
+}
+
+.loading-dots::after {
+    content: '';
+    animation: blink 1.5s infinite;
+}
+
+/* Scroll animations */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+[data-animate].animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Parallax effect */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Hover effects */
+.hover-lift {
+    transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.hover-glow:hover {
+    animation: glow 1s ease-in-out infinite;
+}
+
+.hover-shake:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Success animations */
+.order-success {
+    animation: bounceIn 0.6s ease-out, pulse 1s ease-in-out 0.6s;
+}
+
+.success-checkmark {
+    animation: bounceIn 0.6s ease-out, rotate 0.5s ease-in-out 0.6s;
+}
+
+/* Countdown number flip */
+.countdown-number {
+    perspective: 1000px;
+}
+
+.countdown-number.flip {
+    animation: flip 0.6s ease-in-out;
+}
+
+/* Pizza slice animation */
+.pizza-slice {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pizza-slice:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.pizza-slice:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Text animations */
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid var(--primary-color);
+    white-space: nowrap;
+    animation: typewriter 3s steps(40, end), blink 0.8s step-end infinite;
+}
+
+/* Gradient animation */
+.animated-gradient {
+    background: linear-gradient(-45deg, #ff6b35, #ff8e53, #ff4757, #ff6b35);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Stagger animations for lists */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .glass-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+    
+    .feature-card:hover .feature-icon {
+        animation: bounceIn 0.6s ease-out;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
