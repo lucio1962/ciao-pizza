@@ -1,0 +1,36 @@
+{
+  "categories": [
+    {
+      "name": "Pizze Classiche",
+      "items": [
+        {"id": "margherita", "name": "Margherita", "desc": "Pomodoro, fior di latte, basilico", "price": 6.5},
+        {"id": "diavola", "name": "Diavola", "desc": "Pomodoro, fior di latte, salame piccante", "price": 8.0},
+        {"id": "prosciutto_funghi", "name": "Prosciutto e Funghi", "desc": "Pomodoro, fior di latte, prosciutto cotto, champignon", "price": 8.5}
+      ]
+    },
+    {
+      "name": "Pizze Speciali",
+      "items": [
+        {"id": "bufala", "name": "Bufala DOP", "desc": "Pomodoro, mozzarella di bufala, basilico", "price": 10.0},
+        {"id": "boscaiola", "name": "Boscaiola", "desc": "Fior di latte, salsiccia, funghi, panna", "price": 10.0},
+        {"id": "ciao_special", "name": "Ciao Special", "desc": "Base bianca, cotto, patatine, tonno", "price": 11.0}
+      ]
+    },
+    {
+      "name": "Panini di Pizza",
+      "items": [
+        {"id": "panino_cotto", "name": "Panino Cotto", "desc": "Pizza bianca, prosciutto cotto", "price": 6.0},
+        {"id": "panino_salami", "name": "Panino Salame", "desc": "Pizza bianca, salame", "price": 6.0},
+        {"id": "panino_vegetariano", "name": "Panino Vegetariano", "desc": "Pizza bianca, verdure grigliate", "price": 6.5}
+      ]
+    },
+    {
+      "name": "Bevande",
+      "items": [
+        {"id": "acqua", "name": "Acqua 0.5L", "desc": "Naturale o frizzante", "price": 1.0},
+        {"id": "cola", "name": "Cola 33cl", "desc": "Lattina", "price": 2.5},
+        {"id": "birra", "name": "Birra 33cl", "desc": "Chiara", "price": 3.5}
+      ]
+    }
+  ]
+}
