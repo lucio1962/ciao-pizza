@@ -1,0 +1,473 @@
+/* css/responsive.css - DESIGN MOBILE-FIRST PERFETTO */
+
+/* ===== BREAKPOINTS PRINCIPALI ===== */
+/* Mobile First Approach - Tutti gli stili base per mobile */
+
+/* Tablet - da 768px in su */
+@media screen and (min-width: 768px) {
+    .container {
+        padding: 0 3rem;
+    }
+    
+    .nav-container {
+        padding: 0 3rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.3rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .pizza-of-the-day {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    .countdown-timer {
+        gap: 1.5rem;
+    }
+    
+    .timer-box {
+        min-width: 100px;
+        padding: 1.5rem;
+    }
+    
+    .timer-box span {
+        font-size: 2.5rem;
+    }
+}
+
+/* Desktop - da 1024px in su */
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+    
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .hero-text h2 {
+        font-size: 4rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .pizza-of-the-day {
+        gap: 4rem;
+    }
+    
+    /* Navigation desktop */
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+    
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+/* Large Desktop - da 1440px in su */
+@media screen and (min-width: 1440px) {
+    .hero-text h2 {
+        font-size: 5rem;
+    }
+    
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* ===== MOBILE SPECIFICO (max-width: 767px) ===== */
+@media screen and (max-width: 767px) {
+    /* Navigation mobile */
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    /* Hero section mobile */
+    .hero {
+        height: 90vh;
+        padding: 0 1rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    /* Pizza del giorno mobile */
+    .daily-pizza-section {
+        padding: 60px 1rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .pizza-of-the-day {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .countdown-timer {
+        gap: 0.5rem;
+    }
+    
+    .timer-box {
+        min-width: 70px;
+        padding: 1rem 0.5rem;
+    }
+    
+    .timer-box span {
+        font-size: 1.5rem;
+    }
+    
+    .timer-box small {
+        font-size: 0.7rem;
+    }
+    
+    /* Features mobile */
+    .features {
+        padding: 60px 1rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .feature-card {
+        padding: 2rem 1rem;
+    }
+}
+
+/* ===== TABLET ORIZZONTALE (768px - 1023px) ===== */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .hero-text h2 {
+        font-size: 3rem;
+    }
+    
+    .pizza-of-the-day {
+        gap: 2rem;
+    }
+    
+    .pizza-info h3 {
+        font-size: 1.7rem;
+    }
+    
+    .current-price {
+        font-size: 2rem;
+    }
+}
+
+/* ===== ORIENTAMENTO TELEFONO ===== */
+/* Portrait (verticale) */
+@media screen and (max-width: 767px) and (orientation: portrait) {
+    .hero {
+        height: 85vh;
+    }
+}
+
+/* Landscape (orizzontale) */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+    .hero {
+        height: 100vh;
+    }
+    
+    .hero-text h2 {
+        font-size: 2rem;
+    }
+    
+    .nav-container {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* ===== ALTEZZE SPECIFICHE ===== */
+/* Schermi corti */
+@media screen and (max-height: 600px) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 0;
+    }
+    
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+/* Schermi molto alti */
+@media screen and (min-height: 1000px) {
+    .hero {
+        height: 70vh;
+    }
+}
+
+/* ===== DENSITÀ PIXEL ALTA (Retina) ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo h1 {
+        font-weight: 600;
+    }
+    
+    .glass-card {
+        border-width: 0.5px;
+    }
+}
+
+/* ===== STAMPA ===== */
+@media print {
+    .glass-nav,
+    .cta-buttons,
+    .scroll-indicator {
+        display: none;
+    }
+    
+    .hero {
+        background: none !important;
+        color: black;
+        height: auto;
+    }
+    
+    .hero-text h2 {
+        color: black;
+        text-shadow: none;
+    }
+    
+    .glass-card {
+        background: white;
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+}
+
+/* ===== ACCESSIBILITÀ ===== */
+/* Riduzione movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Alto contrasto */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #000000;
+        --secondary-color: #333333;
+        --text-color: #000000;
+    }
+    
+    .glass-card {
+        border: 2px solid black;
+        background: white;
+    }
+}
+
+/* Modalità scura del sistema */
+@media (prefers-color-scheme: dark) {
+    /* Il nostro design è già scuro, ma aggiungiamo ottimizzazioni */
+    .glass-card {
+        background: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ===== GESTIONE TESTI LUNGHI ===== */
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-wrap-balance {
+    text-wrap: balance;
+}
+
+/* ===== GESTIONE IMMAGINI RESPONSIVE ===== */
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== LAYOUT FLEX RESPONSIVO ===== */
+.flex-responsive {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .flex-responsive {
+        flex-direction: row;
+    }
+}
+
+/* ===== GRID AUTO-RESPONSIVA ===== */
+.auto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+@media screen and (max-width: 480px) {
+    .auto-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== GESTIONE FORM MOBILE ===== */
+@media screen and (max-width: 767px) {
+    input, select, textarea {
+        font-size: 16px; /* Previene zoom automatico su iOS */
+    }
+    
+    .glass-input {
+        padding: 12px 16px;
+    }
+}
+
+/* ===== OTTIMIZZAZIONI PERFORMANCE MOBILE ===== */
+.mobile-optimized {
+    /* Riduce le animazioni su dispositivi meno potenti */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+/* ===== GESTIONE VIEWPORT MOBILE ===== */
+/* Previene ridimensionamento testo orizzontale */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* ===== SAFARI SPECIFICO ===== */
+/* Fix per Safari mobile */
+@supports (-webkit-touch-callout: none) {
+    .hero {
+        height: -webkit-fill-available;
+    }
+}
+
+/* ===== FOLDABLE DEVICES ===== */
+/* Telefoni pieghevoli */
+@media screen and (max-width: 767px) and (min-aspect-ratio: 13/9) {
+    .container {
+        padding: 0 2rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* ===== TOUSCREEN OPTIMIZATIONS ===== */
+@media (pointer: coarse) {
+    .btn-primary, .btn-secondary {
+        min-height: 44px; /* Dimensione touch target minima */
+        padding: 12px 24px;
+    }
+    
+    .nav-links a {
+        padding: 10px 15px;
+        display: inline-block;
+    }
+}
+
+/* ===== LOADING PROGRESSIVE MOBILE ===== */
+@media screen and (max-width: 767px) {
+    .lazy-load {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .lazy-load.loaded {
+        opacity: 1;
+    }
+}
+
+/* ===== EMERGENZA LAYOUT ===== */
+/* Se tutto va storto, almeno il contenuto è leggibile */
+@media screen and (max-width: 240px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 1.2rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
