@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -17,7 +18,7 @@
                 <span>Pizzeria d'Asporto</span>
             </div>
             <div class="nav-links">
-                <a href="#home">Home</a>
+                <a href="index.html" class="active">Home</a>
                 <a href="menu.html">Menù</a>
                 <a href="ordina-online.html">Ordina Online</a>
                 <a href="#contatti">Contatti</a>
@@ -26,14 +27,14 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
                 <h2 class="animate-title">La Vera Pizza di Calderino</h2>
                 <p class="animate-subtitle">Forno a legna • Ingredienti locali • Consegna a domicilio</p>
                 <div class="cta-buttons">
-                    <button class="btn-primary pulse" onclick="location.href='ordina-online.html'">Ordina Online</button>
-                    <button class="btn-secondary" onclick="location.href='menu.html'">Vedi Menù</button>
+                    <button class="btn-primary pulse" onclick="location.href='ordina-online.html'">🚀 Ordina Online</button>
+                    <button class="btn-secondary" onclick="location.href='menu.html'">📋 Vedi Menù</button>
                 </div>
             </div>
         </div>
@@ -73,7 +74,7 @@
                         <span class="current-price" id="daily-pizza-price">€14,50</span>
                         <span class="original-price" id="daily-original-price">€17,00</span>
                     </div>
-                    <button class="btn-order" onclick="location.href='ordina-online.html'">Ordina Subito!</button>
+                    <button class="btn-order" onclick="location.href='ordina-online.html'">🎉 Ordina Subito!</button>
                 </div>
             </div>
         </div>
@@ -86,37 +87,209 @@
                 <div class="feature-card glass-card">
                     <div class="feature-icon">🚀</div>
                     <h3>Consegna Rapida</h3>
-                    <p>Consegna a domicilio in 30 minuti</p>
+                    <p>Consegna a domicilio in 30 minuti nella zona di Calderino e Monte San Pietro</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon">🍕</div>
                     <h3>Forno a Legna</h3>
-                    <p>Pizza croccante e fragrante</p>
+                    <p>Pizza croccante e fragrante cotta nel nostro forno a legna tradizionale</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon">📱</div>
                     <h3>Ordine Online</h3>
-                    <p>Ordina comodamente dal telefono</p>
+                    <p>Ordina comodamente dal telefono con il nostro sistema avanzato</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Ingredienti Top</h3>
+                    <p>Selezioniamo solo ingredienti di prima qualità per la tua pizza</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="footer">
+    <!-- Recensioni Clienti -->
+    <section class="reviews-section">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>🍕 Ciao Calderino</h3>
-                    <p>Pizzeria d'Asporto a Calderino di Monte San Pietro</p>
-                    <p>📍 Via Roma, 123 - Calderino (BO)</p>
-                    <p>📞 051 123 4567</p>
-                    <p>🕒 Aperto tutti i giorni 18:00-23:00</p>
+            <div class="section-header">
+                <h2>⭐ Cosa Dicono i Nostri Clienti</h2>
+                <p>Le recensioni vere di chi ha provato le nostre pizze</p>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card glass-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">🍕</div>
+                        <div class="reviewer-info">
+                            <h4>Marco Rossi</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"La migliore pizza di Calderino! Impasto perfetto e ingredienti freschissimi. Consegna sempre puntuale!"</p>
+                    <div class="review-date">2 giorni fa</div>
                 </div>
-                <div class="footer-links">
-                    <a href="menu.html">Menù</a>
-                    <a href="ordina-online.html">Ordina Online</a>
-                    <a href="#contatti">Contatti</a>
+                
+                <div class="review-card glass-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">👨‍👩‍👧‍👦</div>
+                        <div class="reviewer-info">
+                            <h4>Famiglia Bianchi</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Perfetta per la cena in famiglia. I bambini adorano la margherita e noi la diavola! Complimenti!"</p>
+                    <div class="review-date">1 settimana fa</div>
+                </div>
+                
+                <div class="review-card glass-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">💼</div>
+                        <div class="reviewer-info">
+                            <h4>Laura Verdi</h4>
+                            <div class="stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Ordino spesso per le pause pranzo in ufficio. Ottimo rapporto qualità-prezzo e consegna veloce."</p>
+                    <div class="review-date">3 giorni fa</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mappa e Contatti -->
+    <section class="map-section" id="contatti">
+        <div class="container">
+            <div class="map-container">
+                <div class="map-info glass-card">
+                    <h3>📍 Ci Trovi Qui</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">🏠</span>
+                            <div>
+                                <strong>Indirizzo</strong>
+                                <p>Via Roma, 123 - Calderino<br>Monte San Pietro (BO)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <strong>Telefono</strong>
+                                <p>051 123 4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">🕒</span>
+                            <div>
+                                <strong>Orari</strong>
+                                <p>Tutti i giorni<br>18:00 - 23:00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">🚗</span>
+                            <div>
+                                <strong>Parcheggio</strong>
+                                <p>Area parcheggio gratuita<br>davanti al locale</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-actions">
+                        <button class="btn-map" onclick="window.open('https://maps.google.com?q=Via+Roma+123+Calderino+Monte+San+Pietro+Bologna')">
+                            🗺️ Apri in Google Maps
+                        </button>
+                        <button class="btn-call" onclick="window.location.href='tel:+390511234567'">
+                            📞 Chiama Ora
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="map-placeholder">
+                    <div class="map-image">
+                        <div class="map-overlay">
+                            <h4>Ciao Calderino</h4>
+                            <p>Pizzeria d'Asporto</p>
+                            <button class="btn-directions" onclick="window.open('https://maps.google.com?q=Via+Roma+123+Calderino+Monte+San+Pietro+Bologna')">
+                                Ottieni indicazioni
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content glass-card">
+                <div class="newsletter-text">
+                    <h3>📧 Rimani Aggiornato</h3>
+                    <p>Ricevi offerte esclusive e sconti speciali direttamente nella tua email</p>
+                </div>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="La tua email..." class="newsletter-input">
+                    <button class="btn-newsletter" onclick="alert('Grazie per esserti iscritto! Riceverai le nostre offerte speciali.')">Iscriviti</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>🍕 Ciao Calderino</h3>
+                    <p>La vera pizza di Calderino, preparata con passione e ingredienti di qualità since 2024.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘 Facebook</a>
+                        <a href="#" class="social-link">📷 Instagram</a>
+                        <a href="#" class="social-link">📱 WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Menù</h4>
+                    <ul class="footer-links">
+                        <li><a href="menu.html">Pizze Rosse</a></li>
+                        <li><a href="menu.html">Pizze Bianche</a></li>
+                        <li><a href="menu.html">Specialità</a></li>
+                        <li><a href="menu.html">Panini e Piadine</a></li>
+                        <li><a href="menu.html">Bibite e Contorni</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Servizi</h4>
+                    <ul class="footer-links">
+                        <li><a href="ordina-online.html">Ordina Online</a></li>
+                        <li><a href="ordina-online.html">Asporto in Pizzeria</a></li>
+                        <li><a href="ordina-online.html">Consegna a Domicilio</a></li>
+                        <li><a href="#">Catering Eventi</a></li>
+                        <li><a href="#">Regali e Buoni</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Informazioni</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contatti">Contatti</a></li>
+                        <li><a href="#">Chi Siamo</a></li>
+                        <li><a href="#">Lavora con Noi</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Termini di Servizio</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <div class="footer-copyright">
+                    <p>&copy; 2024 Ciao Calderino - Pizzeria d'Asporto. Tutti i diritti riservati.</p>
+                    <p>P.IVA: 01234567890 | Designed with ❤️ for Calderino</p>
                 </div>
             </div>
         </div>
@@ -124,5 +297,359 @@
 
     <script src="js/main.js"></script>
     <script src="js/daily-pizza.js"></script>
+    
+    <script>
+        // Gestione click pulsanti per sicurezza
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pulsante Ordina Online
+            document.querySelector('.btn-primary')?.addEventListener('click', function() {
+                window.location.href = 'ordina-online.html';
+            });
+            
+            // Pulsante Vedi Menù
+            document.querySelector('.btn-secondary')?.addEventListener('click', function() {
+                window.location.href = 'menu.html';
+            });
+            
+            // Pulsante Ordina Subito
+            document.querySelector('.btn-order')?.addEventListener('click', function() {
+                window.location.href = 'ordina-online.html';
+            });
+            
+            // Pulsante Newsletter
+            document.querySelector('.btn-newsletter')?.addEventListener('click', function() {
+                const email = document.querySelector('.newsletter-input').value;
+                if (email && email.includes('@')) {
+                    alert('🎉 Graie per esserti iscritto! Riceverai le nostre offerte speciali a: ' + email);
+                    document.querySelector('.newsletter-input').value = '';
+                } else {
+                    alert('📧 Inserisci un indirizzo email valido!');
+                }
+            });
+            
+            // Invio con Enter nella newsletter
+            document.querySelector('.newsletter-input')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.querySelector('.btn-newsletter').click();
+                }
+            });
+        });
+    </script>
+    
+    <style>
+        /* Stili aggiuntivi per le nuove sezioni */
+        .reviews-section {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-avatar {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 107, 53, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reviewer-info h4 {
+            margin: 0;
+            color: white;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .review-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .map-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+        }
+
+        .map-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .map-info {
+            padding: 2rem;
+        }
+
+        .contact-details {
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-item strong {
+            color: white;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .map-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-map, .btn-call {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-map:hover, .btn-call:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .map-placeholder {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+        }
+
+        .map-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-overlay {
+            text-align: center;
+            color: white;
+        }
+
+        .map-overlay h4 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-directions {
+            background: #ff6b35;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .newsletter-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .newsletter-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3rem;
+            gap: 2rem;
+        }
+
+        .newsletter-text h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: white;
+            min-width: 250px;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-newsletter {
+            background: #ff6b35;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-newsletter:hover {
+            background: #ff8e53;
+            transform: translateY(-2px);
+        }
+
+        .main-footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 3rem 0 1rem;
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3, .footer-column h4 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b35;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #ff6b35;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 2rem 0;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .map-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .newsletter-form {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .map-actions {
+                justify-content: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </body>
 </html>
