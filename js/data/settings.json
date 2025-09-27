@@ -1,0 +1,172 @@
+{
+  "ristorante": {
+    "nome": "Ciao Calderino",
+    "tipo": "Pizzeria d'Asporto",
+    "indirizzo": "Via Roma, 123 - Calderino",
+    "citta": "Monte San Pietro",
+    "provincia": "Bologna",
+    "cap": "40050",
+    "telefono": "+39 051 123 4567",
+    "email": "info@ciaocalderino.it",
+    "piva": "01234567890",
+    "logo": "assets/images/logo.png",
+    "favicon": "assets/images/favicon.ico"
+  },
+  "orari": {
+    "apertura": "18:00",
+    "chiusura": "23:00",
+    "giorni_apertura": ["lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica"],
+    "chiusura_settimanale": [],
+    "festivi": {
+      "apertura_straordinaria": ["Natale", "Capodanno"],
+      "orari_speciali": {
+        "Natale": {"apertura": "19:00", "chiusura": "22:00"},
+        "Capodanno": {"apertura": "20:00", "chiusura": "01:00"}
+      }
+    }
+  },
+  "consegne": {
+    "costo_consegna": 2.50,
+    "soglia_gratuita": 25.00,
+    "tempo_medio_consegna": 35,
+    "zona_consegna": {
+      "raggio_km": 5,
+      "comuni_serviti": ["Monte San Pietro", "Calderino", "Montepastore", "Pianoro"],
+      "costo_extra": 0.00
+    },
+    "orari_consegna": {
+      "inizio": "18:30",
+      "fine": "22:30"
+    }
+  },
+  "pagamenti": {
+    "metodi_accettati": ["contanti", "carta", "satispay", "bancomat"],
+    "carta_online": {
+      "abilitato": true,
+      "provider": "stripe",
+      "commissioni": 2.5
+    },
+    "minimo_carta": 10.00,
+    "sconto_contanti": 0.00
+  },
+  "menu": {
+    "categorie_principali": ["pizze-rosse", "pizze-bianche", "pizze-speciali", "panini", "bibite", "contorni"],
+    "lingua_predefinita": "it",
+    "valuta": "EUR",
+    "tassa_di_servizio": 0.00,
+    "copaerto": 0.00,
+    "mostra_allergeni": true,
+    "mostra_calorie": false
+  },
+  "prenotazioni": {
+    "abilitato": true,
+    "anticipo_minimo": 30,
+    "max_persone_tavolo": 8,
+    "capienza_massima": 50,
+    "deposito_prenotazione": 0.00
+  },
+  "sistema_ordini": {
+    "stampante_cucina": {
+      "modello": "epson-tm-t20",
+      "protocollo": "escpos",
+      "ip": "192.168.1.100",
+      "porta": 9100
+    },
+    "qr_code": {
+      "abilitato": true,
+      "auto_wifi": true,
+      "timeout_sessione": 120
+    },
+    "notifiche": {
+      "sms_ordine": true,
+      "email_conferma": true,
+      "notifica_push": false
+    }
+  },
+  "promozioni": {
+    "pizza_giorno": {
+      "abilitato": true,
+      "sconto_percentuale": 15,
+      "orario_validita": "tutto il giorno"
+    },
+    "happy_hour": {
+      "abilitato": false,
+      "orario_inizio": "18:00",
+      "orario_fine": "19:30",
+      "sconti": ["birra", "vino_house"]
+    },
+    "codici_sconto": {
+      "abilitato": true,
+      "validita_giorni": 30,
+      "max_utilizzi": 100
+    }
+  },
+  "temi": {
+    "colore_primario": "#ff6b35",
+    "colore_secondario": "#ff8e53",
+    "colore_accento": "#ff4757",
+    "font_primario": "Segoe UI, Arial, sans-serif",
+    "font_secondario": "Arial, sans-serif",
+    "modo_scuro": true,
+    "animazioni": true
+  },
+  "integrazioni": {
+    "google_maps": {
+      "api_key": "AIzaSyEXAMPLE",
+      "embed_url": "https://maps.google.com/maps?q=Via+Roma+123+Calderino"
+    },
+    "social": {
+      "facebook": "https://facebook.com/ciaocalderino",
+      "instagram": "https://instagram.com/ciaocalderino",
+      "tripadvisor": "https://tripadvisor.com/ciaocalderino"
+    },
+    "recensioni": {
+      "google_business": true,
+      "tripadvisor": true,
+      "rating_medio": 4.5
+    }
+  },
+  "sicurezza": {
+    "ssl": true,
+    "backup_automatico": true,
+    "frequenza_backup": "giornaliero",
+    "conservazione_backup": 30,
+    "login_attempts": 5,
+    "session_timeout": 30
+  },
+  "statistiche": {
+    "tracking_analytics": true,
+    "google_analytics_id": "GA-EXAMPLE",
+    "report_giornaliero": true,
+    "metriche_principali": ["ordini_giorno", "fatturato", "prodotti_popolari", "tempo_medio_preparazione"]
+  },
+  "manutenzione": {
+    "modalita_manutenzione": false,
+    "messaggio_manutenzione": "Sito in manutenzione - Torneremo presto!",
+    "contatto_emergenza": "+39 351 234 5678"
+  },
+  "aggiornamenti": {
+    "versione": "1.0.0",
+    "data_rilascio": "2024-01-01",
+    "changelog": [
+      "Versione iniziale del sistema",
+      "Menù digitale con QR code",
+      "Sistema ordini online",
+      "Dashboard cucina"
+    ],
+    "prossimo_aggiornamento": "2024-02-01"
+  },
+  "supporto": {
+    "tecnico": {
+      "nome": "Mario Rossi",
+      "telefono": "+39 345 678 9012",
+      "email": "supporto@ciaocalderino.it",
+      "orari": "9:00-18:00"
+    },
+    "fornitore_software": {
+      "azienda": "TechSolutions Srl",
+      "sito": "https://techsolutions.it",
+      "supporto": "support@techsolutions.it"
+    }
+  }
+}
