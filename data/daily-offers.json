@@ -1,0 +1,233 @@
+{
+  "version": "1.0.0",
+  "aggiornamento": "2024-01-01",
+  "offerte_attive": true,
+  "pizza_del_giorno": {
+    "abilitato": true,
+    "sconto_percentuale": 15,
+    "orario_validita": "00:00-23:59",
+    "reset_automatico": true
+  },
+  "offerte_giornaliere": {
+    "lunedi": {
+      "nome": "⚡ Lunedì Energy",
+      "pizza_id": "diavola",
+      "prezzo_originale": 10.50,
+      "prezzo_scontato": 8.90,
+      "sconto_percentuale": 15,
+      "badge": "🔥 FORNO A LEGNA",
+      "descrizione": "Affronta la settimana con energia! Pizza Diavola scontata",
+      "immagine": "lunedi-energy.jpg",
+      "ingredienti_extra": [],
+      "disponibile": true,
+      "ordine_minimo": 0,
+      "categoria": "pizze-rosse"
+    },
+    "martedi": {
+      "nome": "💫 Serata Speciale",
+      "pizza_id": "bufala-e-crudo",
+      "prezzo_originale": 13.50,
+      "prezzo_scontato": 11.50,
+      "sconto_percentuale": 15,
+      "badge": "✨ PREMIUM",
+      "descrizione": "Serata romantica? La nostra pizza premium ti aspetta",
+      "immagine": "serata-speciale.jpg",
+      "ingredienti_extra": ["rucola extra", "scaglie di grana"],
+      "disponibile": true,
+      "ordine_minimo": 0,
+      "categoria": "pizze-bianche"
+    },
+    "mercoledi": {
+      "nome": "🎯 Metà Settimana",
+      "pizza_id": "quattro-stagioni",
+      "prezzo_originale": 12.50,
+      "prezzo_scontato": 10.60,
+      "sconto_percentuale": 15,
+      "badge": "🍝 TRADIZIONE BOLOGNESE",
+      "descrizione": "Metà settimana speciale con la classica Quattro Stagioni",
+      "immagine": "meta-settimana.jpg",
+      "ingredienti_extra": [],
+      "disponibile": true,
+      "ordine_minimo": 0,
+      "categoria": "pizze-rosse"
+    },
+    "giovedi": {
+      "nome": "🌟 Aspettando il Weekend",
+      "pizza_id": "calderino-special",
+      "prezzo_originale": 14.00,
+      "prezzo_scontato": 11.90,
+      "sconto_percentuale": 15,
+      "badge": "👑 GOURMET",
+      "descrizione": "Anticipa il weekend con la specialità della casa",
+      "immagine": "weekend-special.jpg",
+      "ingredienti_extra": ["burrata extra"],
+      "disponibile": true,
+      "ordine_minimo": 0,
+      "categoria": "pizze-rosse"
+    },
+    "venerdi": {
+      "nome": "🌊 Voglia di Mare",
+      "pizza_id": "mare-monti",
+      "prezzo_originale": 15.00,
+      "prezzo_scontato": 12.75,
+      "sconto_percentuale": 15,
+      "badge": "🐟 SPECIALITÀ DI MARE",
+      "descrizione": "Voglia di pesce? La nostra pizza mare e monti ti stupirà",
+      "immagine": "pizza-mare.jpg",
+      "ingredienti_extra": ["gamberi extra"],
+      "disponibile": true,
+      "ordine_minimo": 0,
+      "categoria": "pizze-speciali"
+    },
+    "sabato": {
+      "nome": "🎉 Sabato Italiano",
+      "pizza_id": "tartufata",
+      "prezzo_originale": 16.50,
+      "prezzo_scontato": 13.90,
+      "sconto_percentuale": 16,
+      "badge": "💎 LIMITED EDITION",
+      "descrizione": "Sabato di festa con il lusso del tartufo",
+      "immagine": "sabato-italiano.jpg",
+      "ingredienti_extra": ["tartufo nero", "funghi porcini"],
+      "disponibile": true,
+      "ordine_minimo": 0,
+      "categoria": "pizze-speciali"
+    },
+    "domenica": {
+      "nome": "🏡 Domenica in Famiglia",
+      "pizza_id": "quattro-formaggi",
+      "prezzo_originale": 11.50,
+      "prezzo_scontato": 9.50,
+      "sconto_percentuale": 17,
+      "badge": "👨‍👩‍👧‍👦 FAMILY SIZE",
+      "descrizione": "Domenica in famiglia con la classica Quattro Formaggi",
+      "immagine": "domenica-special.jpg",
+      "ingredienti_extra": ["formaggio extra"],
+      "disponibile": true,
+      "ordine_minimo": 0,
+      "categoria": "pizze-bianche"
+    }
+  },
+  "offerte_combo": {
+    "combo_famiglia": {
+      "nome": "👨‍👩‍👧‍👦 Combo Famiglia",
+      "descrizione": "Perfetta per 3-4 persone",
+      "prodotti_inclusi": [
+        {"id": "margherita", "quantita": 2},
+        {"id": "patatine-fritte", "quantita": 1},
+        {"id": "coca-cola", "quantita": 2},
+        {"id": "acqua-naturale", "quantita": 1}
+      ],
+      "prezzo_originale": 32.50,
+      "prezzo_scontato": 27.90,
+      "sconto_percentuale": 14,
+      "disponibile": true,
+      "giorni_validi": ["sabato", "domenica"]
+    },
+    "combo_coppia": {
+      "nome": "💑 Combo Coppia",
+      "descrizione": "Serata romantica completa",
+      "prodotti_inclusi": [
+        {"id": "bufala-e-crudo", "quantita": 1},
+        {"id": "calderino-special", "quantita": 1},
+        {"id": "vino-rosso", "quantita": 2},
+        {"id": "olive-ascollane", "quantita": 1}
+      ],
+      "prezzo_originale": 28.50,
+      "prezzo_scontato": 24.90,
+      "sconto_percentuale": 13,
+      "disponibile": true,
+      "giorni_validi": ["venerdi", "sabato"]
+    },
+    "combo_singola": {
+      "nome": "👤 Combo Singola",
+      "descrizione": "Tutto il necessario per una cena completa",
+      "prodotti_inclusi": [
+        {"id": "diavola", "quantita": 1},
+        {"id": "birra-medi", "quantita": 1},
+        {"id": "patatine-fritte", "quantita": 1}
+      ],
+      "prezzo_originale": 16.50,
+      "prezzo_scontato": 13.90,
+      "sconto_percentuale": 16,
+      "disponibile": true,
+      "giorni_validi": ["tutti"]
+    }
+  },
+  "promozioni_speciali": {
+    "consegna_gratuita": {
+      "nome": "🚚 Consegna Gratuita",
+      "descrizione": "Consegna a domicilio gratuita per ordini superiori a €25",
+      "tipo": "consegna",
+      "soglia_attivazione": 25.00,
+      "valore_sconto": 2.50,
+      "disponibile": true,
+      "validita": "sempre"
+    },
+    "primo_ordine": {
+      "nome": "🎁 Benvenuto!",
+      "descrizione": "Sconto del 10% sul primo ordine online",
+      "tipo": "sconto",
+      "sconto_percentuale": 10,
+      "codice": "BENVENUTO10",
+      "disponibile": true,
+      "max_utilizzi": 1
+    },
+    "fidelity_card": {
+      "nome": "💳 Carta Fedeltà",
+      "descrizione": "Ogni 10 ordini, una pizza omaggio!",
+      "tipo": "fidelity",
+      "punti_necessari": 10,
+      "premio": "pizza_omaggio",
+      "disponibile": true
+    }
+  },
+  "offerte_stagionali": {
+    "estate": {
+      "nome": "☀️ Offerte Estate",
+      "descrizione": "Pizze fresche e leggere per l'estate",
+      "periodo": {
+        "inizio": "2024-06-01",
+        "fine": "2024-08-31"
+      },
+      "prodotti_in_offerta": ["vegan-special", "mare-monti"],
+      "sconto_medio": 12,
+      "disponibile": false
+    },
+    "inverno": {
+      "nome": "❄️ Offerte Inverno",
+      "descrizione": "Pizze calde e sostanziose per l'inverno",
+      "periodo": {
+        "inizio": "2024-12-01",
+        "fine": "2024-02-28"
+      },
+      "prodotti_in_offerta": ["tartufata", "patate-e-salsiccia"],
+      "sconto_medio": 10,
+      "disponibile": false
+    }
+  },
+  "regole_offerte": {
+    "cumulabilita": {
+      "offerte_cumulabili": false,
+      "max_offerte_per_ordine": 1,
+      "eccezioni": ["consegna_gratuita"]
+    },
+    "validita": {
+      "orario_inizio": "00:00",
+      "orario_fine": "23:59",
+      "escludi_festivi": false
+    },
+    "condizioni": {
+      "minimo_ordine": 0,
+      "esclusioni_prodotti": [],
+      "solo_asporto": false,
+      "solo_online": false
+    }
+  },
+  "statistiche_offerte": {
+    "offerta_piu_popolare": "combo_famiglia",
+    "sconto_medio_utilizzato": 14.5,
+    "conversione_offerte": 23.7,
+    "fatturato_da_offerte": 1280.50
+  }
+}
