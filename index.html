@@ -5,28 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciao Calderino - Pizzeria d'Asporto</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
 </head>
 <body>
-    <header>
-        <nav>
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
             <div class="logo">
                 <h1>🍕 Ciao Calderino</h1>
                 <span>Pizzeria d'Asporto</span>
             </div>
-        </nav>
-    </header>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="menu.html">Menù</a>
+                <a href="#ordina">Ordina Online</a>
+                <a href="#contatti">Contatti</a>
+            </div>
+        </div>
+    </nav>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
         <div class="hero-content">
-            <h2>La Vera Pizza di Calderino</h2>
-            <p>Forno a legna • Ingredienti locali • Consegna a domicilio</p>
-            <div class="cta-buttons">
-                <button class="btn-primary">Ordina Online</button>
-                <button class="btn-secondary">Vedi Menù</button>
+            <div class="hero-text">
+                <h2 class="animate-title">La Vera Pizza di Calderino</h2>
+                <p class="animate-subtitle">Forno a legna • Ingredienti locali • Consegna a domicilio</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary pulse">Ordina Online</button>
+                    <button class="btn-secondary">Vedi Menù</button>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Pizza del Giorno Section -->
+    <section class="daily-pizza-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🍕 Pizza del Giorno</h2>
+                <div class="countdown-timer">
+                    <div class="timer-box">
+                        <span id="hours">00</span>
+                        <small>Ore</small>
+                    </div>
+                    <div class="timer-box">
+                        <span id="minutes">00</span>
+                        <small>Minuti</small>
+                    </div>
+                    <div class="timer-box">
+                        <span id="seconds">00</span>
+                        <small>Secondi</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pizza-of-the-day glass-card">
+                <div class="pizza-image">
+                    <div class="pizza-badge">OFFERTA 🔥</div>
+                    <img src="assets/images/pizza-day.jpg" alt="Pizza del Giorno" id="daily-pizza-img">
+                </div>
+                <div class="pizza-info">
+                    <h3 id="daily-pizza-name">La Calderino Special</h3>
+                    <p id="daily-pizza-ingredients">Mozzarella di bufala, mortadella DOP, pistacchi, burrata cremosa</p>
+                    <div class="pizza-price">
+                        <span class="current-price" id="daily-pizza-price">€14,50</span>
+                        <span class="original-price" id="daily-original-price">€17,00</span>
+                    </div>
+                    <button class="btn-order">Ordina Subito!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Consegna Rapida</h3>
+                    <p>Consegna a domicilio in 30 minuti</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🍕</div>
+                    <h3>Forno a Legna</h3>
+                    <p>Pizza croccante e fragrante</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Ordine Online</h3>
+                    <p>Ordina comodamente dal telefono</p>
+                </div>
             </div>
         </div>
     </section>
 
     <script src="js/main.js"></script>
+    <script src="js/daily-pizza.js"></script>
 </body>
 </html>
