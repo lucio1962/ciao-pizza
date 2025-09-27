@@ -19,7 +19,7 @@
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="menu.html">Menù</a>
-                <a href="#ordina">Ordina Online</a>
+                <a href="ordina-online.html">Ordina Online</a>
                 <a href="#contatti">Contatti</a>
             </div>
         </div>
@@ -32,8 +32,8 @@
                 <h2 class="animate-title">La Vera Pizza di Calderino</h2>
                 <p class="animate-subtitle">Forno a legna • Ingredienti locali • Consegna a domicilio</p>
                 <div class="cta-buttons">
-                    <button class="btn-primary pulse">Ordina Online</button>
-                    <button class="btn-secondary">Vedi Menù</button>
+                    <button class="btn-primary pulse" onclick="location.href='ordina-online.html'">Ordina Online</button>
+                    <button class="btn-secondary" onclick="location.href='menu.html'">Vedi Menù</button>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                         <span class="current-price" id="daily-pizza-price">€14,50</span>
                         <span class="original-price" id="daily-original-price">€17,00</span>
                     </div>
-                    <button class="btn-order">Ordina Subito!</button>
+                    <button class="btn-order" onclick="location.href='ordina-online.html'">Ordina Subito!</button>
                 </div>
             </div>
         </div>
@@ -101,6 +101,26 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>🍕 Ciao Calderino</h3>
+                    <p>Pizzeria d'Asporto a Calderino di Monte San Pietro</p>
+                    <p>📍 Via Roma, 123 - Calderino (BO)</p>
+                    <p>📞 051 123 4567</p>
+                    <p>🕒 Aperto tutti i giorni 18:00-23:00</p>
+                </div>
+                <div class="footer-links">
+                    <a href="menu.html">Menù</a>
+                    <a href="ordina-online.html">Ordina Online</a>
+                    <a href="#contatti">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
     <script src="js/daily-pizza.js"></script>
