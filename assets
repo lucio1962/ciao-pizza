@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120">
-  <rect width="480" height="120" fill="#111"/>
-  <text x="24" y="76" font-family="Arial, Helvetica, sans-serif" font-size="56" fill="#fff">Ciao Pizza</text>
-  <circle cx="410" cy="60" r="40" fill="#e43"/>
-  <circle cx="410" cy="60" r="26" fill="#ffdd55"/>
-  <circle cx="410" cy="60" r="12" fill="#111"/>
-</svg>
