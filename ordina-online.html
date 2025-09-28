@@ -646,6 +646,17 @@
         .mb-2 { margin-bottom: 2rem; }
         .mt-1 { margin-top: 1rem; }
         .mt-2 { margin-top: 2rem; }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .empty-cart-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -705,48 +716,23 @@
                 </div>
 
                 <div class="order-items" id="checkout-items">
-                    <div class="checkout-item">
-                        <div class="item-image">
-                            <img src="assets/images/margherita.jpg" alt="Margherita">
-                        </div>
-                        <div class="item-details">
-                            <h4>Margherita Classica</h4>
-                            <p>Quantità: 1</p>
-                        </div>
-                        <div class="item-price">€8.50</div>
-                    </div>
-                    
-                    <div class="checkout-item">
-                        <div class="item-image">
-                            <img src="assets/images/diavola.jpg" alt="Diavola">
-                        </div>
-                        <div class="item-details">
-                            <h4>Diavola</h4>
-                            <p>Quantità: 1</p>
-                        </div>
-                        <div class="item-price">€10.50</div>
-                    </div>
-                    
-                    <div class="checkout-item">
-                        <div class="item-image">
-                            <img src="assets/images/coca-cola.jpg" alt="Coca-Cola">
-                        </div>
-                        <div class="item-details">
-                            <h4>Coca-Cola 33cl</h4>
-                            <p>Quantità: 2</p>
-                        </div>
-                        <div class="item-price">€6.00</div>
+                    <!-- Il carrello verrà popolato dinamicamente da JavaScript -->
+                    <div class="empty-cart" id="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <h4>Carrello Vuoto</h4>
+                        <p>Aggiungi prodotti dal menù per continuare</p>
+                        <button class="btn-primary" onclick="location.href='menu.html'" style="margin-top: 1rem;">Vai al Menù</button>
                     </div>
                 </div>
 
                 <div class="order-totals">
                     <div class="total-line">
                         <span>Subtotale:</span>
-                        <span id="subtotal">€25.00</span>
+                        <span id="subtotal">€0.00</span>
                     </div>
                     <div class="total-line">
                         <span>Consegna:</span>
-                        <span id="delivery-cost">€2.50</span>
+                        <span id="delivery-cost">€0.00</span>
                     </div>
                     <div class="total-line discount" style="display: none;">
                         <span>Sconto:</span>
@@ -754,7 +740,7 @@
                     </div>
                     <div class="total-line grand-total">
                         <span>TOTALE:</span>
-                        <span id="grand-total">€27.50</span>
+                        <span id="grand-total">€0.00</span>
                     </div>
                 </div>
 
@@ -828,7 +814,7 @@
 
                     <div class="step-actions">
                         <div></div> <!-- Spacer -->
-                        <button class="btn-next" onclick="nextStep(2)">Continua al Pagamento →</button>
+                        <button class="btn-next" onclick="validateStep1()">Continua al Pagamento →</button>
                     </div>
                 </div>
 
@@ -881,12 +867,8 @@
                 <div class="checkout-step" id="step-3">
                     <h3>Riepilogo Ordine</h3>
                     
-                    <div class="confirmation-details">
-                        <p><strong>📦 Ordine:</strong> 1x Margherita, 1x Diavola, 2x Coca-Cola</p>
-                        <p><strong>🚚 Consegna:</strong> Asporto in pizzeria</p>
-                        <p><strong>💳 Pagamento:</strong> Contanti alla consegna</p>
-                        <p><strong>💰 Totale:</strong> €27.50</p>
-                        <p><strong>⏰ Tempo stimato:</strong> 30-45 minuti</p>
+                    <div class="confirmation-details" id="order-summary-details">
+                        <!-- Il riepilogo verrà popolato dinamicamente -->
                     </div>
 
                     <div class="form-group full-width">
@@ -909,11 +891,8 @@
                         <h3>Ordine Confermato!</h3>
                         <p class="order-number">Ordine #<span id="order-id">CALD-12345</span></p>
                         
-                        <div class="confirmation-details">
-                            <p><strong>Tempo stimato di preparazione:</strong> 30-45 minuti</p>
-                            <p><strong>Totale ordine:</strong> <span id="confirmed-total">€27.50</span></p>
-                            <p><strong>Metodo pagamento:</strong> <span id="confirmed-payment">Contanti</span></p>
-                            <p><strong>Indirizzo consegna:</strong> Asporto in pizzeria</p>
+                        <div class="confirmation-details" id="confirmed-order-details">
+                            <!-- Dettagli ordine confermato -->
                         </div>
 
                         <div class="order-tracking">
@@ -927,7 +906,7 @@
                         <div class="confirmation-actions">
                             <button class="btn-primary" onclick="window.print()">🖨️ Stampa Ricevuta</button>
                             <button class="btn-secondary" onclick="location.href='index.html'">Torna alla Home</button>
-                            <button class="btn-primary" onclick="location.href='menu.html'">Nuovo Ordine</button>
+                            <button class="btn-primary" onclick="resetOrder()">Nuovo Ordine</button>
                         </div>
                     </div>
                 </div>
@@ -985,89 +964,238 @@
     </section>
 
     <script>
-        // Simple step navigation
+        // Gestione del carrello
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let appliedDiscount = 0;
+
+        // Inizializza la pagina
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCart();
+            updateOrderSummary();
+        });
+
+        // Carica il carrello dal localStorage
+        function loadCart() {
+            const cartItems = document.getElementById('checkout-items');
+            const emptyCart = document.getElementById('empty-cart');
+            
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                return;
+            }
+            
+            emptyCart.style.display = 'none';
+            
+            // Pulisci il carrello esistente
+            cartItems.innerHTML = '';
+            
+            // Aggiungi ogni prodotto al carrello
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'checkout-item';
+                itemElement.innerHTML = `
+                    <div class="item-image">
+                        <img src="${item.image || 'assets/images/default-pizza.jpg'}" alt="${item.name}">
+                    </div>
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <p>Quantità: ${item.quantity}</p>
+                        ${item.toppings ? `<p>${item.toppings}</p>` : ''}
+                    </div>
+                    <div class="item-price">€${(item.price * item.quantity).toFixed(2)}</div>
+                `;
+                cartItems.appendChild(itemElement);
+            });
+        }
+
+        // Aggiorna il totale dell'ordine
+        function updateOrderSummary() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryType = document.querySelector('input[name="delivery-type"]:checked').value;
+            const deliveryCost = deliveryType === 'domicilio' && subtotal < 25 ? 2.50 : 0;
+            const total = subtotal + deliveryCost - appliedDiscount;
+
+            document.getElementById('subtotal').textContent = `€${subtotal.toFixed(2)}`;
+            document.getElementById('delivery-cost').textContent = deliveryCost > 0 ? `€${deliveryCost.toFixed(2)}` : 'Gratuita';
+            document.getElementById('grand-total').textContent = `€${total.toFixed(2)}`;
+
+            // Mostra/nascondi sconto
+            const discountLine = document.querySelector('.discount');
+            if (appliedDiscount > 0) {
+                discountLine.style.display = 'flex';
+                document.getElementById('discount').textContent = `-€${appliedDiscount.toFixed(2)}`;
+            } else {
+                discountLine.style.display = 'none';
+            }
+        }
+
+        // Validazione step 1
+        function validateStep1() {
+            const name = document.getElementById('customer-name').value;
+            const phone = document.getElementById('customer-phone').value;
+            const deliveryType = document.querySelector('input[name="delivery-type"]:checked').value;
+            const address = document.getElementById('delivery-address').value;
+
+            if (!name || !phone) {
+                alert('Inserisci nome e telefono per continuare');
+                return;
+            }
+
+            if (deliveryType === 'domicilio' && !address) {
+                alert('Inserisci l\'indirizzo di consegna per continuare');
+                return;
+            }
+
+            if (cart.length === 0) {
+                alert('Aggiungi almeno un prodotto al carrello per continuare');
+                return;
+            }
+
+            nextStep(2);
+        }
+
+        // Navigazione tra step
         function nextStep(step) {
             document.querySelectorAll('.checkout-step').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             
             document.getElementById(`step-${step}`).classList.add('active');
             document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
+
+            // Aggiorna il riepilogo per lo step 3
+            if (step === 3) {
+                updateOrderReview();
+            }
         }
 
         function prevStep(step) {
             nextStep(step);
         }
 
+        // Aggiorna il riepilogo ordine
+        function updateOrderReview() {
+            const orderSummary = document.getElementById('order-summary-details');
+            const deliveryType = document.querySelector('input[name="delivery-type"]:checked').value;
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryCost = deliveryType === 'domicilio' && subtotal < 25 ? 2.50 : 0;
+            const total = subtotal + deliveryCost - appliedDiscount;
+
+            const itemsText = cart.map(item => 
+                `${item.quantity}x ${item.name}`
+            ).join(', ');
+
+            orderSummary.innerHTML = `
+                <p><strong>📦 Ordine:</strong> ${itemsText}</p>
+                <p><strong>🚚 Consegna:</strong> ${deliveryType === 'asporto' ? 'Asporto in pizzeria' : 'Consegna a domicilio'}</p>
+                <p><strong>💳 Pagamento:</strong> ${getPaymentMethodText(paymentMethod)}</p>
+                <p><strong>💰 Totale:</strong> €${total.toFixed(2)}</p>
+                <p><strong>⏰ Tempo stimato:</strong> 30-45 minuti</p>
+            `;
+        }
+
+        // Testo metodo di pagamento
+        function getPaymentMethodText(method) {
+            const methods = {
+                'contanti': 'Contanti alla consegna',
+                'carta': 'Carta di Credito',
+                'satispay': 'Satispay'
+            };
+            return methods[method] || method;
+        }
+
+        // Conferma ordine
         function placeOrder() {
             if (!document.getElementById('privacy-consent').checked) {
                 alert('Devi accettare i termini di servizio per procedere!');
                 return;
             }
 
-            // Simulate order processing
+            if (cart.length === 0) {
+                alert('Il carrello è vuoto! Aggiungi prodotti per continuare.');
+                return;
+            }
+
             const confirmBtn = document.querySelector('.btn-confirm');
             const originalText = confirmBtn.innerHTML;
             
             confirmBtn.innerHTML = '⏳ Elaborazione...';
             confirmBtn.disabled = true;
 
+            // Genera numero ordine casuale
+            const orderId = 'CALD-' + Math.floor(10000 + Math.random() * 90000);
+            
             setTimeout(() => {
+                // Aggiorna la schermata di conferma
+                document.getElementById('order-id').textContent = orderId;
+                document.getElementById('confirmed-total').textContent = document.getElementById('grand-total').textContent;
+                document.getElementById('confirmed-payment').textContent = getPaymentMethodText(
+                    document.querySelector('input[name="payment-method"]:checked').value
+                );
+                
                 nextStep(4);
                 confirmBtn.innerHTML = originalText;
                 confirmBtn.disabled = false;
             }, 2000);
         }
 
-        // Delivery type toggle
+        // Reset ordine per nuovo ordine
+        function resetOrder() {
+            // Svuota il carrello
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            appliedDiscount = 0;
+            
+            // Reset form
+            document.getElementById('customer-name').value = '';
+            document.getElementById('customer-phone').value = '';
+            document.getElementById('customer-email').value = '';
+            document.getElementById('delivery-address').value = '';
+            document.getElementById('order-notes').value = '';
+            document.getElementById('privacy-consent').checked = false;
+            document.getElementById('promo-code').value = '';
+            
+            // Reset UI
+            loadCart();
+            updateOrderSummary();
+            nextStep(1);
+            
+            alert('Nuovo ordine pronto! Vai al menù per aggiungere prodotti.');
+        }
+
+        // Toggle campi domicilio
         document.querySelectorAll('input[name="delivery-type"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const domicilioFields = document.querySelector('.domicilio-fields');
-                const deliveryCost = document.getElementById('delivery-cost');
-                
                 if (this.value === 'domicilio') {
                     domicilioFields.style.display = 'block';
-                    deliveryCost.textContent = '€2.50';
-                    updateTotal(2.50);
                 } else {
                     domicilioFields.style.display = 'none';
-                    deliveryCost.textContent = 'Gratuita';
-                    updateTotal(0);
                 }
+                updateOrderSummary();
             });
         });
 
-        function updateTotal(deliveryCost) {
-            const subtotal = 25.00; // Fixed for demo
-            const total = subtotal + deliveryCost;
-            document.getElementById('grand-total').textContent = `€${total.toFixed(2)}`;
-            document.getElementById('confirmed-total').textContent = `€${total.toFixed(2)}`;
-        }
-
-        // Promo code
+        // Codice promozionale
         document.getElementById('apply-promo').addEventListener('click', function() {
             const promoCode = document.getElementById('promo-code').value;
             if (promoCode.toUpperCase() === 'BENVENUTO10') {
-                const discountLine = document.querySelector('.discount');
-                discountLine.style.display = 'flex';
-                document.getElementById('discount').textContent = '-€2.50';
-                
-                const currentTotal = parseFloat(document.getElementById('grand-total').textContent.replace('€', ''));
-                document.getElementById('grand-total').textContent = `€${(currentTotal - 2.50).toFixed(2)}`;
-                
+                appliedDiscount = 2.50;
+                updateOrderSummary();
                 alert('🎉 Codice promozionale applicato! Sconto di €2.50');
             } else if (promoCode) {
                 alert('❌ Codice promozionale non valido');
             }
         });
 
-        // Enter key for promo code
+        // Enter key per promo code
         document.getElementById('promo-code').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 document.getElementById('apply-promo').click();
             }
         });
 
-        // Smooth scroll per i link interni
+        // Smooth scroll per contatti
         document.addEventListener('DOMContentLoaded', function() {
             const contattiLink = document.querySelector('a[href="#contatti"]');
             if (contattiLink) {
