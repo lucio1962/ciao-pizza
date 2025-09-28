@@ -3,79 +3,687 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciao Calderino - Pizzeria d'Asporto</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/glassmorphism.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <title>Ciao Pizza - Pizzeria d'Asporto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --secondary: #ffc107;
+            --accent: #4caf50;
+            --dark: #2c3e50;
+            --light: #f9f9f9;
+            --glass: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            --border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(211, 47, 47, 0.3);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item-img {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .menu-item-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .menu-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary-dark);
+        }
+
+        /* QR Section */
+        .qr-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .qr-content {
+            flex: 1;
+        }
+
+        .qr-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .qr-content p {
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .qr-code {
+            flex: 0 0 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .qr-code img {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .qr-code p {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Order Section */
+        .order-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .order-container {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .order-steps {
+            flex: 1;
+        }
+
+        .order-step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .order-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .order-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-col p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .qr-container, .order-container {
+                flex-direction: column;
+            }
+            
+            .qr-code {
+                margin-top: 30px;
+            }
+            
+            .order-image {
+                order: -1;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                width: 100%;
+                margin-top: 15px;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-card, .menu-item {
+                padding: 20px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="glass-nav">
-        <div class="nav-container">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
             <div class="logo">
-                <h1>🍕 Ciao Calderino</h1>
-                <span>Pizzeria d'Asporto</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="menu.html">Menù</a>
-                <a href="ordina-online.html">Ordina Online</a>
-                <a href="#contatti">Contatti</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h2 class="animate-title">La Vera Pizza di Calderino</h2>
-                <p class="animate-subtitle">Forno a legna • Ingredienti locali • Consegna a domicilio</p>
-                <div class="cta-buttons">
-                    <button class="btn-primary pulse" onclick="location.href='ordina-online.html'">🚀 Ordina Online</button>
-                    <button class="btn-secondary" onclick="location.href='menu.html'">📋 Vedi Menù</button>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">↓</div>
-    </section>
-
-    <!-- Pizza del Giorno Section -->
-    <section class="daily-pizza-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>🍕 Pizza del Giorno</h2>
-                <div class="countdown-timer">
-                    <div class="timer-box">
-                        <span id="hours">00</span>
-                        <small>Ore</small>
-                    </div>
-                    <div class="timer-box">
-                        <span id="minutes">00</span>
-                        <small>Minuti</small>
-                    </div>
-                    <div class="timer-box">
-                        <span id="seconds">00</span>
-                        <small>Secondi</small>
-                    </div>
-                </div>
+                <i class="fas fa-pizza-slice" style="color: var(--primary); font-size: 2rem;"></i>
+                <div class="logo-text">Ciao <span>Pizza</span></div>
             </div>
             
-            <div class="pizza-of-the-day glass-card">
-                <div class="pizza-image">
-                    <div class="pizza-badge">OFFERTA 🔥</div>
-                    <img src="assets/images/pizza-day.jpg" alt="Pizza del Giorno" id="daily-pizza-img">
-                </div>
-                <div class="pizza-info">
-                    <h3 id="daily-pizza-name">La Calderino Special</h3>
-                    <p id="daily-pizza-ingredients">Mozzarella di bufala, mortadella DOP, pistacchi, burrata cremosa</p>
-                    <div class="pizza-price">
-                        <span class="current-price" id="daily-pizza-price">€14,50</span>
-                        <span class="original-price" id="daily-original-price">€17,00</span>
-                    </div>
-                    <button class="btn-order" onclick="location.href='ordina-online.html'">🎉 Ordina Subito!</button>
-                </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menù</a></li>
+                    <li><a href="#ordina">Ordina Online</a></li>
+                    <li><a href="#qr">Menù QR</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+            </nav>
+            
+            <button class="cta-button">
+                <i class="fas fa-shopping-cart"></i>
+                Ordina Ora
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>La vera pizza italiana</h1>
+            <p>Scopri i sapori autentici della tradizione italiana con ingredienti di prima qualità e una passione che si sente in ogni morso.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">
+                    <i class="fas fa-utensils"></i>
+                    Vedi il Menù
+                </a>
+                <a href="#ordina" class="btn btn-secondary">
+                    <i class="fas fa-motorcycle"></i>
+                    Ordina a Domicilio
+                </a>
             </div>
         </div>
     </section>
@@ -83,136 +691,159 @@
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <div class="features-grid">
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Consegna Rapida</h3>
-                    <p>Consegna a domicilio in 30 minuti nella zona di Calderino e Monte San Pietro</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">🍕</div>
-                    <h3>Forno a Legna</h3>
-                    <p>Pizza croccante e fragrante cotta nel nostro forno a legna tradizionale</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Ordine Online</h3>
-                    <p>Ordina comodamente dal telefono con il nostro sistema avanzato</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>Ingredienti Top</h3>
-                    <p>Selezioniamo solo ingredienti di prima qualità per la tua pizza</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recensioni Clienti -->
-    <section class="reviews-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>⭐ Cosa Dicono i Nostri Clienti</h2>
-                <p>Le recensioni vere di chi ha provato le nostre pizze</p>
+            <div class="section-title">
+                <h2>Perché sceglierci</h2>
+                <p>Scopri tutti i vantaggi del nostro servizio di pizzeria d'asporto</p>
             </div>
             
-            <div class="reviews-grid">
-                <div class="review-card glass-card">
-                    <div class="review-header">
-                        <div class="reviewer-avatar">🍕</div>
-                        <div class="reviewer-info">
-                            <h4>Marco Rossi</h4>
-                            <div class="stars">★★★★★</div>
-                        </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
                     </div>
-                    <p class="review-text">"La migliore pizza di Calderino! Impasto perfetto e ingredienti freschissimi. Consegna sempre puntuale!"</p>
-                    <div class="review-date">2 giorni fa</div>
+                    <h3>Menù QR Code</h3>
+                    <p>Scansiona il codice QR per accedere al nostro menù digitale direttamente dal tuo smartphone.</p>
                 </div>
                 
-                <div class="review-card glass-card">
-                    <div class="review-header">
-                        <div class="reviewer-avatar">👨‍👩‍👧‍👦</div>
-                        <div class="reviewer-info">
-                            <h4>Famiglia Bianchi</h4>
-                            <div class="stars">★★★★★</div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
                     </div>
-                    <p class="review-text">"Perfetta per la cena in famiglia. I bambini adorano la margherita e noi la diavola! Complimenti!"</p>
-                    <div class="review-date">1 settimana fa</div>
+                    <h3>Consegna Veloce</h3>
+                    <p>Consegna a domicilio rapida e puntuale in tutta la zona.</p>
                 </div>
                 
-                <div class="review-card glass-card">
-                    <div class="review-header">
-                        <div class="reviewer-avatar">💼</div>
-                        <div class="reviewer-info">
-                            <h4>Laura Verdi</h4>
-                            <div class="stars">★★★★☆</div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
                     </div>
-                    <p class="review-text">"Ordino spesso per le pause pranzo in ufficio. Ottimo rapporto qualità-prezzo e consegna veloce."</p>
-                    <div class="review-date">3 giorni fa</div>
+                    <h3>Ingredienti Freschi</h3>
+                    <p>Utilizziamo solo ingredienti di prima qualità per garantire il massimo del sapore.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Ordine Online</h3>
+                    <p>Prenota e paga online in pochi click, senza attese al telefono.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mappa e Contatti -->
-    <section class="map-section" id="contatti">
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
         <div class="container">
-            <div class="map-container">
-                <div class="map-info glass-card">
-                    <h3>📍 Ci Trovi Qui</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="contact-icon">🏠</span>
-                            <div>
-                                <strong>Indirizzo</strong>
-                                <p>Via Roma, 123 - Calderino<br>Monte San Pietro (BO)</p>
-                            </div>
+            <div class="section-title">
+                <h2>Il Nostro Menù</h2>
+                <p>Scopri le nostre specialità e le pizze più richieste</p>
+            </div>
+            
+            <div class="menu-filters">
+                <button class="filter-btn active">Tutte le Pizze</button>
+                <button class="filter-btn">Classiche</button>
+                <button class="filter-btn">Speciali</button>
+                <button class="filter-btn">Calzoni</button>
+                <button class="filter-btn">Bevande</button>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Pizza 1 -->
+                <div class="menu-item">
+                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Margherita</h3>
+                            <div class="menu-item-price">€8.50</div>
                         </div>
-                        
-                        <div class="contact-item">
-                            <span class="contact-icon">📞</span>
-                            <div>
-                                <strong>Telefono</strong>
-                                <p>051 123 4567</p>
+                        <p class="menu-item-desc">Pomodoro, mozzarella, basilico fresco e olio extravergine d'oliva.</p>
+                        <div class="menu-item-footer">
+                            <div class="rating">
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
                             </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                                Aggiungi
+                            </button>
                         </div>
-                        
-                        <div class="contact-item">
-                            <span class="contact-icon">🕒</span>
-                            <div>
-                                <strong>Orari</strong>
-                                <p>Tutti i giorni<br>18:00 - 23:00</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <span class="contact-icon">🚗</span>
-                            <div>
-                                <strong>Parcheggio</strong>
-                                <p>Area parcheggio gratuita<br>davanti al locale</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="map-actions">
-                        <button class="btn-map" onclick="window.open('https://maps.google.com?q=Via+Roma+123+Calderino+Monte+San+Pietro+Bologna')">
-                            🗺️ Apri in Google Maps
-                        </button>
-                        <button class="btn-call" onclick="window.location.href='tel:+390511234567'">
-                            📞 Chiama Ora
-                        </button>
                     </div>
                 </div>
                 
-                <div class="map-placeholder">
-                    <div class="map-image">
-                        <div class="map-overlay">
-                            <h4>Ciao Calderino</h4>
-                            <p>Pizzeria d'Asporto</p>
-                            <button class="btn-directions" onclick="window.open('https://maps.google.com?q=Via+Roma+123+Calderino+Monte+San+Pietro+Bologna')">
-                                Ottieni indicazioni
+                <!-- Pizza 2 -->
+                <div class="menu-item">
+                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1627626775846-7cbcf9d56873?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Diavola</h3>
+                            <div class="menu-item-price">€10.50</div>
+                        </div>
+                        <p class="menu-item-desc">Pomodoro, mozzarella, salame piccante e peperoncino fresco.</p>
+                        <div class="menu-item-footer">
+                            <div class="rating">
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star-half-alt" style="color: var(--secondary);"></i>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                                Aggiungi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pizza 3 -->
+                <div class="menu-item">
+                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Quattro Stagioni</h3>
+                            <div class="menu-item-price">€12.00</div>
+                        </div>
+                        <p class="menu-item-desc">Pomodoro, mozzarella, funghi, prosciutto cotto, carciofi e olive.</p>
+                        <div class="menu-item-footer">
+                            <div class="rating">
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="far fa-star" style="color: var(--secondary);"></i>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                                Aggiungi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pizza 4 -->
+                <div class="menu-item">
+                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Ciao Pizza Special</h3>
+                            <div class="menu-item-price">€14.00</div>
+                        </div>
+                        <p class="menu-item-desc">Pomodoro, mozzarella di bufala, rucola, prosciutto crudo e scaglie di grana.</p>
+                        <div class="menu-item-footer">
+                            <div class="rating">
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--secondary);"></i>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                                Aggiungi
                             </button>
                         </div>
                     </div>
@@ -221,435 +852,178 @@
         </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter-section">
+    <!-- QR Section -->
+    <section class="qr-section" id="qr">
         <div class="container">
-            <div class="newsletter-content glass-card">
-                <div class="newsletter-text">
-                    <h3>📧 Rimani Aggiornato</h3>
-                    <p>Ricevi offerte esclusive e sconti speciali direttamente nella tua email</p>
+            <div class="qr-container">
+                <div class="qr-content">
+                    <h2>Menù Digitale con QR Code</h2>
+                    <p>Scansiona il codice QR con il tuo smartphone per accedere al nostro menù digitale completo. Nessun contatto, nessuna attesa!</p>
+                    <p>Il sistema rileva automaticamente la connessione WiFi del locale per un accesso rapido e senza consumare i tuoi dati.</p>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-mobile-alt"></i>
+                        Prova il Menù Digitale
+                    </a>
                 </div>
-                <div class="newsletter-form">
-                    <input type="email" placeholder="La tua email..." class="newsletter-input">
-                    <button class="btn-newsletter" onclick="alert('Grazie per esserti iscritto! Riceverai le nostre offerte speciali.')">Iscriviti</button>
+                
+                <div class="qr-code">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ciao-pizza.it/menu-digitale" alt="QR Code Menù">
+                    <p>Scansiona per il menù</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="order-section" id="ordina">
+        <div class="container">
+            <div class="section-title">
+                <h2>Come Ordinare</h2>
+                <p>Segui questi semplici passi per ordinare la tua pizza preferita</p>
+            </div>
+            
+            <div class="order-container">
+                <div class="order-steps">
+                    <div class="order-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Scegli dal Menù</h3>
+                            <p>Seleziona le pizze e le bevande che preferisci dal nostro menù online.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="order-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Aggiungi al Carrello</h3>
+                            <p>Aggiungi i prodotti al carrello e procedi al checkout.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="order-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Inserisci i Dati</h3>
+                            <p>Inserisci i tuoi dati e l'indirizzo di consegna per il domicilio.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="order-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Paga e Ricevi</h3>
+                            <p>Completa il pagamento online e attendi la consegna a casa tua!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-image">
+                    <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Ordina Online">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer id="contatti">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>🍕 Ciao Calderino</h3>
-                    <p>La vera pizza di Calderino, preparata con passione e ingredienti di qualità since 2024.</p>
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Ciao Pizza</h3>
+                    <p>La migliore pizzeria d'asporto. Tradizione e qualità in ogni pizza.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link">📘 Facebook</a>
-                        <a href="#" class="social-link">📷 Instagram</a>
-                        <a href="#" class="social-link">📱 WhatsApp</a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
-                <div class="footer-column">
-                    <h4>Menù</h4>
-                    <ul class="footer-links">
-                        <li><a href="menu.html">Pizze Rosse</a></li>
-                        <li><a href="menu.html">Pizze Bianche</a></li>
-                        <li><a href="menu.html">Specialità</a></li>
-                        <li><a href="menu.html">Panini e Piadine</a></li>
-                        <li><a href="menu.html">Bibite e Contorni</a></li>
+                <div class="footer-col">
+                    <h3>Orari di Apertura</h3>
+                    <ul>
+                        <li>Lunedì: Chiuso</li>
+                        <li>Martedì - Giovedì: 18:00 - 23:00</li>
+                        <li>Venerdì - Domenica: 18:00 - 24:00</li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h4>Servizi</h4>
-                    <ul class="footer-links">
-                        <li><a href="ordina-online.html">Ordina Online</a></li>
-                        <li><a href="ordina-online.html">Asporto in Pizzeria</a></li>
-                        <li><a href="ordina-online.html">Consegna a Domicilio</a></li>
-                        <li><a href="#">Catering Eventi</a></li>
-                        <li><a href="#">Regali e Buoni</a></li>
+                <div class="footer-col">
+                    <h3>Contatti</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Via Roma 123, Calderino (BO)</li>
+                        <li><i class="fas fa-phone"></i> +39 051 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@ciaopizza.it</li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h4>Informazioni</h4>
-                    <ul class="footer-links">
-                        <li><a href="#contatti">Contatti</a></li>
-                        <li><a href="#">Chi Siamo</a></li>
-                        <li><a href="#">Lavora con Noi</a></li>
+                <div class="footer-col">
+                    <h3>Link Utili</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menù</a></li>
+                        <li><a href="#ordina">Ordina Online</a></li>
+                        <li><a href="#qr">Menù QR</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Termini di Servizio</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <div class="footer-divider"></div>
-                <div class="footer-copyright">
-                    <p>&copy; 2024 Ciao Calderino - Pizzeria d'Asporto. Tutti i diritti riservati.</p>
-                    <p>P.IVA: 01234567890 | Designed with ❤️ for Calderino</p>
-                </div>
+            <div class="copyright">
+                <p>&copy; 2023 Ciao Pizza - Pizzeria d'Asporto. Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/daily-pizza.js"></script>
-    
     <script>
-        // Gestione click pulsanti per sicurezza
-        document.addEventListener('DOMContentLoaded', function() {
-            // Pulsante Ordina Online
-            document.querySelector('.btn-primary')?.addEventListener('click', function() {
-                window.location.href = 'ordina-online.html';
-            });
-            
-            // Pulsante Vedi Menù
-            document.querySelector('.btn-secondary')?.addEventListener('click', function() {
-                window.location.href = 'menu.html';
-            });
-            
-            // Pulsante Ordina Subito
-            document.querySelector('.btn-order')?.addEventListener('click', function() {
-                window.location.href = 'ordina-online.html';
-            });
-            
-            // Pulsante Newsletter
-            document.querySelector('.btn-newsletter')?.addEventListener('click', function() {
-                const email = document.querySelector('.newsletter-input').value;
-                if (email && email.includes('@')) {
-                    alert('🎉 Graie per esserti iscritto! Riceverai le nostre offerte speciali a: ' + email);
-                    document.querySelector('.newsletter-input').value = '';
-                } else {
-                    alert('📧 Inserisci un indirizzo email valido!');
-                }
-            });
-            
-            // Invio con Enter nella newsletter
-            document.querySelector('.newsletter-input')?.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    document.querySelector('.btn-newsletter').click();
-                }
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Menu Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // In a real implementation, you would filter the menu items here
             });
         });
+
+        // Add to Cart Functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.closest('.menu-item').querySelector('.menu-item-title').textContent;
+                
+                // Animation effect
+                this.innerHTML = '<i class="fas fa-check"></i> Aggiunto';
+                this.style.background = 'var(--accent)';
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-plus"></i> Aggiungi';
+                    this.style.background = '';
+                }, 1500);
+                
+                // In a real implementation, you would add the item to the cart here
+                console.log(`Aggiunto al carrello: ${itemName}`);
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.9)';
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }
+        });
     </script>
-    
-    <style>
-        /* Stili aggiuntivi per le nuove sezioni */
-        .reviews-section {
-            padding: 100px 0;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .review-card {
-            padding: 2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .review-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .reviewer-avatar {
-            font-size: 2rem;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 107, 53, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .reviewer-info h4 {
-            margin: 0;
-            color: white;
-        }
-
-        .stars {
-            color: #ffd700;
-            font-size: 1.2rem;
-        }
-
-        .review-text {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .review-date {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        .map-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
-        }
-
-        .map-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .map-info {
-            padding: 2rem;
-        }
-
-        .contact-details {
-            margin: 2rem 0;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            margin-top: 0.2rem;
-        }
-
-        .contact-item strong {
-            color: white;
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-
-        .contact-item p {
-            color: rgba(255, 255, 255, 0.8);
-            margin: 0;
-        }
-
-        .map-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-map, .btn-call {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-map:hover, .btn-call:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .map-placeholder {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            overflow: hidden;
-            height: 400px;
-            position: relative;
-        }
-
-        .map-image {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .map-overlay {
-            text-align: center;
-            color: white;
-        }
-
-        .map-overlay h4 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .btn-directions {
-            background: #ff6b35;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        .newsletter-section {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .newsletter-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 3rem;
-            gap: 2rem;
-        }
-
-        .newsletter-text h3 {
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .newsletter-text p {
-            color: rgba(255, 255, 255, 0.8);
-            margin: 0;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .newsletter-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            padding: 12px 20px;
-            color: white;
-            min-width: 250px;
-        }
-
-        .newsletter-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .btn-newsletter {
-            background: #ff6b35;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-newsletter:hover {
-            background: #ff8e53;
-            transform: translateY(-2px);
-        }
-
-        .main-footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 3rem 0 1rem;
-            color: white;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3, .footer-column h4 {
-            color: #ff6b35;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #ff6b35;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .social-link:hover {
-            color: #ff6b35;
-        }
-
-        .footer-divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 2rem 0;
-        }
-
-        .footer-copyright {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .map-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .newsletter-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .newsletter-form {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .map-actions {
-                justify-content: center;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </body>
 </html>
