@@ -935,6 +935,55 @@
         </div>
     </main>
 
+    <!-- Sezione Contatti -->
+    <section id="contatti" style="
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 4rem 2rem;
+        margin-top: 4rem;
+    ">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #ff6b35;">Contatti</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Info Contatto -->
+                <div style="text-align: center;">
+                    <h3 style="color: #ff6b35; margin-bottom: 1.5rem;">📞 Contattaci</h3>
+                    <p style="margin-bottom: 1rem;"><strong>Telefono:</strong> <a href="tel:+390512345678" style="color: #ff8e53; text-decoration: none;">051 123 4567</a></p>
+                    <p style="margin-bottom: 1rem;"><strong>WhatsApp:</strong> <a href="https://wa.me/393511234567" style="color: #25D366; text-decoration: none;">351 123 4567</a></p>
+                    <p style="margin-bottom: 1rem;"><strong>Email:</strong> <a href="mailto:info@ciaocalderino.it" style="color: #ff8e53; text-decoration: none;">info@ciaocalderino.it</a></p>
+                </div>
+                
+                <!-- Orari -->
+                <div style="text-align: center;">
+                    <h3 style="color: #ff6b35; margin-bottom: 1.5rem;">🕒 Orari</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>Tutti i giorni:</strong> 18:00 - 23:00</p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Consegna:</strong> 30-45 minuti</p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Asporto:</strong> Sempre disponibile</p>
+                </div>
+                
+                <!-- Indirizzo -->
+                <div style="text-align: center;">
+                    <h3 style="color: #ff6b35; margin-bottom: 1.5rem;">📍 Dove Siamo</h3>
+                    <p style="margin-bottom: 1rem;">Via Roma, 123</p>
+                    <p style="margin-bottom: 1rem;">40050 Calderino</p>
+                    <p>Monte San Pietro (BO)</p>
+                    <button onclick="window.open('https://maps.google.com/?q=Via+Roma+123+Calderino+Monte+San+Pietro')" style="
+                        background: #ff6b35;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 25px;
+                        margin-top: 1rem;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    ">🗺️ Apri Mappe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         // Simple step navigation
         function nextStep(step) {
@@ -1015,6 +1064,23 @@
         document.getElementById('promo-code').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 document.getElementById('apply-promo').click();
+            }
+        });
+
+        // Smooth scroll per i link interni
+        document.addEventListener('DOMContentLoaded', function() {
+            const contattiLink = document.querySelector('a[href="#contatti"]');
+            if (contattiLink) {
+                contattiLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = document.getElementById('contatti');
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             }
         });
     </script>
