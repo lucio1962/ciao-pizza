@@ -302,7 +302,7 @@
             background-color: #1a252f;
         }
         
-        /* Notifica aggiunta al carrello */
+        /* Notifica aggiunta al carrello - MODIFICATA */
         .notification {
             position: fixed;
             top: 80px;
@@ -314,11 +314,13 @@
             box-shadow: var(--shadow);
             z-index: 1002;
             transform: translateX(400px);
-            transition: transform 0.3s;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
         }
         
         .notification.show {
             transform: translateX(0);
+            opacity: 1;
         }
         
         /* Carrello */
@@ -526,6 +528,7 @@
                 right: 10px;
                 left: 10px;
                 transform: translateY(-100px);
+                top: 70px;
             }
             
             .notification.show {
@@ -569,6 +572,25 @@
                 padding: 6px 12px;
                 font-size: 14px;
             }
+            
+            header {
+                padding: 10px 0;
+            }
+            
+            .logo h1 {
+                font-size: 18px;
+            }
+        }
+
+        /* Nascondi notifica dopo 3 secondi */
+        @keyframes hideNotification {
+            0% { opacity: 1; transform: translateY(0); }
+            70% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+
+        .notification.hiding {
+            animation: hideNotification 3s forwards;
         }
     </style>
 </head>
@@ -589,7 +611,7 @@
         </div>
     </header>
 
-    <!-- Notifica -->
+    <!-- Notifica - MODIFICATA -->
     <div class="notification" id="notification">
         Prodotto aggiunto al carrello!
     </div>
@@ -1000,11 +1022,12 @@
     <div class="overlay" id="overlay"></div>
 
     <script>
-        // Dati dei prodotti
+        // Dati dei prodotti con categorie per l'ordinamento
         const products = {
             "pizza-bianca": {
                 name: "Pizza Bianca",
                 basePrice: 8.50,
+                category: "cibo",
                 options: {
                     "tipo": {
                         "margherita-bianca": { name: "Margherita Bianca", price: 0 },
@@ -1021,6 +1044,7 @@
             "pizza-rossa": {
                 name: "Pizza Rossa",
                 basePrice: 7.50,
+                category: "cibo",
                 options: {
                     "tipo": {
                         "margherita": { name: "Margherita", price: 0 },
@@ -1038,6 +1062,7 @@
             "panini": {
                 name: "Panino",
                 basePrice: 6.50,
+                category: "cibo",
                 options: {
                     "tipo": {
                         "prosciutto-mozzarella": { name: "Prosciutto e Mozzarella", price: 0 },
@@ -1056,6 +1081,7 @@
             "fritti": {
                 name: "Fritti Misti",
                 basePrice: 5.50,
+                category: "cibo",
                 options: {
                     "tipo": {
                         "misto-classico": { name: "Misto Classico", price: 0 },
@@ -1074,6 +1100,7 @@
             "bevande": {
                 name: "Bevanda",
                 basePrice: 2.50,
+                category: "bevanda",
                 options: {
                     "tipo": {
                         "coca-cola": { name: "Coca-Cola 33cl", price: 0 },
@@ -1088,6 +1115,7 @@
             "dolci": {
                 name: "Dolce",
                 basePrice: 4.50,
+                category: "cibo",
                 options: {
                     "tipo": {
                         "tiramisu": { name: "Tiramisù", price: 0 },
@@ -1268,6 +1296,7 @@
                 productId: productId,
                 name: product.name,
                 basePrice: product.basePrice,
+                category: product.category,
                 options: selectedOptions,
                 optionDetails: optionDetails.join(', '),
                 quantity: quantity,
@@ -1282,15 +1311,24 @@
             quantityElement.textContent = '1';
         }
 
-        // Mostra notifica
+        // Mostra notifica - MODIFICATA
         function showNotification() {
+            // Rimuovi eventuali classi precedenti
+            notification.classList.remove('show', 'hiding');
+            
+            // Forza il reflow
+            void notification.offsetWidth;
+            
+            // Mostra la notifica
             notification.classList.add('show');
+            
+            // Nascondi dopo 3 secondi
             setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
+                notification.classList.add('hiding');
+            }, 2000);
         }
 
-        // Aggiorna carrello
+        // Aggiorna carrello con ordinamento
         function updateCart() {
             cartItems.innerHTML = '';
             let total = 0;
@@ -1299,7 +1337,14 @@
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p>Il carrello è vuoto</p>';
             } else {
-                cart.forEach((item, index) => {
+                // Ordina il carrello: prima cibo, poi bevande
+                const sortedCart = [...cart].sort((a, b) => {
+                    if (a.category === 'bevanda' && b.category !== 'bevanda') return 1;
+                    if (a.category !== 'bevanda' && b.category === 'bevanda') return -1;
+                    return 0;
+                });
+                
+                sortedCart.forEach((item, index) => {
                     total += item.totalPrice;
                     count += item.quantity;
                     
@@ -1374,7 +1419,7 @@
             });
         });
 
-        // Invia ordine su WhatsApp
+        // Invia ordine su WhatsApp con ordinamento
         sendOrderBtn.addEventListener('click', sendOrderToWhatsApp);
 
         function sendOrderToWhatsApp() {
@@ -1400,6 +1445,13 @@
                 return;
             }
             
+            // Ordina il carrello per l'invio: prima cibo, poi bevande
+            const sortedCart = [...cart].sort((a, b) => {
+                if (a.category === 'bevanda' && b.category !== 'bevanda') return 1;
+                if (a.category !== 'bevanda' && b.category === 'bevanda') return -1;
+                return 0;
+            });
+            
             // Costruisci messaggio
             let message = `🍕 NUOVO ORDINE - CIAO PIZZA 🍕%0A%0A`;
             message += `*Cliente:* ${customerName}%0A`;
@@ -1413,14 +1465,30 @@
             message += `%0A*DETTAGLIO ORDINE:*%0A`;
             message += `=========================%0A`;
             
-            cart.forEach(item => {
-                message += `➡️ ${item.quantity}x ${item.name}%0A`;
-                message += `   ${item.optionDetails}%0A`;
-                message += `   €${item.totalPrice.toFixed(2)}%0A%0A`;
-            });
+            // Aggiungi cibo
+            const ciboItems = sortedCart.filter(item => item.category !== 'bevanda');
+            if (ciboItems.length > 0) {
+                message += `🍕 *Cibo:*%0A`;
+                ciboItems.forEach(item => {
+                    message += `➡️ ${item.quantity}x ${item.name}%0A`;
+                    message += `   ${item.optionDetails}%0A`;
+                    message += `   €${item.totalPrice.toFixed(2)}%0A%0A`;
+                });
+            }
+            
+            // Aggiungi bevande
+            const bevandeItems = sortedCart.filter(item => item.category === 'bevanda');
+            if (bevandeItems.length > 0) {
+                message += `🥤 *Bevande:*%0A`;
+                bevandeItems.forEach(item => {
+                    message += `➡️ ${item.quantity}x ${item.name}%0A`;
+                    message += `   ${item.optionDetails}%0A`;
+                    message += `   €${item.totalPrice.toFixed(2)}%0A%0A`;
+                });
+            }
             
             message += `=========================%0A`;
-            const total = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+            const total = sortedCart.reduce((sum, item) => sum + item.totalPrice, 0);
             message += `*TOTALE ORDINE: €${total.toFixed(2)}*%0A%0A`;
             message += `⏰ *Orario ordine:* ${new Date().toLocaleString('it-IT')}%0A%0A`;
             message += `Grazie! 🍕`;
