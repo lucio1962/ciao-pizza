@@ -164,7 +164,7 @@
         
         .product-image {
             width: 100%;
-            height: 180px;
+            height: 150px;
             object-fit: cover;
         }
         
@@ -264,6 +264,21 @@
             border-color: var(--primary);
         }
         
+        .extra-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .extra-price {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
         .quantity-selector {
             display: flex;
             align-items: center;
@@ -321,6 +336,27 @@
         
         .add-to-cart-btn:hover {
             background-color: var(--primary-dark);
+        }
+        
+        .view-cart-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .view-cart-btn:hover {
+            background-color: #218838;
         }
         
         .continue-shopping-btn {
@@ -667,6 +703,41 @@
             font-size: 10px;
             font-weight: bold;
         }
+        
+        .extra-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toggle-switch {
+            width: 50px;
+            height: 25px;
+            background-color: #ccc;
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-switch.active {
+            background-color: var(--success);
+        }
+        
+        .toggle-slider {
+            width: 21px;
+            height: 21px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+        
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(25px);
+        }
     </style>
 </head>
 <body>
@@ -797,14 +868,14 @@
                     </div>
                 </div>
                 
-                <!-- Prosciutto e Funghi -->
+                <!-- Marinara -->
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Prosciutto e Funghi" class="product-image">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Marinara" class="product-image">
                     <div class="product-info">
-                        <h3 class="product-title">Prosciutto e Funghi</h3>
-                        <p class="product-description">Pomodoro, mozzarella, prosciutto cotto, funghi</p>
-                        <div class="product-price">€7.00 - €14.00</div>
-                        <button class="customize-btn" data-product="prosciutto-funghi">Personalizza</button>
+                        <h3 class="product-title">Marinara</h3>
+                        <p class="product-description">Pomodoro, aglio, origano</p>
+                        <div class="product-price">€4.50 - €11.00</div>
+                        <button class="customize-btn" data-product="marinara">Personalizza</button>
                     </div>
                 </div>
             </div>
@@ -839,6 +910,28 @@
                         <p class="product-description">Mozzarella, salsiccia, funghi</p>
                         <div class="product-price">€7.00 - €14.00</div>
                         <button class="customize-btn" data-product="boscaiola">Personalizza</button>
+                    </div>
+                </div>
+                
+                <!-- Patate e Salsiccia -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Patate e Salsiccia" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Patate e Salsiccia</h3>
+                        <p class="product-description">Mozzarella, patate, salsiccia, rosmarino</p>
+                        <div class="product-price">€7.50 - €14.50</div>
+                        <button class="customize-btn" data-product="patate-salsiccia">Personalizza</button>
+                    </div>
+                </div>
+                
+                <!-- Wurstel e Patatine -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Wurstel e Patatine" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Wurstel e Patatine</h3>
+                        <p class="product-description">Mozzarella, wurstel, patatine fritte</p>
+                        <div class="product-price">€7.00 - €14.00</div>
+                        <button class="customize-btn" data-product="wurstel-patatine">Personalizza</button>
                     </div>
                 </div>
             </div>
@@ -947,6 +1040,30 @@
                         </div>
                     </div>
                     
+                    <div class="option-group" id="extra-options">
+                        <div class="option-title">Extra</div>
+                        
+                        <div class="extra-option">
+                            <div class="extra-toggle">
+                                <span>Mozzarella Extra</span>
+                                <div class="toggle-switch" data-extra="mozzarella-extra" data-price="1.50">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                            </div>
+                            <span class="extra-price">+€1.50</span>
+                        </div>
+                        
+                        <div class="extra-option">
+                            <div class="extra-toggle">
+                                <span>Salsa Extra</span>
+                                <div class="toggle-switch" data-extra="salsa-extra" data-price="1.00">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                            </div>
+                            <span class="extra-price">+€1.00</span>
+                        </div>
+                    </div>
+                    
                     <div class="quantity-selector">
                         <div class="quantity-btn minus">-</div>
                         <div class="quantity">1</div>
@@ -961,8 +1078,9 @@
             <button class="add-to-cart-btn" id="addToCartBtn">
                 Aggiungi al Carrello
             </button>
-            <button class="continue-shopping-btn" id="continueShoppingBtn">
-                Continua a Ordinare
+            <button class="view-cart-btn" id="viewCartBtn">
+                <i class="fas fa-shopping-cart"></i>
+                Vedi Ordine
             </button>
         </div>
     </section>
@@ -1068,12 +1186,12 @@
                 description: "Pomodoro, mozzarella, salame piccante",
                 hasSize: true
             },
-            "prosciutto-funghi": {
-                name: "Pizza Prosciutto e Funghi",
-                basePrice: 7.00,
+            "marinara": {
+                name: "Pizza Marinara",
+                basePrice: 4.50,
                 category: "pizze-rosse",
-                image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                description: "Pomodoro, mozzarella, prosciutto cotto, funghi",
+                image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                description: "Pomodoro, aglio, origano",
                 hasSize: true
             },
             "quattro-formaggi": {
@@ -1090,6 +1208,22 @@
                 category: "pizze-bianche",
                 image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Mozzarella, salsiccia, funghi",
+                hasSize: true
+            },
+            "patate-salsiccia": {
+                name: "Pizza Patate e Salsiccia",
+                basePrice: 7.50,
+                category: "pizze-bianche",
+                image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                description: "Mozzarella, patate, salsiccia, rosmarino",
+                hasSize: true
+            },
+            "wurstel-patatine": {
+                name: "Pizza Wurstel e Patatine",
+                basePrice: 7.00,
+                category: "pizze-bianche",
+                image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                description: "Mozzarella, wurstel, patatine fritte",
                 hasSize: true
             },
             "fritto-misto": {
@@ -1147,6 +1281,7 @@
         const backBtns = document.querySelectorAll('.back-btn');
         const backFromCustomizeBtn = document.getElementById('backFromCustomize');
         const cartNavBtn = document.getElementById('cartNavBtn');
+        const viewCartBtn = document.getElementById('viewCartBtn');
         const closeCart = document.getElementById('closeCart');
         const cartSidebar = document.getElementById('cartSidebar');
         const cartItems = document.getElementById('cartItems');
@@ -1160,7 +1295,6 @@
         const notification = document.getElementById('notification');
         const navItems = document.querySelectorAll('.nav-item');
         const addToCartBtn = document.getElementById('addToCartBtn');
-        const continueShoppingBtn = document.getElementById('continueShoppingBtn');
 
         // Navigazione tra pagine
         function showPage(pageId) {
@@ -1222,6 +1356,10 @@
             });
         });
 
+        // Vedi carrello
+        viewCartBtn.addEventListener('click', openCart);
+        cartNavBtn.addEventListener('click', openCart);
+
         // Personalizzazione prodotto
         function customizeProduct(productId) {
             currentProduct = productId;
@@ -1233,16 +1371,22 @@
             
             // Mostra/nascondi opzioni dimensione
             const sizeOptions = document.getElementById('size-options');
+            const extraOptions = document.getElementById('extra-options');
             if (product.hasSize) {
                 sizeOptions.style.display = 'block';
+                extraOptions.style.display = 'block';
                 updateCustomizePrice();
             } else {
                 sizeOptions.style.display = 'none';
+                extraOptions.style.display = 'none';
                 document.getElementById('customize-price').textContent = `€${product.basePrice.toFixed(2)}`;
             }
             
-            // Reset quantità
+            // Reset quantità e extra
             document.querySelector('#customize-page .quantity').textContent = '1';
+            document.querySelectorAll('.toggle-switch').forEach(toggle => {
+                toggle.classList.remove('active');
+            });
             
             showPage('customize-page');
         }
@@ -1260,11 +1404,17 @@
                 totalPrice += parseFloat(selectedSize.getAttribute('data-price'));
             }
             
+            // Aggiungi costo extra
+            document.querySelectorAll('.toggle-switch.active').forEach(toggle => {
+                totalPrice += parseFloat(toggle.getAttribute('data-price'));
+            });
+            
             document.getElementById('customize-price').textContent = `€${totalPrice.toFixed(2)}`;
         }
 
         // Gestione opzioni nella pagina di personalizzazione
         document.addEventListener('click', function(e) {
+            // Gestione dimensioni
             if (e.target.classList.contains('option') && e.target.closest('#customize-page')) {
                 const optionGroup = e.target.getAttribute('data-option');
                 const optionsInGroup = document.querySelectorAll(`#customize-page [data-option="${optionGroup}"]`);
@@ -1274,6 +1424,13 @@
                 });
                 
                 e.target.classList.add('selected');
+                updateCustomizePrice();
+            }
+            
+            // Gestione toggle extra
+            if (e.target.closest('.toggle-switch')) {
+                const toggle = e.target.closest('.toggle-switch');
+                toggle.classList.toggle('active');
                 updateCustomizePrice();
             }
         });
@@ -1318,6 +1475,18 @@
                 }
             }
             
+            // Raccogli extra selezionati
+            const selectedExtras = [];
+            document.querySelectorAll('.toggle-switch.active').forEach(toggle => {
+                const extraName = toggle.getAttribute('data-extra');
+                const extraPrice = parseFloat(toggle.getAttribute('data-price'));
+                selectedExtras.push({
+                    name: extraName,
+                    price: extraPrice
+                });
+                optionDetails.push(extraName === 'mozzarella-extra' ? 'Mozzarella Extra' : 'Salsa Extra');
+            });
+            
             // Calcola prezzo totale
             let totalPrice = product.basePrice;
             
@@ -1325,6 +1494,10 @@
                 const selectedSize = document.querySelector('#customize-page [data-option="size"].selected');
                 totalPrice += parseFloat(selectedSize.getAttribute('data-price'));
             }
+            
+            selectedExtras.forEach(extra => {
+                totalPrice += extra.price;
+            });
             
             totalPrice *= quantity;
             
@@ -1336,6 +1509,7 @@
                 basePrice: product.basePrice,
                 category: product.category,
                 options: selectedOptions,
+                extras: selectedExtras,
                 optionDetails: optionDetails.join(', '),
                 quantity: quantity,
                 totalPrice: totalPrice
@@ -1348,16 +1522,6 @@
             const category = product.category;
             showPage(`${category}-page`);
         }
-
-        // Continua a ordinare
-        continueShoppingBtn.addEventListener('click', () => {
-            if (currentProduct) {
-                const category = products[currentProduct].category;
-                showPage(`${category}-page`);
-            } else {
-                showPage('menu-page');
-            }
-        });
 
         // Mostra notifica
         function showNotification() {
@@ -1449,7 +1613,6 @@
         }
 
         // Apri/chiudi carrello
-        cartNavBtn.addEventListener('click', openCart);
         closeCart.addEventListener('click', closeCartSidebar);
         overlay.addEventListener('click', closeCartSidebar);
 
