@@ -261,10 +261,47 @@
             cursor: pointer;
             width: 100%;
             transition: background-color 0.3s;
+            margin-bottom: 10px;
         }
         
         .add-to-cart-btn:hover {
             background-color: var(--primary-dark);
+        }
+        
+        .continue-shopping-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .continue-shopping-btn:hover {
+            background-color: #1a252f;
+        }
+        
+        /* Notifica aggiunta al carrello */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            z-index: 1002;
+            transform: translateX(400px);
+            transition: transform 0.3s;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
         }
         
         /* Carrello */
@@ -466,6 +503,16 @@
             .logo h1 {
                 font-size: 20px;
             }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                transform: translateY(-100px);
+            }
+            
+            .notification.show {
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -485,6 +532,11 @@
             </div>
         </div>
     </header>
+
+    <!-- Notifica -->
+    <div class="notification" id="notification">
+        Prodotto aggiunto al carrello!
+    </div>
 
     <!-- Homepage con Categorie -->
     <section class="homepage" id="homepage">
@@ -589,6 +641,9 @@
                     <button class="add-to-cart-btn" data-product="Pizza Bianca" data-price="8.50">
                         Aggiungi al Carrello
                     </button>
+                    <button class="continue-shopping-btn" onclick="showHomepage()">
+                        Continua a Ordinare
+                    </button>
                 </div>
             </div>
         </div>
@@ -634,6 +689,9 @@
                     
                     <button class="add-to-cart-btn" data-product="Pizza Rossa" data-price="7.50">
                         Aggiungi al Carrello
+                    </button>
+                    <button class="continue-shopping-btn" onclick="showHomepage()">
+                        Continua a Ordinare
                     </button>
                 </div>
             </div>
@@ -682,6 +740,9 @@
                     <button class="add-to-cart-btn" data-product="Panino" data-price="6.50">
                         Aggiungi al Carrello
                     </button>
+                    <button class="continue-shopping-btn" onclick="showHomepage()">
+                        Continua a Ordinare
+                    </button>
                 </div>
             </div>
         </div>
@@ -729,6 +790,9 @@
                     <button class="add-to-cart-btn" data-product="Fritti Misti" data-price="5.50">
                         Aggiungi al Carrello
                     </button>
+                    <button class="continue-shopping-btn" onclick="showHomepage()">
+                        Continua a Ordinare
+                    </button>
                 </div>
             </div>
         </div>
@@ -768,6 +832,9 @@
                     <button class="add-to-cart-btn" data-product="Bevanda" data-price="2.50">
                         Aggiungi al Carrello
                     </button>
+                    <button class="continue-shopping-btn" onclick="showHomepage()">
+                        Continua a Ordinare
+                    </button>
                 </div>
             </div>
         </div>
@@ -805,6 +872,9 @@
                     
                     <button class="add-to-cart-btn" data-product="Dolce" data-price="4.50">
                         Aggiungi al Carrello
+                    </button>
+                    <button class="continue-shopping-btn" onclick="showHomepage()">
+                        Continua a Ordinare
                     </button>
                 </div>
             </div>
@@ -976,6 +1046,7 @@
         const orderTypeBtns = document.querySelectorAll('.order-type-btn');
         const addressGroup = document.getElementById('addressGroup');
         const sendOrderBtn = document.getElementById('sendOrderBtn');
+        const notification = document.getElementById('notification');
 
         // Apri/chiudi carrello
         cartBtn.addEventListener('click', openCart);
@@ -1130,11 +1201,19 @@
             });
             
             updateCart();
-            closeCartSidebar();
-            showHomepage();
+            showNotification();
             
-            // Feedback visivo
-            alert(`${quantity} ${product.name} aggiunto al carrello!`);
+            // Reset quantità per il prossimo ordine
+            const quantityElement = productPage.querySelector('.quantity');
+            quantityElement.textContent = '1';
+        }
+
+        // Mostra notifica
+        function showNotification() {
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
         }
 
         // Aggiorna carrello
