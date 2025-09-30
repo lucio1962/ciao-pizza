@@ -495,6 +495,14 @@
             font-size: 16px;
         }
         
+        .pickup-time {
+            display: none;
+        }
+        
+        .pickup-time.active {
+            display: block;
+        }
+        
         .send-order-btn {
             background-color: var(--success);
             color: white;
@@ -522,6 +530,32 @@
         .send-order-btn:disabled {
             background-color: #6c757d;
             cursor: not-allowed;
+        }
+        
+        /* Info locale */
+        .restaurant-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .restaurant-info h2 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .info-item i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 20px;
         }
         
         /* Overlay */
@@ -684,15 +718,6 @@
                     </div>
                 </div>
                 
-                <!-- Panini -->
-                <div class="category-card" data-category="panini">
-                    <img src="https://images.unsplash.com/photo-1551782455-6ba0eec22efd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Panini" class="category-img">
-                    <div class="category-content">
-                        <h3>Panini</h3>
-                        <p>Panini gourmet con ingredienti di qualità</p>
-                    </div>
-                </div>
-                
                 <!-- Fritti Misti -->
                 <div class="category-card" data-category="fritti">
                     <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fritti Misti" class="category-img">
@@ -710,14 +735,26 @@
                         <p>Bibite, birre e vini selezionati</p>
                     </div>
                 </div>
-                
-                <!-- Dolci -->
-                <div class="category-card" data-category="dolci">
-                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Dolci" class="category-img">
-                    <div class="category-content">
-                        <h3>Dolci</h3>
-                        <p>Dolci della tradizione italiana</p>
-                    </div>
+            </div>
+            
+            <!-- Informazioni del locale -->
+            <div class="restaurant-info">
+                <h2>Informazioni del Locale</h2>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Calderino Via Roma 123, Monte San Pietro (BO)</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+39 051 1234567</span>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+39 333 84461593</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Aperto tutti i giorni: 18:00 - 23:00</span>
                 </div>
             </div>
         </div>
@@ -771,59 +808,6 @@
         <!-- Pulsanti Fissi in fondo -->
         <div class="fixed-buttons">
             <button class="add-to-cart-btn" id="addPizzaToCart">
-                Aggiungi al Carrello
-            </button>
-            <button class="continue-shopping-btn" onclick="showHomepage()">
-                Torna al Menù
-            </button>
-        </div>
-    </section>
-
-    <!-- Panini -->
-    <section class="product-page" id="panini-page">
-        <div class="container">
-            <button class="back-btn" data-back="homepage">
-                <i class="fas fa-arrow-left"></i> Torna al Menù
-            </button>
-            <div class="product-detail">
-                <img src="https://images.unsplash.com/photo-1551782455-6ba0eec22efd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Panini" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Panini</h2>
-                    <p class="product-description">Panini gourmet preparati con ingredienti freschi e di qualità</p>
-                    <div class="product-price">€6.50</div>
-                    
-                    <div class="option-group">
-                        <div class="option-title">Tipo di Panino</div>
-                        <div class="options">
-                            <div class="option selected" data-option="tipo" data-value="prosciutto-mozzarella">Prosciutto e Mozzarella</div>
-                            <div class="option" data-option="tipo" data-value="porchetta">Porchetta</div>
-                            <div class="option" data-option="tipo" data-value="salame-piccante">Salame Piccante</div>
-                            <div class="option" data-option="tipo" data-value="vegetariano">Vegetariano</div>
-                            <div class="option" data-option="tipo" data-value="tonno-verdure">Tonno e Verdure</div>
-                        </div>
-                    </div>
-                    
-                    <div class="option-group">
-                        <div class="option-title">Pane</div>
-                        <div class="options">
-                            <div class="option selected" data-option="pane" data-value="ciabatta">Ciabatta</div>
-                            <div class="option" data-option="pane" data-value="integrale">Integrale</div>
-                            <div class="option" data-option="pane" data-value="panino-classico">Panino Classico</div>
-                        </div>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <div class="quantity-btn minus">-</div>
-                        <div class="quantity">1</div>
-                        <div class="quantity-btn plus">+</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Pulsanti Fissi in fondo -->
-        <div class="fixed-buttons">
-            <button class="add-to-cart-btn" data-product="Panino" data-price="6.50">
                 Aggiungi al Carrello
             </button>
             <button class="continue-shopping-btn" onclick="showHomepage()">
@@ -930,50 +914,6 @@
         </div>
     </section>
 
-    <!-- Dolci -->
-    <section class="product-page" id="dolci-page">
-        <div class="container">
-            <button class="back-btn" data-back="homepage">
-                <i class="fas fa-arrow-left"></i> Torna al Menù
-            </button>
-            <div class="product-detail">
-                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Dolci" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Dolci</h2>
-                    <p class="product-description">Dolci della tradizione italiana</p>
-                    <div class="product-price">€4.50</div>
-                    
-                    <div class="option-group">
-                        <div class="option-title">Tipo di Dolce</div>
-                        <div class="options">
-                            <div class="option selected" data-option="tipo" data-value="tiramisu">Tiramisù</div>
-                            <div class="option" data-option="tipo" data-value="panna-cotta">Panna Cotta</div>
-                            <div class="option" data-option="tipo" data-value="cannolo-siciliano">Cannolo Siciliano</div>
-                            <div class="option" data-option="tipo" data-value="torta-al-cioccolato">Torta al Cioccolato</div>
-                            <div class="option" data-option="tipo" data-value="gelato">Gelato (coppetta)</div>
-                        </div>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <div class="quantity-btn minus">-</div>
-                        <div class="quantity">1</div>
-                        <div class="quantity-btn plus">+</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Pulsanti Fissi in fondo -->
-        <div class="fixed-buttons">
-            <button class="add-to-cart-btn" data-product="Dolce" data-price="4.50">
-                Aggiungi al Carrello
-            </button>
-            <button class="continue-shopping-btn" onclick="showHomepage()">
-                Torna al Menù
-            </button>
-        </div>
-    </section>
-
     <!-- Carrello Sidebar -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
@@ -1008,6 +948,22 @@
                 <label for="customerAddress">Indirizzo di consegna *</label>
                 <input type="text" id="customerAddress" class="form-control" placeholder="Il tuo indirizzo completo" required>
             </div>
+            <div class="form-group pickup-time" id="pickupTimeGroup">
+                <label for="pickupTime">Orario di ritiro *</label>
+                <select id="pickupTime" class="form-control" required>
+                    <option value="">Seleziona orario</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                    <option value="22:30">22:30</option>
+                </select>
+            </div>
         </div>
         
         <button class="send-order-btn" id="sendOrderBtn">
@@ -1038,25 +994,6 @@
                         "baby": { name: "Baby (20cm)", price: 0 },
                         "normale": { name: "Normale (30cm)", price: 3.50 },
                         "max": { name: "Max (40cm)", price: 7.00 }
-                    }
-                }
-            },
-            "panini": {
-                name: "Panino",
-                basePrice: 6.50,
-                category: "cibo",
-                options: {
-                    "tipo": {
-                        "prosciutto-mozzarella": { name: "Prosciutto e Mozzarella", price: 0 },
-                        "porchetta": { name: "Porchetta", price: 1.00 },
-                        "salame-piccante": { name: "Salame Piccante", price: 0.50 },
-                        "vegetariano": { name: "Vegetariano", price: 0 },
-                        "tonno-verdure": { name: "Tonno e Verdure", price: 0.50 }
-                    },
-                    "pane": {
-                        "ciabatta": { name: "Ciabatta", price: 0 },
-                        "integrale": { name: "Integrale", price: 0 },
-                        "panino-classico": { name: "Panino Classico", price: 0 }
                     }
                 }
             },
@@ -1093,20 +1030,6 @@
                         "vino-rosso": { name: "Vino Rosso (bicchiere)", price: 2.00 }
                     }
                 }
-            },
-            "dolci": {
-                name: "Dolce",
-                basePrice: 4.50,
-                category: "cibo",
-                options: {
-                    "tipo": {
-                        "tiramisu": { name: "Tiramisù", price: 0 },
-                        "panna-cotta": { name: "Panna Cotta", price: 0 },
-                        "cannolo-siciliano": { name: "Cannolo Siciliano", price: 0.50 },
-                        "torta-al-cioccolato": { name: "Torta al Cioccolato", price: 0 },
-                        "gelato": { name: "Gelato (coppetta)", price: 1.00 }
-                    }
-                }
             }
         };
 
@@ -1129,6 +1052,7 @@
         const backBtns = document.querySelectorAll('.back-btn');
         const orderTypeBtns = document.querySelectorAll('.order-type-btn');
         const addressGroup = document.getElementById('addressGroup');
+        const pickupTimeGroup = document.getElementById('pickupTimeGroup');
         const sendOrderBtn = document.getElementById('sendOrderBtn');
         const notification = document.getElementById('notification');
         const floatingOrderBtn = document.getElementById('floatingOrderBtn');
@@ -1442,8 +1366,10 @@
                 
                 if (orderType === 'asporto') {
                     addressGroup.style.display = 'block';
+                    pickupTimeGroup.classList.add('active');
                 } else {
                     addressGroup.style.display = 'none';
+                    pickupTimeGroup.classList.remove('active');
                 }
             });
         });
@@ -1460,11 +1386,17 @@
             const customerName = document.getElementById('customerName').value;
             const customerPhone = document.getElementById('customerPhone').value;
             let customerAddress = '';
+            let pickupTime = '';
             
             if (orderType === 'asporto') {
                 customerAddress = document.getElementById('customerAddress').value;
+                pickupTime = document.getElementById('pickupTime').value;
                 if (!customerAddress) {
                     alert('Inserisci l\'indirizzo di consegna');
+                    return;
+                }
+                if (!pickupTime) {
+                    alert('Seleziona un orario di ritiro');
                     return;
                 }
             }
@@ -1489,6 +1421,7 @@
             
             if (orderType === 'asporto') {
                 message += `*Indirizzo consegna:* ${customerAddress}%0A`;
+                message += `*Orario ritiro:* ${pickupTime}%0A`;
             }
             
             message += `%0A*DETTAGLIO ORDINE:*%0A`;
@@ -1523,7 +1456,7 @@
             message += `Grazie! 🍕`;
             
             // Numero di WhatsApp
-            const whatsappNumber = "393384461593";
+            const whatsappNumber = "3933384461593";
             
             // Apri WhatsApp
             window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
@@ -1537,6 +1470,7 @@
             document.getElementById('customerName').value = '';
             document.getElementById('customerPhone').value = '';
             document.getElementById('customerAddress').value = '';
+            document.getElementById('pickupTime').value = '';
             
             // Torna alla home
             showHomepage();
