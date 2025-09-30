@@ -30,7 +30,7 @@
             color: var(--dark);
             line-height: 1.6;
             padding-top: 70px;
-            padding-bottom: 80px; /* Spazio per i pulsanti fissi */
+            padding-bottom: 80px;
         }
         
         .container {
@@ -195,7 +195,7 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            margin-bottom: 100px; /* Spazio per i pulsanti fissi */
+            margin-bottom: 100px;
         }
         
         .product-image {
@@ -332,7 +332,7 @@
             background-color: #1a252f;
         }
         
-        /* Notifica aggiunta al carrello - MODIFICATA */
+        /* Notifica aggiunta al carrello */
         .notification {
             position: fixed;
             top: 80px;
@@ -666,7 +666,7 @@
         <span>Ordina</span>
     </button>
 
-    <!-- Notifica - MODIFICATA -->
+    <!-- Notifica -->
     <div class="notification" id="notification">
         Prodotto aggiunto al carrello!
     </div>
@@ -675,30 +675,12 @@
     <section class="homepage" id="homepage">
         <div class="container">
             <div class="categories">
-                <!-- Pizza Baby -->
-                <div class="category-card" data-category="pizza-baby">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Baby" class="category-img">
+                <!-- Pizza -->
+                <div class="category-card" data-category="pizza">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza" class="category-img">
                     <div class="category-content">
-                        <h3>Pizza Baby</h3>
-                        <p>Pizze piccole perfette per i più piccoli</p>
-                    </div>
-                </div>
-
-                <!-- Pizza Bianca -->
-                <div class="category-card" data-category="pizza-bianca">
-                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Bianca" class="category-img">
-                    <div class="category-content">
-                        <h3>Pizza Bianca</h3>
-                        <p>Pizza senza pomodoro con ingredienti pregiati</p>
-                    </div>
-                </div>
-                
-                <!-- Pizza Rossa -->
-                <div class="category-card" data-category="pizza-rossa">
-                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Rossa" class="category-img">
-                    <div class="category-content">
-                        <h3>Pizza Rossa</h3>
-                        <p>Pizza classica con pomodoro e mozzarella</p>
+                        <h3>Pizza</h3>
+                        <p>Pizze di ogni tipo e dimensione</p>
                     </div>
                 </div>
                 
@@ -743,137 +725,37 @@
 
     <!-- Pagine Prodotti (nascoste inizialmente) -->
     
-    <!-- Pizza Baby -->
-    <section class="product-page" id="pizza-baby-page">
+    <!-- Pizza -->
+    <section class="product-page" id="pizza-page">
         <div class="container">
             <button class="back-btn" data-back="homepage">
                 <i class="fas fa-arrow-left"></i> Torna al Menù
             </button>
             <div class="product-detail">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Baby" class="product-image">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza" class="product-image">
                 <div class="product-info">
-                    <h2 class="product-title">Pizza Baby</h2>
-                    <p class="product-description">Pizze piccole e gustose perfette per i bambini</p>
-                    <div class="product-price">€5.00</div>
-                    
-                    <div class="option-group">
-                        <div class="option-title">Tipo di Pizza</div>
-                        <div class="options">
-                            <div class="option selected" data-option="tipo" data-value="margherita-baby">Margherita Baby</div>
-                            <div class="option" data-option="tipo" data-value="wurstel-baby">Wurstel Baby</div>
-                            <div class="option" data-option="tipo" data-value="prosciutto-baby">Prosciutto Baby</div>
-                            <div class="option" data-option="tipo" data-value="nutella-baby">Nutella Baby</div>
-                        </div>
-                    </div>
-                    
-                    <div class="option-group">
-                        <div class="option-title">Dimensione</div>
-                        <div class="options">
-                            <div class="option selected" data-option="dimensione" data-value="piccola">Piccola (20cm)</div>
-                            <div class="option" data-option="dimensione" data-value="media">Media (25cm) (+€1)</div>
-                        </div>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <div class="quantity-btn minus">-</div>
-                        <div class="quantity">1</div>
-                        <div class="quantity-btn plus">+</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Pulsanti Fissi in fondo -->
-        <div class="fixed-buttons">
-            <button class="add-to-cart-btn" data-product="Pizza Baby" data-price="5.00">
-                Aggiungi al Carrello
-            </button>
-            <button class="continue-shopping-btn" onclick="showHomepage()">
-                Torna al Menù
-            </button>
-        </div>
-    </section>
-
-    <!-- Pizza Bianca -->
-    <section class="product-page" id="pizza-bianca-page">
-        <div class="container">
-            <button class="back-btn" data-back="homepage">
-                <i class="fas fa-arrow-left"></i> Torna al Menù
-            </button>
-            <div class="product-detail">
-                <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Bianca" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Pizza Bianca</h2>
-                    <p class="product-description">Pizza senza pomodoro con ingredienti di prima qualità</p>
-                    <div class="product-price">€8.50</div>
-                    
-                    <div class="option-group">
-                        <div class="option-title">Tipo di Pizza</div>
-                        <div class="options">
-                            <div class="option selected" data-option="tipo" data-value="margherita-bianca">Margherita Bianca</div>
-                            <div class="option" data-option="tipo" data-value="quattro-formaggi">Quattro Formaggi</div>
-                            <div class="option" data-option="tipo" data-value="patate-e-salsiccia">Patate e Salsiccia</div>
-                            <div class="option" data-option="tipo" data-value="wurstel-e-patatine">Wurstel e Patatine</div>
-                        </div>
-                    </div>
-                    
-                    <div class="option-group">
-                        <div class="option-title">Dimensione</div>
-                        <div class="options">
-                            <div class="option selected" data-option="dimensione" data-value="normale">Normale</div>
-                            <div class="option" data-option="dimensione" data-value="familiare">Familiare (+€3)</div>
-                        </div>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <div class="quantity-btn minus">-</div>
-                        <div class="quantity">1</div>
-                        <div class="quantity-btn plus">+</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Pulsanti Fissi in fondo -->
-        <div class="fixed-buttons">
-            <button class="add-to-cart-btn" data-product="Pizza Bianca" data-price="8.50">
-                Aggiungi al Carrello
-            </button>
-            <button class="continue-shopping-btn" onclick="showHomepage()">
-                Torna al Menù
-            </button>
-        </div>
-    </section>
-
-    <!-- Pizza Rossa -->
-    <section class="product-page" id="pizza-rossa-page">
-        <div class="container">
-            <button class="back-btn" data-back="homepage">
-                <i class="fas fa-arrow-left"></i> Torna al Menù
-            </button>
-            <div class="product-detail">
-                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Rossa" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Pizza Rossa</h2>
-                    <p class="product-description">Pizza classica con pomodoro San Marzano DOP e mozzarella di bufala</p>
-                    <div class="product-price">€7.50</div>
+                    <h2 class="product-title">Pizza</h2>
+                    <p class="product-description">Scegli il tipo e la dimensione della tua pizza preferita</p>
+                    <div class="product-price" id="pizzaPrice">€5.00</div>
                     
                     <div class="option-group">
                         <div class="option-title">Tipo di Pizza</div>
                         <div class="options">
                             <div class="option selected" data-option="tipo" data-value="margherita">Margherita</div>
                             <div class="option" data-option="tipo" data-value="diavola">Diavola</div>
-                            <div class="option" data-option="tipo" data-value="capricciosa">Capricciosa</div>
-                            <div class="option" data-option="tipo" data-value="quattro-stagioni">Quattro Stagioni</div>
+                            <div class="option" data-option="tipo" data-value="quattro-formaggi">Quattro Formaggi</div>
                             <div class="option" data-option="tipo" data-value="prosciutto-funghi">Prosciutto e Funghi</div>
+                            <div class="option" data-option="tipo" data-value="wurstel-patatine">Wurstel e Patatine</div>
+                            <div class="option" data-option="tipo" data-value="vegetariana">Vegetariana</div>
                         </div>
                     </div>
                     
                     <div class="option-group">
                         <div class="option-title">Dimensione</div>
                         <div class="options">
-                            <div class="option selected" data-option="dimensione" data-value="normale">Normale</div>
-                            <div class="option" data-option="dimensione" data-value="familiare">Familiare (+€3)</div>
+                            <div class="option selected" data-option="dimensione" data-value="baby" data-price="5.00">Baby (20cm)</div>
+                            <div class="option" data-option="dimensione" data-value="normale" data-price="8.50">Normale (30cm)</div>
+                            <div class="option" data-option="dimensione" data-value="max" data-price="12.00">Max (40cm)</div>
                         </div>
                     </div>
                     
@@ -888,7 +770,7 @@
         
         <!-- Pulsanti Fissi in fondo -->
         <div class="fixed-buttons">
-            <button class="add-to-cart-btn" data-product="Pizza Rossa" data-price="7.50">
+            <button class="add-to-cart-btn" id="addPizzaToCart">
                 Aggiungi al Carrello
             </button>
             <button class="continue-shopping-btn" onclick="showHomepage()">
@@ -1137,57 +1019,25 @@
     <div class="overlay" id="overlay"></div>
 
     <script>
-        // Dati dei prodotti con categorie per l'ordinamento
+        // Dati dei prodotti
         const products = {
-            "pizza-baby": {
-                name: "Pizza Baby",
+            "pizza": {
+                name: "Pizza",
                 basePrice: 5.00,
-                category: "cibo",
-                options: {
-                    "tipo": {
-                        "margherita-baby": { name: "Margherita Baby", price: 0 },
-                        "wurstel-baby": { name: "Wurstel Baby", price: 0.50 },
-                        "prosciutto-baby": { name: "Prosciutto Baby", price: 0.50 },
-                        "nutella-baby": { name: "Nutella Baby", price: 1.00 }
-                    },
-                    "dimensione": {
-                        "piccola": { name: "Piccola (20cm)", price: 0 },
-                        "media": { name: "Media (25cm)", price: 1.00 }
-                    }
-                }
-            },
-            "pizza-bianca": {
-                name: "Pizza Bianca",
-                basePrice: 8.50,
-                category: "cibo",
-                options: {
-                    "tipo": {
-                        "margherita-bianca": { name: "Margherita Bianca", price: 0 },
-                        "quattro-formaggi": { name: "Quattro Formaggi", price: 1.50 },
-                        "patate-e-salsiccia": { name: "Patate e Salsiccia", price: 2.00 },
-                        "wurstel-e-patatine": { name: "Wurstel e Patatine", price: 1.50 }
-                    },
-                    "dimensione": {
-                        "normale": { name: "Normale", price: 0 },
-                        "familiare": { name: "Familiare", price: 3.00 }
-                    }
-                }
-            },
-            "pizza-rossa": {
-                name: "Pizza Rossa",
-                basePrice: 7.50,
                 category: "cibo",
                 options: {
                     "tipo": {
                         "margherita": { name: "Margherita", price: 0 },
                         "diavola": { name: "Diavola", price: 1.00 },
-                        "capricciosa": { name: "Capricciosa", price: 1.50 },
-                        "quattro-stagioni": { name: "Quattro Stagioni", price: 1.50 },
-                        "prosciutto-funghi": { name: "Prosciutto e Funghi", price: 1.00 }
+                        "quattro-formaggi": { name: "Quattro Formaggi", price: 1.50 },
+                        "prosciutto-funghi": { name: "Prosciutto e Funghi", price: 1.00 },
+                        "wurstel-patatine": { name: "Wurstel e Patatine", price: 0.50 },
+                        "vegetariana": { name: "Vegetariana", price: 1.00 }
                     },
                     "dimensione": {
-                        "normale": { name: "Normale", price: 0 },
-                        "familiare": { name: "Familiare", price: 3.00 }
+                        "baby": { name: "Baby (20cm)", price: 0 },
+                        "normale": { name: "Normale (30cm)", price: 3.50 },
+                        "max": { name: "Max (40cm)", price: 7.00 }
                     }
                 }
             },
@@ -1282,6 +1132,8 @@
         const sendOrderBtn = document.getElementById('sendOrderBtn');
         const notification = document.getElementById('notification');
         const floatingOrderBtn = document.getElementById('floatingOrderBtn');
+        const pizzaPriceElement = document.getElementById('pizzaPrice');
+        const addPizzaToCartBtn = document.getElementById('addPizzaToCart');
 
         // Tasto ordine fisso
         floatingOrderBtn.addEventListener('click', openCart);
@@ -1350,6 +1202,31 @@
                 // Reset quantità
                 const quantity = productPage.querySelector('.quantity');
                 quantity.textContent = '1';
+
+                // Aggiorna prezzo per pizza
+                if (category === 'pizza') {
+                    updatePizzaPrice();
+                }
+            }
+        }
+
+        // Gestione dimensioni pizza
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('option') && e.target.getAttribute('data-option') === 'dimensione') {
+                if (currentProductPage === 'pizza') {
+                    updatePizzaPrice();
+                }
+            }
+        });
+
+        function updatePizzaPrice() {
+            const pizzaPage = document.getElementById('pizza-page');
+            if (!pizzaPage) return;
+
+            const selectedSize = pizzaPage.querySelector('[data-option="dimensione"].selected');
+            if (selectedSize) {
+                const price = selectedSize.getAttribute('data-price');
+                pizzaPriceElement.textContent = `€${price}`;
             }
         }
 
@@ -1374,22 +1251,34 @@
             const plusBtn = page.querySelector('.plus');
             const quantity = page.querySelector('.quantity');
             
-            minusBtn.addEventListener('click', () => {
-                let qty = parseInt(quantity.textContent);
-                if (qty > 1) {
-                    quantity.textContent = qty - 1;
+            if (minusBtn && plusBtn && quantity) {
+                minusBtn.addEventListener('click', () => {
+                    let qty = parseInt(quantity.textContent);
+                    if (qty > 1) {
+                        quantity.textContent = qty - 1;
+                    }
+                });
+                
+                plusBtn.addEventListener('click', () => {
+                    let qty = parseInt(quantity.textContent);
+                    quantity.textContent = qty + 1;
+                });
+            }
+        });
+
+        // Aggiungi pizza al carrello
+        addPizzaToCartBtn.addEventListener('click', () => {
+            addToCart('pizza');
+        });
+
+        // Aggiungi altri prodotti al carrello
+        document.querySelectorAll('.add-to-cart-btn:not(#addPizzaToCart)').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const product = e.target.getAttribute('data-product');
+                const price = e.target.getAttribute('data-price');
+                if (product && currentProductPage) {
+                    addToCart(currentProductPage);
                 }
-            });
-            
-            plusBtn.addEventListener('click', () => {
-                let qty = parseInt(quantity.textContent);
-                quantity.textContent = qty + 1;
-            });
-            
-            // Aggiungi al carrello
-            const addToCartBtn = page.querySelector('.add-to-cart-btn');
-            addToCartBtn.addEventListener('click', () => {
-                addToCart(currentProductPage);
             });
         });
 
@@ -1424,11 +1313,19 @@
                 optionDetails.push(option.name);
             }
             
+            // Per pizza, usa il prezzo dalla dimensione selezionata
+            if (productId === 'pizza') {
+                const selectedSize = productPage.querySelector('[data-option="dimensione"].selected');
+                if (selectedSize) {
+                    totalPrice = parseFloat(selectedSize.getAttribute('data-price'));
+                }
+            }
+            
             totalPrice *= quantity;
             
             // Aggiungi al carrello
             cart.push({
-                id: Date.now(), // ID univoco
+                id: Date.now(),
                 productId: productId,
                 name: product.name,
                 basePrice: product.basePrice,
@@ -1447,18 +1344,12 @@
             quantityElement.textContent = '1';
         }
 
-        // Mostra notifica - MODIFICATA
+        // Mostra notifica
         function showNotification() {
-            // Rimuovi eventuali classi precedenti
             notification.classList.remove('show', 'hiding');
-            
-            // Forza il reflow
             void notification.offsetWidth;
-            
-            // Mostra la notifica
             notification.classList.add('show');
             
-            // Nascondi dopo 3 secondi
             setTimeout(() => {
                 notification.classList.add('hiding');
             }, 2000);
@@ -1549,7 +1440,6 @@
                 btn.classList.add('active');
                 orderType = btn.getAttribute('data-type');
                 
-                // Mostra/nascondi campo indirizzo
                 if (orderType === 'asporto') {
                     addressGroup.style.display = 'block';
                 } else {
@@ -1558,7 +1448,7 @@
             });
         });
 
-        // Invia ordine su WhatsApp con ordinamento
+        // Invia ordine su WhatsApp
         sendOrderBtn.addEventListener('click', sendOrderToWhatsApp);
 
         function sendOrderToWhatsApp() {
@@ -1584,7 +1474,7 @@
                 return;
             }
             
-            // Ordina il carrello per l'invio: prima cibo, poi bevande
+            // Ordina il carrello per l'invio
             const sortedCart = [...cart].sort((a, b) => {
                 if (a.category === 'bevanda' && b.category !== 'bevanda') return 1;
                 if (a.category !== 'bevanda' && b.category === 'bevanda') return -1;
