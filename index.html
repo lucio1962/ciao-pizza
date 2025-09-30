@@ -96,6 +96,36 @@
             font-size: 12px;
             font-weight: bold;
         }
+
+        /* Tasto Ordine Fisso */
+        .floating-order-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 90px;
+            background-color: var(--success);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 998;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .floating-order-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .floating-order-btn i {
+            font-size: 16px;
+        }
         
         /* Categorie Menu */
         .categories {
@@ -488,6 +518,11 @@
         .send-order-btn:hover {
             background-color: #218838;
         }
+
+        .send-order-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
         
         /* Overlay */
         .overlay {
@@ -543,6 +578,13 @@
                 padding: 12px 15px;
                 font-size: 14px;
             }
+
+            .floating-order-btn {
+                right: 15px;
+                bottom: 80px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
             
             .product-detail {
                 margin-bottom: 80px;
@@ -580,6 +622,13 @@
             .logo h1 {
                 font-size: 18px;
             }
+
+            .floating-order-btn {
+                right: 10px;
+                bottom: 70px;
+                padding: 8px 14px;
+                font-size: 12px;
+            }
         }
 
         /* Nascondi notifica dopo 3 secondi */
@@ -611,6 +660,12 @@
         </div>
     </header>
 
+    <!-- Tasto Ordine Fisso -->
+    <button class="floating-order-btn" id="floatingOrderBtn">
+        <i class="fab fa-whatsapp"></i>
+        <span>Ordina</span>
+    </button>
+
     <!-- Notifica - MODIFICATA -->
     <div class="notification" id="notification">
         Prodotto aggiunto al carrello!
@@ -620,6 +675,15 @@
     <section class="homepage" id="homepage">
         <div class="container">
             <div class="categories">
+                <!-- Pizza Baby -->
+                <div class="category-card" data-category="pizza-baby">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Baby" class="category-img">
+                    <div class="category-content">
+                        <h3>Pizza Baby</h3>
+                        <p>Pizze piccole perfette per i più piccoli</p>
+                    </div>
+                </div>
+
                 <!-- Pizza Bianca -->
                 <div class="category-card" data-category="pizza-bianca">
                     <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Bianca" class="category-img">
@@ -679,6 +743,57 @@
 
     <!-- Pagine Prodotti (nascoste inizialmente) -->
     
+    <!-- Pizza Baby -->
+    <section class="product-page" id="pizza-baby-page">
+        <div class="container">
+            <button class="back-btn" data-back="homepage">
+                <i class="fas fa-arrow-left"></i> Torna al Menù
+            </button>
+            <div class="product-detail">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Baby" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Pizza Baby</h2>
+                    <p class="product-description">Pizze piccole e gustose perfette per i bambini</p>
+                    <div class="product-price">€5.00</div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Tipo di Pizza</div>
+                        <div class="options">
+                            <div class="option selected" data-option="tipo" data-value="margherita-baby">Margherita Baby</div>
+                            <div class="option" data-option="tipo" data-value="wurstel-baby">Wurstel Baby</div>
+                            <div class="option" data-option="tipo" data-value="prosciutto-baby">Prosciutto Baby</div>
+                            <div class="option" data-option="tipo" data-value="nutella-baby">Nutella Baby</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Dimensione</div>
+                        <div class="options">
+                            <div class="option selected" data-option="dimensione" data-value="piccola">Piccola (20cm)</div>
+                            <div class="option" data-option="dimensione" data-value="media">Media (25cm) (+€1)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <div class="quantity-btn minus">-</div>
+                        <div class="quantity">1</div>
+                        <div class="quantity-btn plus">+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pulsanti Fissi in fondo -->
+        <div class="fixed-buttons">
+            <button class="add-to-cart-btn" data-product="Pizza Baby" data-price="5.00">
+                Aggiungi al Carrello
+            </button>
+            <button class="continue-shopping-btn" onclick="showHomepage()">
+                Torna al Menù
+            </button>
+        </div>
+    </section>
+
     <!-- Pizza Bianca -->
     <section class="product-page" id="pizza-bianca-page">
         <div class="container">
@@ -1024,6 +1139,23 @@
     <script>
         // Dati dei prodotti con categorie per l'ordinamento
         const products = {
+            "pizza-baby": {
+                name: "Pizza Baby",
+                basePrice: 5.00,
+                category: "cibo",
+                options: {
+                    "tipo": {
+                        "margherita-baby": { name: "Margherita Baby", price: 0 },
+                        "wurstel-baby": { name: "Wurstel Baby", price: 0.50 },
+                        "prosciutto-baby": { name: "Prosciutto Baby", price: 0.50 },
+                        "nutella-baby": { name: "Nutella Baby", price: 1.00 }
+                    },
+                    "dimensione": {
+                        "piccola": { name: "Piccola (20cm)", price: 0 },
+                        "media": { name: "Media (25cm)", price: 1.00 }
+                    }
+                }
+            },
             "pizza-bianca": {
                 name: "Pizza Bianca",
                 basePrice: 8.50,
@@ -1149,6 +1281,10 @@
         const addressGroup = document.getElementById('addressGroup');
         const sendOrderBtn = document.getElementById('sendOrderBtn');
         const notification = document.getElementById('notification');
+        const floatingOrderBtn = document.getElementById('floatingOrderBtn');
+
+        // Tasto ordine fisso
+        floatingOrderBtn.addEventListener('click', openCart);
 
         // Apri/chiudi carrello
         cartBtn.addEventListener('click', openCart);
@@ -1336,7 +1472,10 @@
             
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p>Il carrello è vuoto</p>';
+                sendOrderBtn.disabled = true;
             } else {
+                sendOrderBtn.disabled = false;
+                
                 // Ordina il carrello: prima cibo, poi bevande
                 const sortedCart = [...cart].sort((a, b) => {
                     if (a.category === 'bevanda' && b.category !== 'bevanda') return 1;
