@@ -100,10 +100,10 @@
             display: block;
         }
         
-        /* Categorie Menu */
+        /* Categorie Menu - Stile Icone */
         .categories {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
@@ -115,6 +115,8 @@
             box-shadow: var(--shadow);
             transition: transform 0.3s;
             cursor: pointer;
+            text-align: center;
+            padding: 20px 10px;
         }
         
         .category-card:hover {
@@ -122,82 +124,86 @@
         }
         
         .category-img {
-            width: 100%;
-            height: 150px;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
-        }
-        
-        .category-content {
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: 50%;
+            margin: 0 auto 10px;
         }
         
         .category-content h3 {
             color: var(--secondary);
             margin-bottom: 5px;
+            font-size: 16px;
         }
         
         .category-content p {
             color: var(--gray);
-            font-size: 14px;
+            font-size: 12px;
         }
         
-        .category-arrow {
-            color: var(--primary);
-            font-size: 20px;
-        }
-        
-        /* Lista Prodotti */
+        /* Lista Prodotti - Stile Icone */
         .products-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
             margin: 20px 0;
         }
         
         .product-card {
             background-color: white;
             border-radius: 10px;
-            overflow: hidden;
             box-shadow: var(--shadow);
-            margin-bottom: 15px;
+            transition: transform 0.3s;
+            text-align: center;
+            padding: 15px 10px;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-2px);
         }
         
         .product-image {
-            width: 100%;
-            height: 150px;
+            width: 70px;
+            height: 70px;
             object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 8px;
         }
         
         .product-info {
-            padding: 15px;
+            padding: 0;
         }
         
         .product-title {
-            font-size: 18px;
+            font-size: 14px;
             color: var(--secondary);
             margin-bottom: 5px;
+            font-weight: 600;
         }
         
         .product-description {
             color: var(--gray);
-            font-size: 14px;
-            margin-bottom: 10px;
+            font-size: 11px;
+            margin-bottom: 8px;
+            line-height: 1.3;
         }
         
         .product-price {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
         .customize-btn {
             background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            font-size: 14px;
+            border-radius: 15px;
+            padding: 6px 12px;
+            font-size: 11px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
@@ -231,31 +237,44 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             margin-bottom: 20px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .product-detail-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 15px;
         }
         
         .option-group {
             margin-bottom: 20px;
+            text-align: left;
         }
         
         .option-title {
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--secondary);
+            text-align: center;
         }
         
         .options {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
+            justify-content: center;
         }
         
         .option {
-            padding: 8px 15px;
+            padding: 6px 12px;
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 14px;
+            font-size: 12px;
         }
         
         .option.selected {
@@ -268,15 +287,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid var(--border);
-            border-radius: 10px;
-            margin-bottom: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
         
         .extra-price {
             color: var(--primary);
             font-weight: bold;
+            font-size: 12px;
         }
         
         .quantity-selector {
@@ -287,8 +308,8 @@
         }
         
         .quantity-btn {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background-color: var(--light);
             border: 1px solid var(--border);
             border-radius: 50%;
@@ -296,14 +317,14 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .quantity {
-            margin: 0 15px;
-            font-size: 18px;
+            margin: 0 12px;
+            font-size: 16px;
             font-weight: bold;
-            min-width: 30px;
+            min-width: 25px;
             text-align: center;
         }
         
@@ -359,23 +380,6 @@
             background-color: #218838;
         }
         
-        .continue-shopping-btn {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 15px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            flex: 1;
-            transition: background-color 0.3s;
-        }
-        
-        .continue-shopping-btn:hover {
-            background-color: #1a252f;
-        }
-        
         /* Carrello */
         .cart-sidebar {
             position: fixed;
@@ -423,24 +427,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 12px 0;
             border-bottom: 1px solid var(--border);
         }
         
         .cart-item-info h4 {
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             color: var(--secondary);
+            font-size: 14px;
         }
         
         .cart-item-details {
-            font-size: 14px;
+            font-size: 12px;
             color: var(--gray);
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
         
         .cart-item-price {
             color: var(--primary);
             font-weight: bold;
+            font-size: 14px;
         }
         
         .cart-item-actions {
@@ -449,8 +455,9 @@
         }
         
         .item-quantity {
-            margin: 0 10px;
+            margin: 0 8px;
             font-weight: bold;
+            font-size: 14px;
         }
         
         .remove-item {
@@ -458,7 +465,8 @@
             border: none;
             color: var(--primary);
             cursor: pointer;
-            margin-left: 15px;
+            margin-left: 10px;
+            font-size: 14px;
         }
         
         .cart-total {
@@ -488,6 +496,7 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 14px;
         }
         
         .order-type-btn.active {
@@ -507,6 +516,7 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
+            font-size: 14px;
         }
         
         .form-control {
@@ -647,10 +657,50 @@
             text-align: center;
         }
         
+        /* Tasto Carrello Fisso per Web */
+        .desktop-cart-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 997;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .desktop-cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--success);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
         /* Responsive */
         @media (min-width: 768px) {
             .categories {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+            
+            .products-list {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             }
             
             .cart-sidebar {
@@ -662,6 +712,10 @@
                 display: none;
             }
             
+            .desktop-cart-btn {
+                display: flex;
+            }
+            
             body {
                 padding-bottom: 0;
             }
@@ -669,11 +723,25 @@
             .fixed-buttons {
                 bottom: 0;
             }
+            
+            .category-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .product-image {
+                width: 90px;
+                height: 90px;
+            }
         }
         
         @media (min-width: 992px) {
             .categories {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .products-list {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             }
         }
 
@@ -711,8 +779,8 @@
         }
         
         .toggle-switch {
-            width: 50px;
-            height: 25px;
+            width: 45px;
+            height: 22px;
             background-color: #ccc;
             border-radius: 25px;
             position: relative;
@@ -725,8 +793,8 @@
         }
         
         .toggle-slider {
-            width: 21px;
-            height: 21px;
+            width: 18px;
+            height: 18px;
             background-color: white;
             border-radius: 50%;
             position: absolute;
@@ -736,7 +804,7 @@
         }
         
         .toggle-switch.active .toggle-slider {
-            transform: translateX(25px);
+            transform: translateX(23px);
         }
     </style>
 </head>
@@ -752,6 +820,12 @@
             <button class="order-btn" id="orderOnlineBtn">Ordina Online</button>
         </div>
     </header>
+
+    <!-- Tasto Carrello Desktop -->
+    <button class="desktop-cart-btn" id="desktopCartBtn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="desktop-cart-badge" id="desktopCartCount">0</span>
+    </button>
 
     <!-- Pagina Home -->
     <section class="page active" id="home-page">
@@ -786,49 +860,37 @@
     <!-- Pagina Categorie Menu -->
     <section class="page" id="menu-page">
         <div class="container">
-            <h2 style="margin-bottom: 20px; color: var(--secondary);">Il Nostro Menù</h2>
+            <h2 style="margin-bottom: 20px; color: var(--secondary); text-align: center;">Il Nostro Menù</h2>
             <div class="categories">
                 <div class="category-card" data-category="pizze-rosse">
                     <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizze Rosse" class="category-img">
                     <div class="category-content">
-                        <div>
-                            <h3>Pizze Rosse</h3>
-                            <p>Con pomodoro e mozzarella</p>
-                        </div>
-                        <i class="fas fa-chevron-right category-arrow"></i>
+                        <h3>Pizze Rosse</h3>
+                        <p>Con pomodoro</p>
                     </div>
                 </div>
                 
                 <div class="category-card" data-category="pizze-bianche">
                     <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizze Bianche" class="category-img">
                     <div class="category-content">
-                        <div>
-                            <h3>Pizze Bianche</h3>
-                            <p>Senza pomodoro</p>
-                        </div>
-                        <i class="fas fa-chevron-right category-arrow"></i>
+                        <h3>Pizze Bianche</h3>
+                        <p>Senza pomodoro</p>
                     </div>
                 </div>
                 
                 <div class="category-card" data-category="fritti">
                     <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fritti" class="category-img">
                     <div class="category-content">
-                        <div>
-                            <h3>Fritti</h3>
-                            <p>Antipasti e contorni</p>
-                        </div>
-                        <i class="fas fa-chevron-right category-arrow"></i>
+                        <h3>Fritti</h3>
+                        <p>Antipasti e contorni</p>
                     </div>
                 </div>
                 
                 <div class="category-card" data-category="bevande">
                     <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Bevande" class="category-img">
                     <div class="category-content">
-                        <div>
-                            <h3>Bevande</h3>
-                            <p>Bibite, birre e vini</p>
-                        </div>
-                        <i class="fas fa-chevron-right category-arrow"></i>
+                        <h3>Bevande</h3>
+                        <p>Bibite, birre e vini</p>
                     </div>
                 </div>
             </div>
@@ -843,39 +905,50 @@
             <button class="back-btn" data-back="menu-page">
                 <i class="fas fa-arrow-left"></i> Torna al Menù
             </button>
-            <h2 style="margin-bottom: 20px; color: var(--secondary);">Pizze Rosse</h2>
+            <h2 style="margin-bottom: 20px; color: var(--secondary); text-align: center;">Pizze Rosse</h2>
             
             <div class="products-list">
                 <!-- Margherita -->
-                <div class="product-card">
+                <div class="product-card" data-product="margherita">
                     <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Margherita" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Margherita</h3>
                         <p class="product-description">Pomodoro, mozzarella, basilico</p>
                         <div class="product-price">€5.00 - €12.00</div>
-                        <button class="customize-btn" data-product="margherita">Personalizza</button>
+                        <button class="customize-btn">Personalizza</button>
                     </div>
                 </div>
                 
                 <!-- Diavola -->
-                <div class="product-card">
+                <div class="product-card" data-product="diavola">
                     <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Diavola" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Diavola</h3>
                         <p class="product-description">Pomodoro, mozzarella, salame piccante</p>
                         <div class="product-price">€6.50 - €13.50</div>
-                        <button class="customize-btn" data-product="diavola">Personalizza</button>
+                        <button class="customize-btn">Personalizza</button>
                     </div>
                 </div>
                 
                 <!-- Marinara -->
-                <div class="product-card">
+                <div class="product-card" data-product="marinara">
                     <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Marinara" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Marinara</h3>
                         <p class="product-description">Pomodoro, aglio, origano</p>
                         <div class="product-price">€4.50 - €11.00</div>
-                        <button class="customize-btn" data-product="marinara">Personalizza</button>
+                        <button class="customize-btn">Personalizza</button>
+                    </div>
+                </div>
+                
+                <!-- Prosciutto e Funghi -->
+                <div class="product-card" data-product="prosciutto-funghi">
+                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Prosciutto e Funghi" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Prosciutto e Funghi</h3>
+                        <p class="product-description">Pomodoro, mozzarella, prosciutto, funghi</p>
+                        <div class="product-price">€7.00 - €14.00</div>
+                        <button class="customize-btn">Personalizza</button>
                     </div>
                 </div>
             </div>
@@ -888,50 +961,50 @@
             <button class="back-btn" data-back="menu-page">
                 <i class="fas fa-arrow-left"></i> Torna al Menù
             </button>
-            <h2 style="margin-bottom: 20px; color: var(--secondary);">Pizze Bianche</h2>
+            <h2 style="margin-bottom: 20px; color: var(--secondary); text-align: center;">Pizze Bianche</h2>
             
             <div class="products-list">
                 <!-- Quattro Formaggi -->
-                <div class="product-card">
+                <div class="product-card" data-product="quattro-formaggi">
                     <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Quattro Formaggi" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Quattro Formaggi</h3>
                         <p class="product-description">Mozzarella, gorgonzola, parmigiano, fontina</p>
                         <div class="product-price">€7.50 - €14.50</div>
-                        <button class="customize-btn" data-product="quattro-formaggi">Personalizza</button>
+                        <button class="customize-btn">Personalizza</button>
                     </div>
                 </div>
                 
                 <!-- Boscaiola -->
-                <div class="product-card">
+                <div class="product-card" data-product="boscaiola">
                     <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Boscaiola" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Boscaiola</h3>
                         <p class="product-description">Mozzarella, salsiccia, funghi</p>
                         <div class="product-price">€7.00 - €14.00</div>
-                        <button class="customize-btn" data-product="boscaiola">Personalizza</button>
+                        <button class="customize-btn">Personalizza</button>
                     </div>
                 </div>
                 
                 <!-- Patate e Salsiccia -->
-                <div class="product-card">
+                <div class="product-card" data-product="patate-salsiccia">
                     <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Patate e Salsiccia" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Patate e Salsiccia</h3>
                         <p class="product-description">Mozzarella, patate, salsiccia, rosmarino</p>
                         <div class="product-price">€7.50 - €14.50</div>
-                        <button class="customize-btn" data-product="patate-salsiccia">Personalizza</button>
+                        <button class="customize-btn">Personalizza</button>
                     </div>
                 </div>
                 
                 <!-- Wurstel e Patatine -->
-                <div class="product-card">
+                <div class="product-card" data-product="wurstel-patatine">
                     <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Wurstel e Patatine" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Wurstel e Patatine</h3>
                         <p class="product-description">Mozzarella, wurstel, patatine fritte</p>
                         <div class="product-price">€7.00 - €14.00</div>
-                        <button class="customize-btn" data-product="wurstel-patatine">Personalizza</button>
+                        <button class="customize-btn">Personalizza</button>
                     </div>
                 </div>
             </div>
@@ -944,28 +1017,28 @@
             <button class="back-btn" data-back="menu-page">
                 <i class="fas fa-arrow-left"></i> Torna al Menù
             </button>
-            <h2 style="margin-bottom: 20px; color: var(--secondary);">Fritti</h2>
+            <h2 style="margin-bottom: 20px; color: var(--secondary); text-align: center;">Fritti</h2>
             
             <div class="products-list">
                 <!-- Fritto Misto -->
-                <div class="product-card">
+                <div class="product-card" data-product="fritto-misto">
                     <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fritto Misto" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Fritto Misto</h3>
                         <p class="product-description">Patatine, olive, mozzarelline</p>
                         <div class="product-price">€6.50</div>
-                        <button class="customize-btn" data-product="fritto-misto">Aggiungi</button>
+                        <button class="customize-btn">Aggiungi</button>
                     </div>
                 </div>
                 
                 <!-- Patatine Fritte -->
-                <div class="product-card">
+                <div class="product-card" data-product="patatine-fritte">
                     <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Patatine Fritte" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Patatine Fritte</h3>
                         <p class="product-description">Patatine fritte croccanti</p>
                         <div class="product-price">€4.00</div>
-                        <button class="customize-btn" data-product="patatine-fritte">Aggiungi</button>
+                        <button class="customize-btn">Aggiungi</button>
                     </div>
                 </div>
             </div>
@@ -978,39 +1051,39 @@
             <button class="back-btn" data-back="menu-page">
                 <i class="fas fa-arrow-left"></i> Torna al Menù
             </button>
-            <h2 style="margin-bottom: 20px; color: var(--secondary);">Bevande</h2>
+            <h2 style="margin-bottom: 20px; color: var(--secondary); text-align: center;">Bevande</h2>
             
             <div class="products-list">
                 <!-- Coca-Cola -->
-                <div class="product-card">
+                <div class="product-card" data-product="coca-cola">
                     <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Coca-Cola" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Coca-Cola</h3>
                         <p class="product-description">Lattina 33cl</p>
                         <div class="product-price">€2.50</div>
-                        <button class="customize-btn" data-product="coca-cola">Aggiungi</button>
+                        <button class="customize-btn">Aggiungi</button>
                     </div>
                 </div>
                 
                 <!-- Acqua Naturale -->
-                <div class="product-card">
+                <div class="product-card" data-product="acqua-naturale">
                     <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Acqua Naturale" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Acqua Naturale</h3>
                         <p class="product-description">Bottiglia 50cl</p>
                         <div class="product-price">€1.50</div>
-                        <button class="customize-btn" data-product="acqua-naturale">Aggiungi</button>
+                        <button class="customize-btn">Aggiungi</button>
                     </div>
                 </div>
                 
                 <!-- Birra -->
-                <div class="product-card">
+                <div class="product-card" data-product="birra-media">
                     <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Birra" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Birra Media</h3>
                         <p class="product-description">Bottiglia 33cl</p>
                         <div class="product-price">€4.00</div>
-                        <button class="customize-btn" data-product="birra-media">Aggiungi</button>
+                        <button class="customize-btn">Aggiungi</button>
                     </div>
                 </div>
             </div>
@@ -1025,50 +1098,68 @@
             </button>
             
             <div class="product-detail">
-                <img id="customize-image" src="" alt="Prodotto" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title" id="customize-title">Prodotto</h2>
-                    <p class="product-description" id="customize-description">Descrizione</p>
-                    <div class="product-price" id="customize-price">€0.00</div>
-                    
-                    <div class="option-group" id="size-options">
-                        <div class="option-title">Dimensione</div>
-                        <div class="options">
-                            <div class="option selected" data-option="size" data-value="baby" data-price="0">Baby (20cm)</div>
-                            <div class="option" data-option="size" data-value="normale" data-price="3.50">Normale (30cm)</div>
-                            <div class="option" data-option="size" data-value="max" data-price="7.00">Max (40cm)</div>
-                        </div>
+                <img id="customize-image" src="" alt="Prodotto" class="product-detail-image">
+                <h2 class="product-title" id="customize-title">Prodotto</h2>
+                <p class="product-description" id="customize-description">Descrizione</p>
+                <div class="product-price" id="customize-price">€0.00</div>
+                
+                <div class="option-group" id="size-options">
+                    <div class="option-title">Dimensione</div>
+                    <div class="options">
+                        <div class="option selected" data-option="size" data-value="baby" data-price="0">Baby (20cm)</div>
+                        <div class="option" data-option="size" data-value="normale" data-price="3.50">Normale (30cm)</div>
+                        <div class="option" data-option="size" data-value="max" data-price="7.00">Max (40cm)</div>
                     </div>
+                </div>
+                
+                <div class="option-group" id="extra-options">
+                    <div class="option-title">Extra</div>
                     
-                    <div class="option-group" id="extra-options">
-                        <div class="option-title">Extra</div>
-                        
-                        <div class="extra-option">
-                            <div class="extra-toggle">
-                                <span>Mozzarella Extra</span>
-                                <div class="toggle-switch" data-extra="mozzarella-extra" data-price="1.50">
-                                    <div class="toggle-slider"></div>
-                                </div>
+                    <div class="extra-option" id="mozzarella-extra">
+                        <div class="extra-toggle">
+                            <span>Mozzarella Extra</span>
+                            <div class="toggle-switch" data-extra="mozzarella-extra" data-price="1.50">
+                                <div class="toggle-slider"></div>
                             </div>
-                            <span class="extra-price">+€1.50</span>
                         </div>
-                        
-                        <div class="extra-option">
-                            <div class="extra-toggle">
-                                <span>Salsa Extra</span>
-                                <div class="toggle-switch" data-extra="salsa-extra" data-price="1.00">
-                                    <div class="toggle-slider"></div>
-                                </div>
-                            </div>
-                            <span class="extra-price">+€1.00</span>
-                        </div>
+                        <span class="extra-price">+€1.50</span>
                     </div>
                     
-                    <div class="quantity-selector">
-                        <div class="quantity-btn minus">-</div>
-                        <div class="quantity">1</div>
-                        <div class="quantity-btn plus">+</div>
+                    <div class="extra-option" id="salsa-extra">
+                        <div class="extra-toggle">
+                            <span>Salsa Extra</span>
+                            <div class="toggle-switch" data-extra="salsa-extra" data-price="1.00">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                        <span class="extra-price">+€1.00</span>
                     </div>
+                    
+                    <div class="extra-option" id="gorgonzola-extra">
+                        <div class="extra-toggle">
+                            <span>Doppio Gorgonzola</span>
+                            <div class="toggle-switch" data-extra="gorgonzola-extra" data-price="2.00">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                        <span class="extra-price">+€2.00</span>
+                    </div>
+                    
+                    <div class="extra-option" id="prosciutto-extra">
+                        <div class="extra-toggle">
+                            <span>Prosciutto Extra</span>
+                            <div class="toggle-switch" data-extra="prosciutto-extra" data-price="1.50">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                        <span class="extra-price">+€1.50</span>
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <div class="quantity-btn minus">-</div>
+                    <div class="quantity">1</div>
+                    <div class="quantity-btn plus">+</div>
                 </div>
             </div>
         </div>
@@ -1176,7 +1267,8 @@
                 category: "pizze-rosse",
                 image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Pomodoro, mozzarella, basilico",
-                hasSize: true
+                hasSize: true,
+                isRed: true
             },
             "diavola": {
                 name: "Pizza Diavola",
@@ -1184,7 +1276,8 @@
                 category: "pizze-rosse",
                 image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Pomodoro, mozzarella, salame piccante",
-                hasSize: true
+                hasSize: true,
+                isRed: true
             },
             "marinara": {
                 name: "Pizza Marinara",
@@ -1192,7 +1285,17 @@
                 category: "pizze-rosse",
                 image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Pomodoro, aglio, origano",
-                hasSize: true
+                hasSize: true,
+                isRed: true
+            },
+            "prosciutto-funghi": {
+                name: "Pizza Prosciutto e Funghi",
+                basePrice: 7.00,
+                category: "pizze-rosse",
+                image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                description: "Pomodoro, mozzarella, prosciutto, funghi",
+                hasSize: true,
+                isRed: true
             },
             "quattro-formaggi": {
                 name: "Pizza Quattro Formaggi",
@@ -1200,7 +1303,8 @@
                 category: "pizze-bianche",
                 image: "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Mozzarella, gorgonzola, parmigiano, fontina",
-                hasSize: true
+                hasSize: true,
+                isRed: false
             },
             "boscaiola": {
                 name: "Pizza Boscaiola",
@@ -1208,7 +1312,8 @@
                 category: "pizze-bianche",
                 image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Mozzarella, salsiccia, funghi",
-                hasSize: true
+                hasSize: true,
+                isRed: false
             },
             "patate-salsiccia": {
                 name: "Pizza Patate e Salsiccia",
@@ -1216,7 +1321,8 @@
                 category: "pizze-bianche",
                 image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Mozzarella, patate, salsiccia, rosmarino",
-                hasSize: true
+                hasSize: true,
+                isRed: false
             },
             "wurstel-patatine": {
                 name: "Pizza Wurstel e Patatine",
@@ -1224,7 +1330,8 @@
                 category: "pizze-bianche",
                 image: "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Mozzarella, wurstel, patatine fritte",
-                hasSize: true
+                hasSize: true,
+                isRed: false
             },
             "fritto-misto": {
                 name: "Fritto Misto",
@@ -1232,7 +1339,8 @@
                 category: "fritti",
                 image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Patatine, olive, mozzarelline",
-                hasSize: false
+                hasSize: false,
+                isRed: false
             },
             "patatine-fritte": {
                 name: "Patatine Fritte",
@@ -1240,7 +1348,8 @@
                 category: "fritti",
                 image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Patatine fritte croccanti",
-                hasSize: false
+                hasSize: false,
+                isRed: false
             },
             "coca-cola": {
                 name: "Coca-Cola",
@@ -1248,7 +1357,8 @@
                 category: "bevande",
                 image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Lattina 33cl",
-                hasSize: false
+                hasSize: false,
+                isRed: false
             },
             "acqua-naturale": {
                 name: "Acqua Naturale",
@@ -1256,7 +1366,8 @@
                 category: "bevande",
                 image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Bottiglia 50cl",
-                hasSize: false
+                hasSize: false,
+                isRed: false
             },
             "birra-media": {
                 name: "Birra Media",
@@ -1264,7 +1375,8 @@
                 category: "bevande",
                 image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 description: "Bottiglia 33cl",
-                hasSize: false
+                hasSize: false,
+                isRed: false
             }
         };
 
@@ -1277,15 +1389,17 @@
         const pages = document.querySelectorAll('.page');
         const orderOnlineBtn = document.getElementById('orderOnlineBtn');
         const categoryCards = document.querySelectorAll('.category-card');
-        const customizeBtns = document.querySelectorAll('.customize-btn');
+        const productCards = document.querySelectorAll('.product-card');
         const backBtns = document.querySelectorAll('.back-btn');
         const backFromCustomizeBtn = document.getElementById('backFromCustomize');
         const cartNavBtn = document.getElementById('cartNavBtn');
+        const desktopCartBtn = document.getElementById('desktopCartBtn');
         const viewCartBtn = document.getElementById('viewCartBtn');
         const closeCart = document.getElementById('closeCart');
         const cartSidebar = document.getElementById('cartSidebar');
         const cartItems = document.getElementById('cartItems');
         const cartCount = document.getElementById('navCartCount');
+        const desktopCartCount = document.getElementById('desktopCartCount');
         const cartTotal = document.getElementById('cartTotal');
         const overlay = document.getElementById('overlay');
         const orderTypeBtns = document.querySelectorAll('.order-type-btn');
@@ -1324,10 +1438,13 @@
             });
         });
 
-        customizeBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const productId = e.target.getAttribute('data-product');
-                customizeProduct(productId);
+        productCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Se clicchi sul bottone o su altre parti della card
+                const productId = card.getAttribute('data-product');
+                if (productId) {
+                    customizeProduct(productId);
+                }
             });
         });
 
@@ -1359,6 +1476,7 @@
         // Vedi carrello
         viewCartBtn.addEventListener('click', openCart);
         cartNavBtn.addEventListener('click', openCart);
+        desktopCartBtn.addEventListener('click', openCart);
 
         // Personalizzazione prodotto
         function customizeProduct(productId) {
@@ -1375,6 +1493,15 @@
             if (product.hasSize) {
                 sizeOptions.style.display = 'block';
                 extraOptions.style.display = 'block';
+                
+                // Mostra/nascondi extra in base al tipo di pizza
+                const salsaExtra = document.getElementById('salsa-extra');
+                if (product.isRed) {
+                    salsaExtra.style.display = 'flex';
+                } else {
+                    salsaExtra.style.display = 'none';
+                }
+                
                 updateCustomizePrice();
             } else {
                 sizeOptions.style.display = 'none';
@@ -1484,7 +1611,17 @@
                     name: extraName,
                     price: extraPrice
                 });
-                optionDetails.push(extraName === 'mozzarella-extra' ? 'Mozzarella Extra' : 'Salsa Extra');
+                
+                // Traduci il nome dell'extra
+                let extraDisplayName = '';
+                switch(extraName) {
+                    case 'mozzarella-extra': extraDisplayName = 'Mozzarella Extra'; break;
+                    case 'salsa-extra': extraDisplayName = 'Salsa Extra'; break;
+                    case 'gorgonzola-extra': extraDisplayName = 'Doppio Gorgonzola'; break;
+                    case 'prosciutto-extra': extraDisplayName = 'Prosciutto Extra'; break;
+                    default: extraDisplayName = extraName;
+                }
+                optionDetails.push(extraDisplayName);
             });
             
             // Calcola prezzo totale
@@ -1541,7 +1678,7 @@
             let count = 0;
             
             if (cart.length === 0) {
-                cartItems.innerHTML = '<p>Il carrello è vuoto</p>';
+                cartItems.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--gray);">Il carrello è vuoto</p>';
                 sendOrderBtn.disabled = true;
             } else {
                 sendOrderBtn.disabled = false;
@@ -1610,6 +1747,7 @@
             
             cartTotal.textContent = `Totale: €${total.toFixed(2)}`;
             cartCount.textContent = count;
+            desktopCartCount.textContent = count;
         }
 
         // Apri/chiudi carrello
