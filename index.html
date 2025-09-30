@@ -3,1027 +3,1070 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciao Pizza - Pizzeria d'Asporto</title>
+    <title>Ciao Pizza - La migliore pizza in città</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #d32f2f;
-            --primary-dark: #b71c1c;
-            --secondary: #ffc107;
-            --accent: #4caf50;
-            --dark: #2c3e50;
-            --light: #f9f9f9;
-            --glass: rgba(255, 255, 255, 0.2);
-            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-            --border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
+        :root {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --secondary: #2c3e50;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #6c757d;
+            --success: #28a745;
+            --border: #dee2e6;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
+            padding-top: 70px;
         }
-
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
-
-        /* Header Styles */
+        
+        /* Header Fisso */
         header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: var(--shadow);
             z-index: 1000;
-            transition: all 0.3s ease;
+            padding: 15px 0;
         }
-
-        .header-container {
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-left: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            color: var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        /* Categorie Menu */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .category-content {
+            padding: 15px;
+        }
+        
+        .category-content h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .category-content p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Pagina Dettaglio Prodotto */
+        .product-page {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-btn i {
+            margin-right: 5px;
+        }
+        
+        .product-detail {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .quantity {
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .add-to-cart-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Carrello */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 380px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s;
+            z-index: 1001;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-sidebar.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .cart-items {
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
+            border-bottom: 1px solid var(--border);
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-
-        .logo-text span {
+        
+        .cart-item-info h4 {
+            margin-bottom: 5px;
             color: var(--secondary);
         }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
+        
+        .cart-item-details {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 5px;
         }
-
-        nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav a:hover {
+        
+        .cart-item-price {
             color: var(--primary);
+            font-weight: bold;
         }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+        
+        .cart-item-actions {
             display: flex;
             align-items: center;
-            gap: 8px;
         }
-
-        .cta-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(211, 47, 47, 0.3);
+        
+        .item-quantity {
+            margin: 0 10px;
+            font-weight: bold;
         }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--primary);
             cursor: pointer;
+            margin-left: 15px;
         }
-
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 80px;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
+        
+        .cart-total {
+            text-align: right;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 20px 0;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
         }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+        
+        .order-type {
             margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .hero-buttons {
+        
+        .order-type-buttons {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--dark);
-            transform: translateY(-3px);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 1.8rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .feature-card p {
-            color: #666;
-        }
-
-        /* Menu Section */
-        .menu {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-
-        .menu-filters {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .menu-item {
-            background: white;
-            border-radius: 15px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
         }
-
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        
+        .order-type-btn {
+            flex: 1;
+            padding: 10px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-
-        .menu-item-img {
-            height: 200px;
-            width: 100%;
-            background-size: cover;
-            background-position: center;
+        
+        .order-type-btn.active {
+            background-color: var(--primary);
+            color: white;
         }
-
-        .menu-item-content {
-            padding: 20px;
+        
+        .customer-info {
+            margin-bottom: 20px;
         }
-
-        .menu-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .menu-item-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .menu-item-price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .menu-item-desc {
-            color: #666;
+        
+        .form-group {
             margin-bottom: 15px;
-            font-size: 0.9rem;
         }
-
-        .menu-item-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
         }
-
-        .add-to-cart {
-            background: var(--primary);
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .send-order-btn {
+            background-color: var(--success);
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-weight: 500;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .add-to-cart:hover {
-            background: var(--primary-dark);
-        }
-
-        /* QR Section */
-        .qr-section {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .qr-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-        }
-
-        .qr-content {
-            flex: 1;
-        }
-
-        .qr-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .qr-content p {
-            margin-bottom: 30px;
-            color: #666;
-        }
-
-        .qr-code {
-            flex: 0 0 300px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .qr-code img {
             width: 100%;
-            max-width: 200px;
-            margin-bottom: 15px;
-        }
-
-        .qr-code p {
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        /* Order Section */
-        .order-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-
-        .order-container {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .order-steps {
-            flex: 1;
-        }
-
-        .order-step {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 50%;
+            transition: background-color 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem;
-            flex-shrink: 0;
         }
-
-        .step-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--dark);
+        
+        .send-order-btn i {
+            margin-right: 10px;
         }
-
-        .order-image {
-            flex: 1;
-            text-align: center;
+        
+        .send-order-btn:hover {
+            background-color: #218838;
         }
-
-        .order-image img {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 20px;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
+        
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
             left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--primary);
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
         }
-
-        .footer-col p {
-            margin-bottom: 15px;
-            opacity: 0.8;
+        
+        .overlay.active {
+            display: block;
         }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul li a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .footer-col ul li a:hover {
-            opacity: 1;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .qr-container, .order-container {
-                flex-direction: column;
-            }
-            
-            .qr-code {
-                margin-top: 30px;
-            }
-            
-            .order-image {
-                order: -1;
-                margin-bottom: 30px;
-            }
-        }
-
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .header-container {
-                flex-wrap: wrap;
-            }
-            
-            nav {
-                width: 100%;
-                margin-top: 15px;
-                display: none;
-            }
-            
-            nav.active {
-                display: block;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .feature-card, .menu-item {
-                padding: 20px;
-            }
-            
-            .menu-grid {
+            .categories {
                 grid-template-columns: 1fr;
+            }
+            
+            .cart-sidebar {
+                max-width: 100%;
+            }
+            
+            body {
+                padding-top: 60px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Fisso -->
     <header>
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-pizza-slice" style="color: var(--primary); font-size: 2rem;"></i>
-                <div class="logo-text">Ciao <span>Pizza</span></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-pizza-slice logo-icon"></i>
+                    <h1>Ciao Pizza</h1>
+                </div>
+                <div class="cart-icon" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
             </div>
-            
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#menu">Menù</a></li>
-                    <li><a href="#ordina">Ordina Online</a></li>
-                    <li><a href="#qr">Menù QR</a></li>
-                    <li><a href="#contatti">Contatti</a></li>
-                </ul>
-            </nav>
-            
-            <button class="cta-button">
-                <i class="fas fa-shopping-cart"></i>
-                Ordina Ora
-            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>La vera pizza italiana</h1>
-            <p>Scopri i sapori autentici della tradizione italiana con ingredienti di prima qualità e una passione che si sente in ogni morso.</p>
-            <div class="hero-buttons">
-                <a href="#menu" class="btn btn-primary">
-                    <i class="fas fa-utensils"></i>
-                    Vedi il Menù
-                </a>
-                <a href="#ordina" class="btn btn-secondary">
-                    <i class="fas fa-motorcycle"></i>
-                    Ordina a Domicilio
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Homepage con Categorie -->
+    <section class="homepage" id="homepage">
         <div class="container">
-            <div class="section-title">
-                <h2>Perché sceglierci</h2>
-                <p>Scopri tutti i vantaggi del nostro servizio di pizzeria d'asporto</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <h3>Menù QR Code</h3>
-                    <p>Scansiona il codice QR per accedere al nostro menù digitale direttamente dal tuo smartphone.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3>Consegna Veloce</h3>
-                    <p>Consegna a domicilio rapida e puntuale in tutta la zona.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Ingredienti Freschi</h3>
-                    <p>Utilizziamo solo ingredienti di prima qualità per garantire il massimo del sapore.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Ordine Online</h3>
-                    <p>Prenota e paga online in pochi click, senza attese al telefono.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="menu" id="menu">
-        <div class="container">
-            <div class="section-title">
-                <h2>Il Nostro Menù</h2>
-                <p>Scopri le nostre specialità e le pizze più richieste</p>
-            </div>
-            
-            <div class="menu-filters">
-                <button class="filter-btn active">Tutte le Pizze</button>
-                <button class="filter-btn">Classiche</button>
-                <button class="filter-btn">Speciali</button>
-                <button class="filter-btn">Calzoni</button>
-                <button class="filter-btn">Bevande</button>
-            </div>
-            
-            <div class="menu-grid">
-                <!-- Pizza 1 -->
-                <div class="menu-item">
-                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="menu-item-content">
-                        <div class="menu-item-header">
-                            <h3 class="menu-item-title">Margherita</h3>
-                            <div class="menu-item-price">€8.50</div>
-                        </div>
-                        <p class="menu-item-desc">Pomodoro, mozzarella, basilico fresco e olio extravergine d'oliva.</p>
-                        <div class="menu-item-footer">
-                            <div class="rating">
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                            </div>
-                            <button class="add-to-cart">
-                                <i class="fas fa-plus"></i>
-                                Aggiungi
-                            </button>
-                        </div>
+            <div class="categories">
+                <!-- Pizza Bianca -->
+                <div class="category-card" data-category="pizza-bianca">
+                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Bianca" class="category-img">
+                    <div class="category-content">
+                        <h3>Pizza Bianca</h3>
+                        <p>Pizza senza pomodoro con ingredienti pregiati</p>
                     </div>
                 </div>
                 
-                <!-- Pizza 2 -->
-                <div class="menu-item">
-                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1627626775846-7cbcf9d56873?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="menu-item-content">
-                        <div class="menu-item-header">
-                            <h3 class="menu-item-title">Diavola</h3>
-                            <div class="menu-item-price">€10.50</div>
-                        </div>
-                        <p class="menu-item-desc">Pomodoro, mozzarella, salame piccante e peperoncino fresco.</p>
-                        <div class="menu-item-footer">
-                            <div class="rating">
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star-half-alt" style="color: var(--secondary);"></i>
-                            </div>
-                            <button class="add-to-cart">
-                                <i class="fas fa-plus"></i>
-                                Aggiungi
-                            </button>
-                        </div>
+                <!-- Pizza Rossa -->
+                <div class="category-card" data-category="pizza-rossa">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Rossa" class="category-img">
+                    <div class="category-content">
+                        <h3>Pizza Rossa</h3>
+                        <p>Pizza classica con pomodoro e mozzarella</p>
                     </div>
                 </div>
                 
-                <!-- Pizza 3 -->
-                <div class="menu-item">
-                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="menu-item-content">
-                        <div class="menu-item-header">
-                            <h3 class="menu-item-title">Quattro Stagioni</h3>
-                            <div class="menu-item-price">€12.00</div>
-                        </div>
-                        <p class="menu-item-desc">Pomodoro, mozzarella, funghi, prosciutto cotto, carciofi e olive.</p>
-                        <div class="menu-item-footer">
-                            <div class="rating">
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="far fa-star" style="color: var(--secondary);"></i>
-                            </div>
-                            <button class="add-to-cart">
-                                <i class="fas fa-plus"></i>
-                                Aggiungi
-                            </button>
-                        </div>
+                <!-- Panini -->
+                <div class="category-card" data-category="panini">
+                    <img src="https://images.unsplash.com/photo-1551782455-6ba0eec22efd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Panini" class="category-img">
+                    <div class="category-content">
+                        <h3>Panini</h3>
+                        <p>Panini gourmet con ingredienti di qualità</p>
                     </div>
                 </div>
                 
-                <!-- Pizza 4 -->
-                <div class="menu-item">
-                    <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="menu-item-content">
-                        <div class="menu-item-header">
-                            <h3 class="menu-item-title">Ciao Pizza Special</h3>
-                            <div class="menu-item-price">€14.00</div>
-                        </div>
-                        <p class="menu-item-desc">Pomodoro, mozzarella di bufala, rucola, prosciutto crudo e scaglie di grana.</p>
-                        <div class="menu-item-footer">
-                            <div class="rating">
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                                <i class="fas fa-star" style="color: var(--secondary);"></i>
-                            </div>
-                            <button class="add-to-cart">
-                                <i class="fas fa-plus"></i>
-                                Aggiungi
-                            </button>
-                        </div>
+                <!-- Fritti Misti -->
+                <div class="category-card" data-category="fritti">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fritti Misti" class="category-img">
+                    <div class="category-content">
+                        <h3>Fritti Misti</h3>
+                        <p>Selezione di fritti per antipasto</p>
+                    </div>
+                </div>
+                
+                <!-- Bevande -->
+                <div class="category-card" data-category="bevande">
+                    <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Bevande" class="category-img">
+                    <div class="category-content">
+                        <h3>Bevande</h3>
+                        <p>Bibite, birre e vini selezionati</p>
+                    </div>
+                </div>
+                
+                <!-- Dolci -->
+                <div class="category-card" data-category="dolci">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Dolci" class="category-img">
+                    <div class="category-content">
+                        <h3>Dolci</h3>
+                        <p>Dolci della tradizione italiana</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- QR Section -->
-    <section class="qr-section" id="qr">
+    <!-- Pagine Prodotti (nascoste inizialmente) -->
+    
+    <!-- Pizza Bianca -->
+    <section class="product-page" id="pizza-bianca-page">
         <div class="container">
-            <div class="qr-container">
-                <div class="qr-content">
-                    <h2>Menù Digitale con QR Code</h2>
-                    <p>Scansiona il codice QR con il tuo smartphone per accedere al nostro menù digitale completo. Nessun contatto, nessuna attesa!</p>
-                    <p>Il sistema rileva automaticamente la connessione WiFi del locale per un accesso rapido e senza consumare i tuoi dati.</p>
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-mobile-alt"></i>
-                        Prova il Menù Digitale
-                    </a>
-                </div>
-                
-                <div class="qr-code">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ciao-pizza.it/menu-digitale" alt="QR Code Menù">
-                    <p>Scansiona per il menù</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Order Section -->
-    <section class="order-section" id="ordina">
-        <div class="container">
-            <div class="section-title">
-                <h2>Come Ordinare</h2>
-                <p>Segui questi semplici passi per ordinare la tua pizza preferita</p>
-            </div>
-            
-            <div class="order-container">
-                <div class="order-steps">
-                    <div class="order-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Scegli dal Menù</h3>
-                            <p>Seleziona le pizze e le bevande che preferisci dal nostro menù online.</p>
+            <button class="back-btn" data-back="homepage">
+                <i class="fas fa-arrow-left"></i> Torna al Menù
+            </button>
+            <div class="product-detail">
+                <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Bianca" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Pizza Bianca</h2>
+                    <p class="product-description">Pizza senza pomodoro con ingredienti di prima qualità</p>
+                    <div class="product-price">€8.50</div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Tipo di Pizza</div>
+                        <div class="options">
+                            <div class="option selected" data-option="tipo" data-value="margherita-bianca">Margherita Bianca</div>
+                            <div class="option" data-option="tipo" data-value="quattro-formaggi">Quattro Formaggi</div>
+                            <div class="option" data-option="tipo" data-value="patate-e-salsiccia">Patate e Salsiccia</div>
                         </div>
                     </div>
                     
-                    <div class="order-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Aggiungi al Carrello</h3>
-                            <p>Aggiungi i prodotti al carrello e procedi al checkout.</p>
+                    <div class="option-group">
+                        <div class="option-title">Dimensione</div>
+                        <div class="options">
+                            <div class="option selected" data-option="dimensione" data-value="normale">Normale</div>
+                            <div class="option" data-option="dimensione" data-value="familiare">Familiare (+€3)</div>
                         </div>
                     </div>
                     
-                    <div class="order-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Inserisci i Dati</h3>
-                            <p>Inserisci i tuoi dati e l'indirizzo di consegna per il domicilio.</p>
-                        </div>
+                    <div class="quantity-selector">
+                        <div class="quantity-btn minus">-</div>
+                        <div class="quantity">1</div>
+                        <div class="quantity-btn plus">+</div>
                     </div>
                     
-                    <div class="order-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Paga e Ricevi</h3>
-                            <p>Completa il pagamento online e attendi la consegna a casa tua!</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="order-image">
-                    <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Ordina Online">
+                    <button class="add-to-cart-btn" data-product="Pizza Bianca" data-price="8.50">
+                        Aggiungi al Carrello
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contatti">
+    <!-- Pizza Rossa -->
+    <section class="product-page" id="pizza-rossa-page">
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>Ciao Pizza</h3>
-                    <p>La migliore pizzeria d'asporto. Tradizione e qualità in ogni pizza.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <button class="back-btn" data-back="homepage">
+                <i class="fas fa-arrow-left"></i> Torna al Menù
+            </button>
+            <div class="product-detail">
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pizza Rossa" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Pizza Rossa</h2>
+                    <p class="product-description">Pizza classica con pomodoro San Marzano DOP e mozzarella di bufala</p>
+                    <div class="product-price">€7.50</div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Tipo di Pizza</div>
+                        <div class="options">
+                            <div class="option selected" data-option="tipo" data-value="margherita">Margherita</div>
+                            <div class="option" data-option="tipo" data-value="diavola">Diavola</div>
+                            <div class="option" data-option="tipo" data-value="capricciosa">Capricciosa</div>
+                        </div>
                     </div>
+                    
+                    <div class="option-group">
+                        <div class="option-title">Dimensione</div>
+                        <div class="options">
+                            <div class="option selected" data-option="dimensione" data-value="normale">Normale</div>
+                            <div class="option" data-option="dimensione" data-value="familiare">Familiare (+€3)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <div class="quantity-btn minus">-</div>
+                        <div class="quantity">1</div>
+                        <div class="quantity-btn plus">+</div>
+                    </div>
+                    
+                    <button class="add-to-cart-btn" data-product="Pizza Rossa" data-price="7.50">
+                        Aggiungi al Carrello
+                    </button>
                 </div>
-                
-                <div class="footer-col">
-                    <h3>Orari di Apertura</h3>
-                    <ul>
-                        <li>Lunedì: Chiuso</li>
-                        <li>Martedì - Giovedì: 18:00 - 23:00</li>
-                        <li>Venerdì - Domenica: 18:00 - 24:00</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contatti</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Via Roma 123, Calderino (BO)</li>
-                        <li><i class="fas fa-phone"></i> +39 051 123 4567</li>
-                        <li><i class="fas fa-envelope"></i> info@ciaopizza.it</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Link Utili</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#menu">Menù</a></li>
-                        <li><a href="#ordina">Ordina Online</a></li>
-                        <li><a href="#qr">Menù QR</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Ciao Pizza - Pizzeria d'Asporto. Tutti i diritti riservati.</p>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- Carrello Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Il Tuo Ordine</h2>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Gli elementi del carrello verranno inseriti qui dinamicamente -->
+        </div>
+        
+        <div class="cart-total" id="cartTotal">Totale: €0.00</div>
+        
+        <div class="order-type">
+            <div class="option-title">Tipo di Ordine</div>
+            <div class="order-type-buttons">
+                <button class="order-type-btn active" data-type="asporto">Da Asporto</button>
+                <button class="order-type-btn" data-type="consumazione">In Locale</button>
+            </div>
+        </div>
+        
+        <div class="customer-info">
+            <div class="form-group">
+                <label for="customerName">Nome</label>
+                <input type="text" id="customerName" class="form-control" placeholder="Il tuo nome">
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Telefono</label>
+                <input type="tel" id="customerPhone" class="form-control" placeholder="Il tuo numero di telefono">
+            </div>
+            <div class="form-group" id="addressGroup">
+                <label for="customerAddress">Indirizzo di consegna</label>
+                <input type="text" id="customerAddress" class="form-control" placeholder="Il tuo indirizzo completo">
+            </div>
+        </div>
+        
+        <button class="send-order-btn" id="sendOrderBtn">
+            <i class="fab fa-whatsapp"></i> Invia Ordine su WhatsApp
+        </button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav').classList.toggle('active');
-        });
-
-        // Menu Filtering
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // In a real implementation, you would filter the menu items here
-            });
-        });
-
-        // Add to Cart Functionality
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const itemName = this.closest('.menu-item').querySelector('.menu-item-title').textContent;
-                
-                // Animation effect
-                this.innerHTML = '<i class="fas fa-check"></i> Aggiunto';
-                this.style.background = 'var(--accent)';
-                
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-plus"></i> Aggiungi';
-                    this.style.background = '';
-                }, 1500);
-                
-                // In a real implementation, you would add the item to the cart here
-                console.log(`Aggiunto al carrello: ${itemName}`);
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.9)';
-                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        // Dati dei prodotti
+        const products = {
+            "pizza-bianca": {
+                name: "Pizza Bianca",
+                basePrice: 8.50,
+                options: {
+                    "tipo": {
+                        "margherita-bianca": { name: "Margherita Bianca", price: 0 },
+                        "quattro-formaggi": { name: "Quattro Formaggi", price: 1.50 },
+                        "patate-e-salsiccia": { name: "Patate e Salsiccia", price: 2.00 }
+                    },
+                    "dimensione": {
+                        "normale": { name: "Normale", price: 0 },
+                        "familiare": { name: "Familiare", price: 3.00 }
+                    }
+                }
+            },
+            "pizza-rossa": {
+                name: "Pizza Rossa",
+                basePrice: 7.50,
+                options: {
+                    "tipo": {
+                        "margherita": { name: "Margherita", price: 0 },
+                        "diavola": { name: "Diavola", price: 1.00 },
+                        "capricciosa": { name: "Capricciosa", price: 1.50 }
+                    },
+                    "dimensione": {
+                        "normale": { name: "Normale", price: 0 },
+                        "familiare": { name: "Familiare", price: 3.00 }
+                    }
+                }
+            },
+            "panini": {
+                name: "Panino",
+                basePrice: 6.00,
+                options: {
+                    "tipo": {
+                        "prosciutto-mozzarella": { name: "Prosciutto e Mozzarella", price: 0 },
+                        "porchetta": { name: "Porchetta", price: 1.00 },
+                        "vegetariano": { name: "Vegetariano", price: 0.50 }
+                    }
+                }
+            },
+            "fritti": {
+                name: "Fritto Misto",
+                basePrice: 5.00,
+                options: {
+                    "tipo": {
+                        "misto-classico": { name: "Misto Classico", price: 0 },
+                        "solo-patatine": { name: "Solo Patatine", price: -1.00 },
+                        "solo-crocchette": { name: "Solo Crocchette", price: -1.00 }
+                    }
+                }
             }
+        };
+
+        // Stato dell'applicazione
+        let cart = [];
+        let currentProductPage = null;
+        let orderType = "asporto";
+
+        // Elementi DOM
+        const homepage = document.getElementById('homepage');
+        const cartBtn = document.getElementById('cartBtn');
+        const closeCart = document.getElementById('closeCart');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const overlay = document.getElementById('overlay');
+        const categoryCards = document.querySelectorAll('.category-card');
+        const productPages = document.querySelectorAll('.product-page');
+        const backBtns = document.querySelectorAll('.back-btn');
+        const orderTypeBtns = document.querySelectorAll('.order-type-btn');
+        const addressGroup = document.getElementById('addressGroup');
+        const sendOrderBtn = document.getElementById('sendOrderBtn');
+
+        // Apri/chiudi carrello
+        cartBtn.addEventListener('click', openCart);
+        closeCart.addEventListener('click', closeCartSidebar);
+        overlay.addEventListener('click', closeCartSidebar);
+
+        function openCart() {
+            cartSidebar.classList.add('open');
+            overlay.classList.add('active');
+            updateCart();
+        }
+
+        function closeCartSidebar() {
+            cartSidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        // Navigazione tra pagine
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+                showProductPage(category);
+            });
         });
+
+        backBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-back');
+                if (target === 'homepage') {
+                    showHomepage();
+                }
+            });
+        });
+
+        function showHomepage() {
+            homepage.style.display = 'block';
+            productPages.forEach(page => {
+                page.style.display = 'none';
+            });
+            currentProductPage = null;
+        }
+
+        function showProductPage(category) {
+            homepage.style.display = 'none';
+            productPages.forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            const productPage = document.getElementById(`${category}-page`);
+            if (productPage) {
+                productPage.style.display = 'block';
+                currentProductPage = category;
+                
+                // Reset delle opzioni
+                const options = productPage.querySelectorAll('.option');
+                options.forEach(option => {
+                    option.classList.remove('selected');
+                    if (option.getAttribute('data-option') === 'tipo') {
+                        option.classList.add('selected');
+                    }
+                });
+                
+                // Reset quantità
+                const quantity = productPage.querySelector('.quantity');
+                quantity.textContent = '1';
+            }
+        }
+
+        // Gestione opzioni prodotto
+        productPages.forEach(page => {
+            const options = page.querySelectorAll('.option');
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const optionGroup = option.getAttribute('data-option');
+                    const optionsInGroup = page.querySelectorAll(`[data-option="${optionGroup}"]`);
+                    
+                    optionsInGroup.forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    option.classList.add('selected');
+                });
+            });
+            
+            // Gestione quantità
+            const minusBtn = page.querySelector('.minus');
+            const plusBtn = page.querySelector('.plus');
+            const quantity = page.querySelector('.quantity');
+            
+            minusBtn.addEventListener('click', () => {
+                let qty = parseInt(quantity.textContent);
+                if (qty > 1) {
+                    quantity.textContent = qty - 1;
+                }
+            });
+            
+            plusBtn.addEventListener('click', () => {
+                let qty = parseInt(quantity.textContent);
+                quantity.textContent = qty + 1;
+            });
+            
+            // Aggiungi al carrello
+            const addToCartBtn = page.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', () => {
+                addToCart(currentProductPage);
+            });
+        });
+
+        // Aggiungi prodotto al carrello
+        function addToCart(productId) {
+            const productPage = document.getElementById(`${productId}-page`);
+            if (!productPage) return;
+            
+            const product = products[productId];
+            const quantity = parseInt(productPage.querySelector('.quantity').textContent);
+            
+            // Raccogli opzioni selezionate
+            const selectedOptions = {};
+            const optionGroups = productPage.querySelectorAll('.option-group');
+            
+            optionGroups.forEach(group => {
+                const selectedOption = group.querySelector('.option.selected');
+                if (selectedOption) {
+                    const optionType = selectedOption.getAttribute('data-option');
+                    const optionValue = selectedOption.getAttribute('data-value');
+                    selectedOptions[optionType] = optionValue;
+                }
+            });
+            
+            // Calcola prezzo totale
+            let totalPrice = product.basePrice;
+            let optionDetails = [];
+            
+            for (const [optionType, optionValue] of Object.entries(selectedOptions)) {
+                const option = product.options[optionType][optionValue];
+                totalPrice += option.price;
+                optionDetails.push(option.name);
+            }
+            
+            totalPrice *= quantity;
+            
+            // Aggiungi al carrello
+            cart.push({
+                id: Date.now(), // ID univoco
+                productId: productId,
+                name: product.name,
+                basePrice: product.basePrice,
+                options: selectedOptions,
+                optionDetails: optionDetails.join(', '),
+                quantity: quantity,
+                totalPrice: totalPrice
+            });
+            
+            updateCart();
+            closeCartSidebar();
+            showHomepage();
+            
+            // Feedback visivo
+            alert(`${quantity} ${product.name} aggiunto al carrello!`);
+        }
+
+        // Aggiorna carrello
+        function updateCart() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            let count = 0;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Il carrello è vuoto</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.totalPrice;
+                    count += item.quantity;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.classList.add('cart-item');
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-details">${item.optionDetails}</div>
+                            <div class="cart-item-price">€${item.totalPrice.toFixed(2)}</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="quantity-btn minus" data-index="${index}">-</button>
+                            <span class="item-quantity">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-index="${index}">+</button>
+                            <button class="remove-item" data-index="${index}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    cartItems.appendChild(cartItemElement);
+                });
+                
+                // Aggiungi event listeners per modificare quantità
+                document.querySelectorAll('.cart-item-actions .minus').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = e.target.getAttribute('data-index');
+                        if (cart[index].quantity > 1) {
+                            cart[index].quantity -= 1;
+                            cart[index].totalPrice = (cart[index].basePrice * cart[index].quantity);
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.cart-item-actions .plus').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = e.target.getAttribute('data-index');
+                        cart[index].quantity += 1;
+                        cart[index].totalPrice = (cart[index].basePrice * cart[index].quantity);
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = e.target.closest('.remove-item').getAttribute('data-index');
+                        cart.splice(index, 1);
+                        updateCart();
+                    });
+                });
+            }
+            
+            cartTotal.textContent = `Totale: €${total.toFixed(2)}`;
+            cartCount.textContent = count;
+        }
+
+        // Gestione tipo ordine
+        orderTypeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                orderTypeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                orderType = btn.getAttribute('data-type');
+                
+                // Mostra/nascondi campo indirizzo
+                if (orderType === 'asporto') {
+                    addressGroup.style.display = 'block';
+                } else {
+                    addressGroup.style.display = 'none';
+                }
+            });
+        });
+
+        // Invia ordine su WhatsApp
+        sendOrderBtn.addEventListener('click', sendOrderToWhatsApp);
+
+        function sendOrderToWhatsApp() {
+            if (cart.length === 0) {
+                alert('Il carrello è vuoto!');
+                return;
+            }
+            
+            const customerName = document.getElementById('customerName').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+            let customerAddress = '';
+            
+            if (orderType === 'asporto') {
+                customerAddress = document.getElementById('customerAddress').value;
+                if (!customerAddress) {
+                    alert('Inserisci l\'indirizzo di consegna');
+                    return;
+                }
+            }
+            
+            if (!customerName || !customerPhone) {
+                alert('Inserisci nome e telefono');
+                return;
+            }
+            
+            // Costruisci messaggio
+            let message = `Nuovo Ordine - Ciao Pizza%0A%0A`;
+            message += `*Cliente:* ${customerName}%0A`;
+            message += `*Telefono:* ${customerPhone}%0A`;
+            message += `*Tipo ordine:* ${orderType === 'asporto' ? 'Da Asporto' : 'In Locale'}%0A`;
+            
+            if (orderType === 'asporto') {
+                message += `*Indirizzo:* ${customerAddress}%0A`;
+            }
+            
+            message += `%0A*Dettaglio ordine:*%0A`;
+            
+            cart.forEach(item => {
+                message += `- ${item.quantity}x ${item.name} (${item.optionDetails}) - €${item.totalPrice.toFixed(2)}%0A`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+            message += `%0A*Totale:* €${total.toFixed(2)}`;
+            
+            // Numero di WhatsApp (sostituisci con il numero del ristorante)
+            const whatsappNumber = "39123456789";
+            
+            // Apri WhatsApp
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+            
+            // Reset carrello
+            cart = [];
+            updateCart();
+            closeCartSidebar();
+            
+            // Reset form
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('customerAddress').value = '';
+        }
+
+        // Inizializzazione
+        updateCart();
     </script>
 </body>
 </html>
